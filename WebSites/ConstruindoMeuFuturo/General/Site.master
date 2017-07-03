@@ -40,18 +40,19 @@
                 </div>
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#">Registro</a></li>
-                    <li><a href="#">Acesso</a></li>
+                    <li><a href="Usuario/Cadastro.aspx">Registro</a></li>
+                    <li><a href="Usuario/Login.aspx">Acesso</a></li>
                     <li><a href="#">F.A.Q.</a></li>
                 </ul>
                     </div>
             </div>
         </nav>
 
-        </form>
+        
         <div>
-        <asp:ContentPlaceHolder id="Content" runat="server">
-        </asp:ContentPlaceHolder>
-    </div>
+            <asp:ContentPlaceHolder id="Content" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+    </form>
 </body>
 </html>

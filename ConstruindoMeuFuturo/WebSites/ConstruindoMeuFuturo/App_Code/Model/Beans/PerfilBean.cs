@@ -6,45 +6,28 @@ using System.Web;
 /// <summary>
 /// Descrição resumida de PerfilBean
 /// </summary>
-public class PerfilBean
-{   private int id;
-    private string nome;
-    private int datanascimento;
+public class PerfilBean:UsuarioBean
+{   private int id_perfil;
+    private String datanascimento;
     private string escolaridade;
-    public virtual ICollection<UsuarioBean> id_usuario { get; set; }
-    //Get e Set id
 
-    public int Id
+
+    //Get e Set id perfil
+    public int Id_perfil
     {
         get
         {
-            return id;
+            return id_perfil;
         }
 
         set
         {
-            id = value;
-        }
-    }
-
-    //Get e Set nome
-
-    public string Nome
-    {
-        get
-        {
-            return nome;
-        }
-
-        set
-        {
-            nome = value;
+            id_perfil = value;
         }
     }
 
     //Get e Set data nascimento
-
-    public int Datanascimento
+    public String Datanascimento
     {
         get
         {

@@ -6,26 +6,24 @@ using System.Web;
 /// <summary>
 /// Descrição resumida de CidadeBean
 /// </summary>
-public class CidadeBean
+public class CidadeBean:EstadoBean
 {
-    private int id;
+    private int id_cidade;
     private String nome;
 
     //Get e Set id
-
-    public int Id
+    public int Id_cidade
     {
         get
         {
-            return id;
+            return id_cidade;
         }
 
         set
         {
-            id = value;
+            id_cidade = value;
         }
     }
-
     //Get e Set nome
 
     public string Nome

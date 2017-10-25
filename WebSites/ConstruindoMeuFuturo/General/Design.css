@@ -1,8 +1,12 @@
 ﻿body {
     padding-top:50px;
-    padding-bottom:50px;
     font-family:Bariol;
     font-size:medium;
+}
+
+@font-face {
+    font-family: "Bariol";
+    src: url("../font/bariol.otf");
 }
 
 /*classe para os textos abaixo do slide de img*/
@@ -33,7 +37,7 @@
 .t
 {
     background: linear-gradient(to bottom, #ffffff 0%,#207cca 31%,#207cca 31%,#2989d8 77%,#7db9e8 100%);
-    height: 100%;
+    min-height:150px;
     color:white;
 }
 
@@ -57,4 +61,32 @@
     width: 62px;
     float: left;
     margin-right: 15px;
+}
+
+/*Clase para o botão da Home*/
+.button-cad
+{
+    min-height:80px;
+    min-width:400px;
+    font-size:40px;
+    font-weight:bold;
+    background-color:orange;
+    color:white;
+}
+
+.noticia
+{
+    height:200px;
+}
+.noticia:hover 
+{
+    opacity: 1;
+    cursor:pointer;
+}
+
+.font-noticia
+{
+    font-size:20px;
+    font-weight:bold;
+    text-shadow:0.1em 0.1em #000000;
 }

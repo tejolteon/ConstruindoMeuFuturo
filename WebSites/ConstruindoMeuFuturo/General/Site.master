@@ -15,6 +15,7 @@
         <script src="../bootstrap/js/bootstrap.min.js"></script>--%>
 
         <link href="../bootstrap/css/bootstrap.css" rel="stylesheet" />
+        <link rel="icon" href="../Images/Logo.png"
         <link href="Design.css" rel="stylesheet" />
         <script src="../bootstrap/js/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -45,7 +46,7 @@
                         <ul class="nav navbar-nav navbar-right">
                             <li><a href="../View/Cadastro.aspx">Registro</a></li>
                             <li><a href="../View/Login.aspx">Acesso</a></li>
-                            <li><a href="#">F.A.Q.</a></li>
+                            <li><a href="../View/FAQ.aspx">F.A.Q.</a></li>
                         </ul>
                             </div>
                     </div>
@@ -68,8 +69,8 @@
                         </div>
                         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
                         <ul class="nav navbar-nav navbar-right">
-                            <li><asp:LinkButton ID="lbNome" runat="server">Sair</asp:LinkButton></li>
-                            <li><a href="#">F.A.Q</a></li>
+                            <li><asp:LinkButton ID="lbNome" runat="server" OnClick="lbNome_Click">Nome</asp:LinkButton></li>
+                            <li><a href="../View/FAQ.aspx">F.A.Q</a></li>
                             <li><asp:LinkButton ID="LinkButton1" runat="server" OnClick="Sair_Click">Sair</asp:LinkButton></li>
                         </ul>
                         </div>

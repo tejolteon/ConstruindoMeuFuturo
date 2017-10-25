@@ -9,10 +9,11 @@ using System.Web;
 public class PerfilController
 {
     private PerfilDao perfildao;
-    public void InserirNovoPerfil(PerfilBean perfil,AreaBean area, CidadeBean cidade)
+    public void InserirNovoPerfil(UsuarioBean usuario, PerfilBean perfil,AreaBean area, CidadeBean cidade)
     {
        //Verifica se as Variaveis obrigatórias estão null
-        ValidarPerfil(perfil);
+        ValidarPerfil(usuario);
+        perfil.Id = usuario.Id;
         perfildao = new PerfilDao();
         var id_perfil = perfildao.InserirPerfilRetornandoId(perfil);
         //Recebe o id do perfil inserido
@@ -31,10 +32,10 @@ public class PerfilController
 
         perfildao.InserirPerfilCidade(perfil, cidade);
     }
-    public void ValidarPerfil(PerfilBean perfil)
+    public void ValidarPerfil(UsuarioBean usu)
     {
         //Verifica se as varias estão nulas
-        if (string.IsNullOrWhiteSpace(perfil.Nome))
+        if (string.IsNullOrWhiteSpace(usu.Nome))
         {
             throw new UsuarioInvalidoException();
         }

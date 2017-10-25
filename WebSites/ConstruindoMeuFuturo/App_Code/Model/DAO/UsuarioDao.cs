@@ -84,4 +84,44 @@ public class UsuarioDao
 
     }
 
+    public UsuarioBean ConsultarUsuarioPorID(int id)
+    {
+        try
+        {
+            //Conectar com o banco
+            Conexao.Conectar();
+            var command = new SqlCommand();
+            command.Connection = Conexao.connection;
+            //Comando no banco
+            command.CommandText = "SELECT * FROM TB_USUARIO WHERE Id_Usuario = @id";
+            //Entrada doa parâmetros
+            command.Parameters.AddWithValue("@id", id);
+            //Executar o comando 
+            var reader = command.ExecuteReader();
+            UsuarioBean usuario = null;
+            //Inserir os valores do resultado no bean
+            while (reader.Read())
+            {
+                usuario = new UsuarioBean();
+                usuario.Id = Convert.ToInt32(reader["Id_Usuario"]);
+                usuario.Nome = Convert.ToString(reader["Nome_Usuario"]);
+                usuario.Email = Convert.ToString(reader["Email_Usuario"]);
+                usuario.Senha = Convert.ToString(reader["Senha_Usuario"]);
+
+            }
+            return usuario;
+        }
+        catch (Exception)
+        {
+
+            throw;
+        }
+        //encerrar conexão com o banco
+        finally
+        {
+            Conexao.Desconectar();
+        }
+
+    }
+
 }

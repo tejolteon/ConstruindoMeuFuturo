@@ -20,7 +20,7 @@ public class PerfilDao
             var command = new SqlCommand();
             command.Connection = Conexao.connection;
             //Comando no banco
-            command.CommandText = "INSERT INTO TB_PERFIL(Id_Usuario, Data_Nascimento_Perfil, Escolaridade_Perfil) OUTPUT INSERTED.Id_Perfil VALUES(@id,@datadascimento,@escolaridade)";
+            command.CommandText = "INSERT INTO TB_PERFIL(Id_Usuario, Data_Nascimento_Perfil, Escolaridade_Perfil) OUTPUT INSERTED.Id_Perfil VALUES(@id,@datanascimento,@escolaridade)";
             //Entrada doa parâmetros
             command.Parameters.AddWithValue("@id", perfil.Id);
             command.Parameters.AddWithValue("@datanascimento", perfil.Datanascimento);
@@ -80,7 +80,7 @@ public class PerfilDao
             command.CommandText = "INSERT INTO TB_PERFIL_has_TB_CIDADE(Id_Perfil,Id_Cidade) VALUES (@id_perfil,@id_cidade)";
             //Entrada doa parâmetros
             command.Parameters.AddWithValue("@id_perfil", perfil.Id_perfil);
-            command.Parameters.AddWithValue("@id_area",cidade.Id);
+            command.Parameters.AddWithValue("@id_cidade",cidade.Id);
             //Executa e retorna o tanto de linhas que foram afetadas
             return command.ExecuteNonQuery();
         }

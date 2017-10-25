@@ -25,6 +25,22 @@ public class UsuarioController
             return usuario;
         }
     }
+
+    public UsuarioBean ConsultarUsuarioPorID(int id)
+    {
+        usuariodao = new UsuarioDao();
+        var usuario = usuariodao.ConsultarUsuarioPorID(id);
+
+        if (usuario == null)
+        {
+            throw new UsuarioNaoCadastradoException();
+        }
+        else
+        {
+            //retorna normal   
+            return usuario;
+        }
+    }
     public void InserirNovoUsuario(UsuarioBean usuario)
     {
         ValidarSenhaUsuario(usuario);

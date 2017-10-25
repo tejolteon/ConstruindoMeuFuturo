@@ -12,6 +12,8 @@ public partial class View_Cadastro_Perfil : System.Web.UI.Page
     private PerfilBean perfil;
     private AreaBean area;
     private CidadeBean cidade;
+    private UsuarioBean usuario;
+    private UsuarioController usuCont;
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -21,7 +23,7 @@ public partial class View_Cadastro_Perfil : System.Web.UI.Page
 
 
     protected void Btcadastrar_Click(object sender, EventArgs e)
-    {
+    {   
         perfil = new PerfilBean() ;
         perfil.Datanascimento = Txtdatanascimento.Text;
         perfil.Escolaridade = DDLescolaridade.SelectedValue;
@@ -32,19 +34,28 @@ public partial class View_Cadastro_Perfil : System.Web.UI.Page
         cidade = new CidadeBean();
         cidade.Id = Convert.ToInt32(DDLcidade.SelectedValue);
 
+        usuario = new UsuarioBean();
+        usuario.Id = MasterPage.usuarioID;
+
         //Campo estado é apenas um filtro para mostras apenas as cidades do estado selecionado, ficara pendente
 
         //Mandando para o controler
         perfcont = new PerfilController();
-
+        usuCont = new UsuarioController();
         try
         {
-            perfcont.InserirNovoPerfil(perfil, area, cidade);
+            usuario = usuCont.ConsultarUsuarioPorID(usuario.Id);
+            perfcont.InserirNovoPerfil(usuario, perfil, area, cidade);
+            Response.Redirect("Perfil.aspx");
         }
         catch (Exception)
         {
-
             throw;
         }
+    }
+
+    protected void lbtMTarde_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("Home.aspx");
     }
 }

@@ -14,9 +14,9 @@ public partial class View_Unidade_de_Ensino : System.Web.UI.Page
 
     private void CarregarRepeater()
     {
-        RepeaterCursos.DataSource = new List<UnidadeEnsinoBean>
+        RepeaterCursos.DataSource = new List<UnidadeEnsinoBean>();
         {
-            new UnidadeEnsinoBean{Nome = }
+            //new UnidadeEnsinoBean{Nome = }
         }
     }
 }

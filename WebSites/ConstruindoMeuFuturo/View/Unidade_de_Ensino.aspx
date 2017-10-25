@@ -24,7 +24,7 @@
                 
                 
                 <div class="form-group text-right">
-                    <asp:Button ID="Btcadastras" CssClass="btn btn-primary" Text="Cadastrar" runat="server" Width="100px" OnClick="Btcadastras_Click"/>
+                    <asp:Button ID="Btcadastras" CssClass="btn btn-primary" Text="Cadastrar" runat="server" Width="100px"/>
                 </div>
                 <br/>
                 <asp:Label id="Labelerro" runat="server"></asp:Label>

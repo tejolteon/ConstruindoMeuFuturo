@@ -4,7 +4,6 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-
 public partial class View_Cadastro : System.Web.UI.Page
 {
     private UsuarioController usucont;
@@ -21,13 +20,19 @@ public partial class View_Cadastro : System.Web.UI.Page
         usuario.Nome = txtNome.Text;
         usuario.Email = Txtemail.Text;
         usuario.Senha = TxtSenha.Text;
-        usuario.Confirmarsenha = TxtConfirmarSenha.Text;
+        usuario.Confirmarsenha = TxtConfirmarSenha.Text;       
 
         //Mandando para o controler
         usucont = new UsuarioController();
         try
         {
             usucont.InserirNovoUsuario(usuario);
+            usuario = usucont.ConsultarUsuario(usuario.Email, usuario.Senha);
+            MasterPage.nome = usuario.Nome;
+            MasterPage.usuarioID = usuario.Id;
+            MasterPage.log = true;
+            
+            Response.Redirect("Cadastro_Perfil.aspx");
         }
         catch (SenhaUsuarioInvalidaException)
         {

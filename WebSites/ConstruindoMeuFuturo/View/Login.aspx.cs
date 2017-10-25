@@ -27,8 +27,9 @@ public partial class View_Usuario_Login : System.Web.UI.Page
         try
         {
             usuario = usucont.ConsultarUsuario(usuario.Email, usuario.Senha);
-            MasterPage.nome = usuario.Nome;
             MasterPage.log = true;
+            MasterPage.nome = usuario.Nome;
+            MasterPage.usuarioID = usuario.Id;
             //??????Criar pagina depois de logado???????
             Response.Redirect("Home.aspx");
         }

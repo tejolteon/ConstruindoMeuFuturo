@@ -27,32 +27,60 @@
 <body>
     <form id="form1" runat="server">
 
-        <nav class="navbar navbar-inverse navbar-fixed-top">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <a class="navbar-brand active" href="#">Construindo Meu Futuro</a>
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false" aria-controls="navbar">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                </div>
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="Usuario/Cadastro.aspx">Registro</a></li>
-                    <li><a href="Usuario/Login.aspx">Acesso</a></li>
-                    <li><a href="#">F.A.Q.</a></li>
-                </ul>
+        <header>
+            <asp:Panel ID="pnOff" runat="server">
+                <nav class="navbar navbar-inverse navbar-fixed-top">
+                    <div class="container-fluid">
+                        <div class="navbar-header">
+                            <a class="navbar-brand active" href="../View/Home.aspx">Construindo Meu Futuro
+                            </a>
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false" aria-controls="navbar">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                        </div>
+                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="../View/Cadastro.aspx">Registro</a></li>
+                            <li><a href="../View/Login.aspx">Acesso</a></li>
+                            <li><a href="#">F.A.Q.</a></li>
+                        </ul>
+                            </div>
                     </div>
-            </div>
-        </nav>
+                </nav>
+            </asp:Panel>
+
+            <asp:Panel ID="pnOn" runat="server" Visible="false">
+                <nav class="navbar navbar-inverse navbar-fixed-top">
+                    <div class="container-fluid">
+                        <div class="navbar-header">
+                            <a class="navbar-brand active" href="../View/Home.aspx">Construindo Meu Futuro
+                            
+                            </a>
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2" aria-expanded="false" aria-controls="navbar">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                        </div>
+                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><asp:LinkButton ID="lbNome" runat="server">Sair</asp:LinkButton></li>
+                            <li><a href="#">F.A.Q</a></li>
+                            <li><asp:LinkButton ID="LinkButton1" runat="server" OnClick="Sair_Click">Sair</asp:LinkButton></li>
+                        </ul>
+                        </div>
+                    </div>
+                </nav>
+            </asp:Panel>
+        </header>
 
         
-        <div>
-            <asp:ContentPlaceHolder id="Content" runat="server">
-            </asp:ContentPlaceHolder>
-        </div>
-    </form>
+        <asp:ContentPlaceHolder id="Content" runat="server">
+        </asp:ContentPlaceHolder>
+        </form>
 </body>
 </html>

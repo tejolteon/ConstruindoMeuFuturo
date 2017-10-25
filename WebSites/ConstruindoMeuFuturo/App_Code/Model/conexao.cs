@@ -9,7 +9,9 @@ using System.Web;
 /// </summary>
 public class Conexao
 {
-    public static string connetionString = System.Configuration.ConfigurationManager.ConnectionStrings["ConexaoConstruindo"].ConnectionString;
+    /* Minha conexão não apaguem. Ass: Tiago*/
+    public static string connetionString = "Integrated Security=SSPI;Persist Security Info=False;Initial Catalog=construindomeufuturo;Data Source=TIAGO";
+    //public static string connetionString = "";
     public static SqlConnection connection = new SqlConnection(connetionString);
 
     public static void Conectar() {

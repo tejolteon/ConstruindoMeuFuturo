@@ -2,7 +2,6 @@
 
 <asp:Content ContentPlaceHolderID="Content" runat="server">
     <!DOCTYPE html>
-
     <html>
     <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
@@ -22,27 +21,27 @@
             <div class="carousel-inner">
                 <div class="item active img-banner">
                     <div class="overlay">
-                        <img src="../Images/livros.jpg" class="overlay" alt="Livros" style="width:100%;"/>
+                        <img src="../Images/Banner1.jpg" class="overlay" alt="Livros" style="width:100%;"/>
                     </div>
                     <div class="carousel-caption banner-center-text">
-                        <h2>A plataforma Construindo Meu Futuro irá te auxiliar a ingressar no ensino superior rapidadamente</h2>
+                        <h2>A plataforma "Construindo meu Futuro" irá te auxiliar a ingressar no Ensino Superior e Técnico rapidamente!</h2>
                     </div>
                 </div>
                 <div class="item">
                     <div class="overlay">
-                        <img src="../Images/livros2.jpg" class="overlay" alt="Livros2" style="width:100%;"/>
+                        <img src="../Images/Banner2.jpg" class="overlay" alt="Livros2" style="width:100%;"/>
                     </div>
                     <div class="carousel-caption banner-center-text">
-                        <h2>Nossa maior missão é traçar rotas fáceis para que VOCÊ encontre o seu curso ideal</h2>
+                        <h2>Nossa maior missão é traçar rotas para que VOCÊ encontre o seu curso ideal!</h2>
                     </div>
                 </div>
 
                 <div class="item">
                     <div class="overlay">
-                        <img src="../Images/livros3.jpg" class="overlay" alt="Livros3" style="width:100%;"/>
+                        <img src="../Images/Banner3.jpg" class="overlay" alt="Livros3" style="width:100%;"/>
                     </div>
                     <div class="carousel-caption banner-center-text">
-                        <h2>Sem texto aqui</h2>
+                        <h2>Junte-se agora e descubra as melhores possibilidades de cursos!</h2>
                     </div>
                 </div>
             </div>
@@ -60,20 +59,23 @@
 
         <div class="box">
             <div class ="container-fluid col-lg-4 col-sm-4 col-xs-12 box">
-                <div class="col-lg-12 table-bordered">
+                <div class="col-lg-12 table-bordered well t">
+                    <img class="img-passo1" src="../Images/Passo1.png" />
                     <h3>1. Faça a sua inscrição.</h3>
                     <p>Cadastre-se com o seu e-mail e responda algumas perguntas relacionadas ao seu perfil para exibirmos opções de cursos para você.</p>
                 </div>
             </div>
             <div class ="container-fluid col-lg-4 col-sm-4 col-xs-12 box">
-                <div class="col-lg-12 table-bordered">
+                <div class="col-lg-12 table-bordered well t">
+                    <img class="img-passo2" src="../Images/Passo2.png" />
                     <h3>2. Cursos ideais para você!</h3>
                     <p>Após efetuar o seu cadastro você receberá informações exclusivas de cursos superiores de acordo com o seu perfil.</p>
                 </div>
             </div>
             <div class ="container-fluid col-lg-4 col-sm-4 col-xs-12 box">
-                <div class="col-lg-12 table-bordered">
-                    <h3>3. Como chegar lá!</h3>
+                <div class="col-lg-12 table-bordered well t">
+                        <img class="img-passo3" src="../Images/Passo3.png" />
+                        <h3>3. Como chegar lá!</h3>
                     <p>Após cumprir as duas primeiras etapaso nosso sistema lhe dará todas as informações necessárias para você conseguir iniciar seu curso superior!</p>
                 </div>
             </div>

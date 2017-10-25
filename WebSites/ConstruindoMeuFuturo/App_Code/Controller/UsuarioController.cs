@@ -25,7 +25,6 @@ public class UsuarioController
             return usuario;
         }
     }
-
     public void InserirNovoUsuario(UsuarioBean usuario)
     {
         ValidarSenhaUsuario(usuario);

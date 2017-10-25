@@ -1,5 +1,5 @@
 CREATE DATABASE construindomeufuturo;
-
+--DROP DATABASE construindomeufuturo;
 use construindomeufuturo;
 GO
 
@@ -45,6 +45,7 @@ GO
 
 CREATE TABLE TB_USUARIO (
   Id_Usuario INTEGER  NOT NULL   IDENTITY ,
+  Nome_Usuario VARCHAR(100) NOT NULL  ,
   Email_Usuario VARCHAR(50)  NOT NULL  ,
   Senha_Usuario VARCHAR(16)  NOT NULL    ,
 PRIMARY KEY(Id_Usuario));
@@ -56,9 +57,8 @@ GO
 CREATE TABLE TB_PERFIL (
   Id_Perfil INTEGER  NOT NULL   IDENTITY ,
   Id_Usuario INTEGER  NOT NULL  ,
-  Nome_Perfil VARCHAR(40) NOT NULL,
   Data_Nascimento_Perfil DATE,
-  Escolaridade_Perfil VARCHAR(20)      ,
+  Escolaridade_Perfil VARCHAR(50)      ,
 PRIMARY KEY(Id_Perfil)  ,
   FOREIGN KEY(Id_Usuario)
     REFERENCES TB_USUARIO(Id_Usuario));
@@ -75,7 +75,7 @@ GO
 
 CREATE TABLE TB_CIDADE (
   Id_Cidade INTEGER  NOT NULL   IDENTITY ,
-  Nome_Cidade VARCHAR(30)  NOT NULL  ,
+  Nome_Cidade VARCHAR(50)  NOT NULL  ,
   Id_Estado INTEGER  NOT NULL    ,
 PRIMARY KEY(Id_Cidade)  ,
   FOREIGN KEY(Id_Estado)
@@ -227,6 +227,7 @@ CREATE INDEX IFK_Rel_22 ON TB_UNIDADE_DE_ENSINO_has_TB_CURSO (Id_Curso);
 GO
 
 
-Insert into TB_USUARIO(Email_Usuario,Senha_Usuario) VALUES('g@g.com','123456');
-GO
+--Insert into TB_USUARIO(Email_Usuario,Senha_Usuario) VALUES('g@g.com','123456');
+Insert into TB_USUARIO(Nome_Usuario, Email_Usuario, Senha_Usuario) VALUES('Tiago', 't@t.com','123');
+
 select * from TB_USUARIO;

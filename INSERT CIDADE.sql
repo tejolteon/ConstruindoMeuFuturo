@@ -1,4 +1,5 @@
-INSERT INTO TB_CIDADE VALUES
+SET IDENTITY_INSERT Tb_cidade ON;
+INSERT INTO TB_CIDADE(Id_Cidade,Nome_Cidade,Id_Estado) VALUES
 (1, 'Afonso Cláudio', 8),
 (2, 'Água Doce do Norte', 8),
 (3, 'Águia Branca', 8),
@@ -999,7 +1000,7 @@ INSERT INTO TB_CIDADE VALUES
 (998, 'Itaguari', 9),
 (999, 'Itaguaru', 9),
 (1000, 'Itajá', 9);
-INSERT INTO TB_CIDADE VALUES
+INSERT INTO TB_CIDADE(Id_Cidade,Nome_Cidade,Id_Estado) VALUES
 (1001, 'Itapaci', 9),
 (1002, 'Itapirapuã', 9),
 (1003, 'Itapuranga', 9),
@@ -2000,7 +2001,7 @@ INSERT INTO TB_CIDADE VALUES
 (1998, 'Laranjal', 11),
 (1999, 'Lassance', 11),
 (2000, 'Lavras', 11);
-INSERT INTO TB_CIDADE VALUES
+INSERT INTO TB_CIDADE(Id_Cidade,Nome_Cidade,Id_Estado) VALUES
 (2001, 'Leandro Ferreira', 11),
 (2002, 'Leme do Prado', 11),
 (2003, 'Leopoldina', 11),
@@ -3001,7 +3002,7 @@ INSERT INTO TB_CIDADE VALUES
 (2998, 'Marquinho', 18),
 (2999, 'Marumbi', 18),
 (3000, 'Matelândia', 18);
-INSERT INTO TB_CIDADE VALUES
+INSERT INTO TB_CIDADE(Id_Cidade,Nome_Cidade,Id_Estado) VALUES
 (3001, 'Matinhos', 18),
 (3002, 'Mato Rico', 18),
 (3003, 'Mauá da Serra', 18),
@@ -4002,7 +4003,7 @@ INSERT INTO TB_CIDADE VALUES
 (3998, 'Ernestina', 23),
 (3999, 'Erval Grande', 23),
 (4000, 'Erval Seco', 23);
-INSERT INTO TB_CIDADE VALUES
+INSERT INTO TB_CIDADE(Id_Cidade,Nome_Cidade,Id_Estado) VALUES
 (4001, 'Esmeralda', 23),
 (4002, 'Esperança do Sul', 23),
 (4003, 'Espumoso', 23),
@@ -5002,7 +5003,7 @@ INSERT INTO TB_CIDADE VALUES
 (4997, 'João Ramalho', 26),
 (4998, 'José Bonifácio', 26),
 (4999, 'Júlio Mesquita', 26);
-INSERT INTO TB_CIDADE VALUES
+INSERT INTO TB_CIDADE(Id_Cidade,Nome_Cidade,Id_Estado) VALUES
 (5000, 'Jumirim', 26),
 (5001, 'Jundiaí', 26),
 (5002, 'Junqueirópolis', 26),

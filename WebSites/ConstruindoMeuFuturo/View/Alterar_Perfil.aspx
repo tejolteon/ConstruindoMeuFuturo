@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Perfil" Language="C#" MasterPageFile="~/General/Site.master" AutoEventWireup="true" CodeFile="Cadastro_Perfil.aspx.cs" Inherits="View_Cadastro_Perfil" %>
+﻿<%@ Page Title="Perfil" Language="C#" MasterPageFile="~/General/Site.master" AutoEventWireup="true" CodeFile="Alterar_Perfil.aspx.cs" Inherits="View_Alterar_Perfil" %>
 
 
 <asp:Content ID="Content2" ContentPlaceHolderID="Content" Runat="Server">
@@ -56,7 +56,7 @@
                 <!-- Lista da area de interesse -->
                 <div class="form-group">
                     <label for="area">Area de Interesse</label>
-                    <asp:DropDownList ID="DDLarea" runat="server" CssClass="form-control" OnSelectedIndexChanged="DDLarea_SelectedIndexChanged">
+                    <asp:DropDownList ID="DDLarea" runat="server" CssClass="form-control">
                         <asp:ListItem Text="Selecione uma area" Value="0"/>
                         
                     </asp:DropDownList>
@@ -67,7 +67,7 @@
                         <asp:LinkButton ID="lbtMTarde" runat="server" CssClass="text-left" OnClick="lbtMTarde_Click">Mais Tarde</asp:LinkButton>
                     </div>
                     <div class="text-right col-lg-6">
-                        <asp:Button ID="BtCadastrar" CssClass="btn btn-primary" Text="Salvar" runat="server" width="100px" OnClick="Btcadastrar_Click" />
+                        <asp:Button ID="Btalterar" CssClass="btn btn-primary" Text="Salvar" runat="server" width="100px" OnClick="Btalterar_Click" />
                     </div>
                 </div>
                 <br/>

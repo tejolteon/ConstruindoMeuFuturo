@@ -12,7 +12,7 @@
     <asp:ContentPlaceHolder id="head" runat="server">
         <%--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <script src="../bootstrap/js/bootstrap.min.js"></script>--%>
+        <script src="../bootstrap/js/bootstrap.min.js"></script> --%>
 
         <link href="../bootstrap/css/bootstrap.css" rel="stylesheet" />
         <link rel="icon" href="../Images/Logo.png"

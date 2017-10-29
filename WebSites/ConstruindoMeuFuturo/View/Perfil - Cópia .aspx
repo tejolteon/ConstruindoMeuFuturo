@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Meu Perfil" Language="C#" MasterPageFile="~/General/Site.master" AutoEventWireup="true" CodeFile="Perfil.aspx.cs" Inherits="View_Perfil" %>
+﻿<%@ Page Title="Meu Perfil" Language="C#" MasterPageFile="~/General/Site.master" AutoEventWireup="true" CodeFile="Perfil - Cópia .aspx.cs" Inherits="View_Perfil" %>
 
 <asp:Content ContentPlaceHolderID="Content" runat="server">
     <!DOCTYPE html>
@@ -31,10 +31,19 @@
         </div>      
         <div class="container well col-lg-8 col-sm-6 col-xs-12" style="margin-top:2%;">
             <asp:Panel ID="pnPerfil" runat="server">
-                <h1>Sugestões de Cursos
-                    <asp:Table ID="TabelaCursos" runat="server" Height="125px" Width="1126px">
-                    </asp:Table>
-                </h1>
+                <h1>Sugestões de Cursos</h1>
+                <a href="Curso.aspx">
+                    <h3>ANÁLISE E DESENVOLVIMENTO DE SISTEMAS</h3>
+                    <h4>FATEC ZONA SUL – DOM EVARISTO ARNS</h4>
+                </a>
+                <a>
+                    <h3>ANÁLISE E DESENVOLVIMENTO DE SISTEMAS</h3>
+                    <h4>FATEC IPIRANGA – PASTOR ENÉAS TOGNINI</h4>
+                </a>
+                <a>
+                    <h3>ANÁLISE E DESENVOLVIMENTO DE SISTEMAS</h3>
+                    <h4>ESTÁCIO – CAMPUS SANTO AMARO</h4>
+                </a>
             </asp:Panel>
         </div>
         </div>

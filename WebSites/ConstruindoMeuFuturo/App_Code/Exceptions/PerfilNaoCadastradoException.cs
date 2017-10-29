@@ -6,6 +6,7 @@ public class PerfilNaoCadastradoException : Exception
 {
     public PerfilNaoCadastradoException()
     {
+      
     }
 
     public PerfilNaoCadastradoException(string message) : base(message)

@@ -24,7 +24,7 @@
                         <img src="../Images/Banner1.jpg" class="overlay" alt="Livros" style="width:100%;"/>
                     </div>
                     <div class="carousel-caption banner-center-text">
-                        <h2>A plataforma "Construindo meu Futuro" irá te auxiliar a ingressar no Ensino Superior e Técnico rapidamente!</h2>
+                        <h2>A plataforma "Construindo meu Futuro" irá te auxiliar a ingressar no Ensino Superior rapidamente!</h2>
                     </div>
                 </div>
                 <div class="item">

@@ -80,7 +80,7 @@ public class PerfilDao
             command.CommandText = "INSERT INTO TB_PERFIL_has_TB_CIDADE(Id_Perfil,Id_Cidade) VALUES (@id_perfil,@id_cidade)";
             //Entrada doa parâmetros
             command.Parameters.AddWithValue("@id_perfil", perfil.Id_perfil);
-            command.Parameters.AddWithValue("@id_cidade",cidade.Id);
+            command.Parameters.AddWithValue("@id_cidade",cidade.Id_cidade);
             //Executa e retorna o tanto de linhas que foram afetadas
             return command.ExecuteNonQuery();
         }
@@ -95,6 +95,128 @@ public class PerfilDao
             Conexao.Desconectar();
         }
 
+    }
+
+    public int AlterarPerfil(PerfilBean perfil) {
+        try
+        {
+            //Conectar com o banco
+            Conexao.Conectar();
+            var command = new SqlCommand();
+            command.Connection = Conexao.connection;
+            //Comando no banco 
+            command.CommandText = "UPDATE  TB_PERFIL SET Data_Nascimento_Perfil = @datanascimento, Escolaridade_Perfil= @escolaridade WHERE Id_Perfil = @id;";
+            //Entrada doa parâmetros
+            command.Parameters.AddWithValue("@id", perfil.Id_perfil);
+            command.Parameters.AddWithValue("@datanascimento", perfil.Datanascimento);
+            command.Parameters.AddWithValue("@escolaridade", perfil.Escolaridade);
+            //Executa
+            return command.ExecuteNonQuery();
+        }
+        catch (Exception)
+        {
+
+            throw;
+        }
+        //encerrar conexão com o banco
+        finally
+        {
+            Conexao.Desconectar();
+        }
+    }
+
+    //Arumar Id cidade porque o usuario pode se cadastrar em várias
+    public int AlterarPerfilCidade(PerfilBean perfil, CidadeBean cidade, int idantigocidade) {
+        try
+        {
+            //Conectar com o banco
+            Conexao.Conectar();
+            var command = new SqlCommand();
+            command.Connection = Conexao.connection;
+            //Comando no banco
+            command.CommandText = "UPDATE TB_PERFIL_has_TB_CIDADE SET Id_Cidade=@id_cidade WHERE Id_Perfil = @id_perfil AND Id_Cidade = @idantigo";
+            //Entrada doa parâmetros
+            command.Parameters.AddWithValue("@id_perfil", perfil.Id_perfil);
+            command.Parameters.AddWithValue("@id_cidade", cidade.Id);
+            command.Parameters.AddWithValue("@idantigo", idantigocidade);
+            //Executa e retorna o tanto de linhas que foram afetadas
+            return command.ExecuteNonQuery();
+        }
+        catch (Exception)
+        {
+
+            throw;
+        }
+        //encerrar conexão com o banco
+        finally
+        {
+            Conexao.Desconectar();
+        }
+    }
+
+    public int AlterarPerfilArea(PerfilBean perfil, AreaBean area) {
+        try
+        {
+            //Conectar com o banco
+            Conexao.Conectar();
+            var command = new SqlCommand();
+            command.Connection = Conexao.connection;
+            //Comando no banco
+            command.CommandText = "UPDATE TB_PERFIL_has_TB_AREA SET  Id_Area = @id_area WHERE Id_Area = @id_area";
+            //Entrada doa parâmetros
+            command.Parameters.AddWithValue("@id_perfil", perfil.Id_perfil);
+            command.Parameters.AddWithValue("@id_area", area.Id);
+            //Executa e retorna o tanto de linhas que foram afetadas
+            return command.ExecuteNonQuery();
+        }
+        catch (Exception)
+        {
+
+            throw;
+        }
+        //encerrar conexão com o banco
+        finally
+        {
+            Conexao.Desconectar();
+        }
+    }
+    public PerfilBean ConsultarPerfilPorIdUsuario(int idusuario)
+    {
+        try
+        {
+            //Conectar com o banco
+            Conexao.Conectar();
+            var command = new SqlCommand();
+            command.Connection = Conexao.connection;
+            //Comando no banco
+            command.CommandText = "SELECT * FROM TB_PERFIL WHERE Id_Usuario = @id";
+            //Entrada doa parâmetros
+            command.Parameters.AddWithValue("@id", idusuario);
+            //Executar o comando 
+            var reader = command.ExecuteReader();
+            PerfilBean perfil = null;
+            //Inserir os valores do resultado no bean
+            while (reader.Read())
+            {
+                perfil = new PerfilBean();
+                perfil.Id_perfil = Convert.ToInt32(reader["Id_Perfil"]);
+                perfil.Id = Convert.ToInt32(reader["Id_Usuario"]);
+                perfil.Datanascimento = Convert.ToString(reader["Data_Nascimento_Perfil"]);
+                perfil.Escolaridade = Convert.ToString(reader["Escolaridade_Perfil"]);
+
+            }
+            return perfil;
+        }
+        catch (Exception)
+        {
+
+            throw;
+        }
+        //encerrar conexão com o banco
+        finally
+        {
+            Conexao.Desconectar();
+        }
     }
 
 }

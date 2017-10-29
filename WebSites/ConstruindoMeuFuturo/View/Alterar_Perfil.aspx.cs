@@ -43,46 +43,62 @@ public partial class View_Alterar_Perfil : System.Web.UI.Page
 
         perfcont = new PerfilController();
         perfil = perfcont.ConsultarPerfilPorIdUsuario(MasterPage.usuarioID);
-        /*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!Arrumar com Try Catch
-           Arrumar com Try Catch                   Arrumar com Try Catch                                              Arrumar com Try Catch
-
+        /*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                                        ARRUMAR     OS      TRY's     CATCH's     cCOM        ERROS
          *********************************************             *********                                              *******************/
 
-        //Consulta Cidade_Perfil se não for null
-        if (cidade != null)
+        //Consulta Cidade_Perfil
+        try
         {
             cidadecont = new CidadeController();
             cidade = cidadecont.ConsultaCidadePerfil(perfil.Id_perfil);
         }
-        //Recebe id da cidade se não for null
-        if (cidade != null)
-        { 
-            idcidadeantiga = cidade.Id_cidade;
+        catch {
+
         }
-        //Seleciona o estado que já estava cadastrado no BD
-        if (cidade != null)
+
+        if (cidade.Id != 0)
         {
+            idcidadeantiga = cidade.Id_cidade;//Não funcional ainda(Servira para quando a tabela estiver N * N)
+           
+            //Seleciona o estado que já estava cadastrado no BD
             DDLestado.SelectedValue = Convert.ToString(cidade.Id);
         }
-        if (area != null)
+        
+        
+        //Consulta Area_Perfil
+        try
         {
             areacont = new AreaController();
             area = areacont.ConsultarAreaPerfil(perfil.Id_perfil);
         }
-        if (area != null)
-        {  
-            //Seleciona a area
-                DDLarea.SelectedValue = Convert.ToString(area.Id);
+        catch {
+
         }
+
+        //Seleciona a area
+        if (area.Id != 0)
+        {
+            DDLarea.SelectedValue = Convert.ToString(area.Id);
+        }
+
         //Seleciona a data de nascimento cadastrada no BD
         Txtdatanascimento.Text = perfil.Datanascimento;
+
         //Seleciona a escolaridade cadastrada no BD
         DDLescolaridade.SelectedValue = perfil.Escolaridade;
 
         //Carrega as cidades do estado
-        CarregarCidades();
-        //Seleciona a cidade que já estava cadastrado no BD se o valor não for null
-        if (cidade != null)
+        try
+        {
+            CarregarCidades();
+        }
+        catch {
+
+        }
+
+        //Seleciona a cidade que já estava cadastrado no BD
+        if (cidade.Id_cidade != 0)
         {
             DDLcidade.SelectedValue = Convert.ToString(cidade.Id_cidade);
         }
@@ -90,6 +106,8 @@ public partial class View_Alterar_Perfil : System.Web.UI.Page
 
     public void CarregarCidades()
     {
+        //Limpa a lista antes de receber
+        DDLcidade.Items.Clear();
         int id_estado = 0;
         //Pega o Id do estado
         id_estado = Convert.ToInt16(DDLestado.SelectedValue);
@@ -100,7 +118,6 @@ public partial class View_Alterar_Perfil : System.Web.UI.Page
         {
             DDLcidade.Items.Add(new ListItem(cidade.Nome, Convert.ToString(cidade.Id_cidade)));
         }
-        //!!!!!!!!!!!!!!!ATENÇÃO!! ao trocar para outros estados devemos limpar a lista, senão ele apenas dicionara mais cidades
     }
 
     protected void Btalterar_Click(object sender, EventArgs e)

@@ -29,12 +29,17 @@ public class AreaController
     {
         areadao = new AreaDao();
         area = areadao.ConsultarIdAreaPerfil(idperfil);
-        if (area != null)
-        {
+        try {
             //para retornar também o nome da área
             area = areadao.ConsultarAreaPorId(area.Id);
+            return area;
         }
-        return area;
+        catch
+        {
+            area.Id = 0;
+            return area;
+        }
+        
     }
 
     /*Teste com list POR ser N * N no MER

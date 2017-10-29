@@ -10,10 +10,21 @@ public class CursoConstroller
 {
     CursoDao cursodao;
     CursoBean curso;
-   public List<CursoBean> ListaCursoPorArea(int idarea)
+    public List<CursoBean> ListaCursoPorArea(int idarea)
     {
-        cursodao = new CursoDao();
-        var cursos = cursodao.ListarCursoArea(idarea);
-        return cursos;
+        try
+        {
+            cursodao = new CursoDao();
+            var cursos = cursodao.ListarCursoArea(idarea);
+            return cursos;
+        }
+        catch
+        {
+            return null;
+        }
     }
+
+    
+
+   
 }

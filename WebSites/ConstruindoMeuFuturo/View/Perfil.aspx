@@ -30,9 +30,10 @@
             </asp:Panel>
         </div>      
         <div class="container well col-lg-8 col-sm-6 col-xs-12" style="margin-top:2%;">
+            <!-- !!!!!! A TABELA NÃO ESTÁ RESPONSIVA !!!!!! PENDENTE SOLUÇÃO -->
             <asp:Panel ID="pnPerfil" runat="server">
                 <h1>Sugestões de Cursos
-                    <asp:Table ID="TabelaCursos" runat="server" Height="125px" Width="1126px">
+                    <asp:Table ID="TabelaCursos" runat="server" Height="125px" Width="979px" BorderStyle="None" HorizontalAlign="Center">
                     </asp:Table>
                 </h1>
             </asp:Panel>

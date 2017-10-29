@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Meu Perfil" Language="C#" MasterPageFile="~/General/Site.master" AutoEventWireup="true" CodeFile="Perfil - Cópia .aspx.cs" Inherits="View_Perfil" %>
+﻿<%@ Page Title="Meu Perfil" Language="C#" MasterPageFile="~/General/Site.master" AutoEventWireup="true" CodeFile="Perfilantigobackup .aspx.cs" Inherits="View_Perfil" %>
 
 <asp:Content ContentPlaceHolderID="Content" runat="server">
     <!DOCTYPE html>

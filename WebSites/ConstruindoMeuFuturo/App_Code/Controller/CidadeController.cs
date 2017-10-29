@@ -31,11 +31,18 @@ public class CidadeController
         cidade = cidadedao.ConsultarIdCidadePerfil(idperfil);
 
         //consulta o nome da cidade
-        if (cidade != null)
+        try
         {
             cidade = cidadedao.ConsultarCidadePorId(cidade.Id_cidade);
+            return cidade;
         }
-        return cidade;
+        catch
+        {
+            cidade.Id_cidade = 0;
+            cidade.Id = 0;
+            return cidade;
+        }
+        
     }
     /*Teste com list por ser N * N no MER
     public List<CidadeBean> ListarIdCidadePerfil(int id) {

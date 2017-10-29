@@ -14,6 +14,8 @@ public partial class View_Perfil : System.Web.UI.Page
     private CursoConstroller cursocont;
     private AreaBean area;
     private AreaController areacont;
+    private UnidadeEnsinoBean unidade;
+    private UnidadeController unidadecont;
     
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -21,6 +23,7 @@ public partial class View_Perfil : System.Web.UI.Page
         perfcont = new PerfilController();
         cursocont = new CursoConstroller();
         areacont = new AreaController();
+        unidadecont = new UnidadeController();
         //Label com nome do usuario
         lbNome.Text = MasterPage.nome;
         //Consultando o ID do Perfil e tentando jogar para a tabela os cursos
@@ -32,18 +35,36 @@ public partial class View_Perfil : System.Web.UI.Page
            depois relacionar o curso com as unidades que tem ele,*/
             try
             {
+                TableRow tr = new TableRow();
                 foreach (CursoBean curso in this.cursocont.ListaCursoPorArea(area.Id))
                 {
-                    ListItem i;
-                    i = new ListItem(curso.Nome, Convert.ToString(curso.Id));
-                    TableRow tr = new TableRow();
-                    TableCell tc = new TableCell();
-                        tc.Text = "<font size=5>" + curso.Nome + "</font>";
-                        tr.Cells.Add(tc);
-  
-                        tr.HorizontalAlign = HorizontalAlign.Center;
-                        tr.VerticalAlign = VerticalAlign.Top;
-                        TabelaCursos.Rows.Add(tr);
+                    try
+                    {
+                        foreach (UnidadeEnsinoBean unidade in this.unidadecont.ListarUnidadeCurso(curso.Id))
+                        {
+                            TableCell tc = new TableCell();
+                            //Insere 
+                            tc.Text = "<font size=5><br><a href="+"Curso.aspx"+">" + curso.Nome + "<p></a>" + unidade.Nome + "</br></font>";
+                            tr.Cells.Add(tc);
+
+                            //Alinha as células
+                            tr.HorizontalAlign = HorizontalAlign.Center;
+                            tr.VerticalAlign = VerticalAlign.Top;
+
+                            //Adiciona 2 colunas na tabela (FALTA SER RESPONSIVO)
+                            if (tr.Cells.Count == 2)
+                            {
+                                TabelaCursos.Rows.Add(tr);
+                                tr = new TableRow();
+                            }
+
+
+                        }
+                    }
+                    catch
+                    {
+
+                    }   
           
                 }
             }

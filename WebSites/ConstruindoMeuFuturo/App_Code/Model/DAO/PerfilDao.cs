@@ -134,11 +134,11 @@ public class PerfilDao
             var command = new SqlCommand();
             command.Connection = Conexao.connection;
             //Comando no banco
-            command.CommandText = "UPDATE TB_PERFIL_has_TB_CIDADE SET Id_Cidade=@id_cidade WHERE Id_Perfil = @id_perfil AND Id_Cidade = @idantigo";
+            command.CommandText = "UPDATE TB_PERFIL_has_TB_CIDADE SET Id_Cidade=@id_cidade WHERE Id_Perfil = @id_perfil ";
             //Entrada doa parâmetros
             command.Parameters.AddWithValue("@id_perfil", perfil.Id_perfil);
-            command.Parameters.AddWithValue("@id_cidade", cidade.Id);
-            command.Parameters.AddWithValue("@idantigo", idantigocidade);
+            command.Parameters.AddWithValue("@id_cidade", cidade.Id_cidade);
+            //command.Parameters.AddWithValue("@idantigo", idantigocidade);
             //Executa e retorna o tanto de linhas que foram afetadas
             return command.ExecuteNonQuery();
         }
@@ -162,7 +162,7 @@ public class PerfilDao
             var command = new SqlCommand();
             command.Connection = Conexao.connection;
             //Comando no banco
-            command.CommandText = "UPDATE TB_PERFIL_has_TB_AREA SET  Id_Area = @id_area WHERE Id_Area = @id_area";
+            command.CommandText = "UPDATE TB_PERFIL_has_TB_AREA SET  Id_Area = @id_area WHERE Id_Perfil = @id_perfil";
             //Entrada doa parâmetros
             command.Parameters.AddWithValue("@id_perfil", perfil.Id_perfil);
             command.Parameters.AddWithValue("@id_area", area.Id);

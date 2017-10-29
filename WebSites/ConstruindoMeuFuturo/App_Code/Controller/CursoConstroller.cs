@@ -12,6 +12,7 @@ public class CursoConstroller
     CursoBean curso;
    public List<CursoBean> ListaCursoPorArea(int idarea)
     {
+        cursodao = new CursoDao();
         var cursos = cursodao.ListarCursoArea(idarea);
         return cursos;
     }

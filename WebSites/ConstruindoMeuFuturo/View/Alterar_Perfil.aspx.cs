@@ -43,7 +43,10 @@ public partial class View_Alterar_Perfil : System.Web.UI.Page
 
         perfcont = new PerfilController();
         perfil = perfcont.ConsultarPerfilPorIdUsuario(MasterPage.usuarioID);
-       
+        /*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!Arrumar com Try Catch
+           Arrumar com Try Catch                   Arrumar com Try Catch                                              Arrumar com Try Catch
+
+         *********************************************             *********                                              *******************/
 
         //Consulta Cidade_Perfil se não for null
         if (cidade != null)
@@ -120,7 +123,7 @@ public partial class View_Alterar_Perfil : System.Web.UI.Page
         area = new AreaBean();
         area.Id = Convert.ToInt32(DDLarea.SelectedValue);
         
-
+     
         cidade = new CidadeBean();
         cidade.Id_cidade = Convert.ToInt32(DDLcidade.SelectedValue);
             
@@ -129,7 +132,7 @@ public partial class View_Alterar_Perfil : System.Web.UI.Page
         
         try
         {       
-            //Consulta o Usuario pleo ID para pegar as informações do usuario
+            //Consulta o Usuario pelo ID para pegar as informações do usuario
             usuario = usuCont.ConsultarUsuarioPorID(usuario.Id);
 
             perfcont.AlterarPerfil(usuario, perfil, area, cidade,idcidadeantiga);

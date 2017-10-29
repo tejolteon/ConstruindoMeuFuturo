@@ -21,6 +21,7 @@ public class AreaDao
             command.CommandText = "SELECT * FROM TB_AREA";
             //Executar o comando 
             var reader = command.ExecuteReader();
+            //Cria list
             var areas = new List<AreaBean>();
             //Inserir os valores do resultado no bean
             while (reader.Read())

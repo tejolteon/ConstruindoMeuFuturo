@@ -1,13 +1,15 @@
 CREATE DATABASE construindomeufuturo;
+
+GO
 --DROP DATABASE construindomeufuturo;
 use construindomeufuturo;
 GO
 
 CREATE TABLE TB_CURSO (
   Id_Curso INTEGER  NOT NULL  IDENTITY  ,
-  Tipo_Curso VARCHAR(10)  NOT NULL  ,
-  Nome_Curso VARCHAR(50)  NOT NULL  ,
-  Descrição_Curso TEXT,
+  Tipo_Curso VARCHAR(15)  NOT NULL  ,
+  Nome_Curso VARCHAR(100)  NOT NULL  ,
+  Descricao_Curso TEXT,
 PRIMARY KEY(Id_Curso));
 GO
 
@@ -17,7 +19,7 @@ GO
 CREATE TABLE TB_PROGRAMA (
   Id_Programa INTEGER  NOT NULL   IDENTITY ,
   Nome_Programa VARCHAR(50)  NOT NULL  ,
-  Descrição_Programa TEXT,
+  Descricao_Programa TEXT,
 PRIMARY KEY(Id_Programa));
 GO
 
@@ -185,11 +187,11 @@ GO
 
 CREATE TABLE TB_UNIDADE_DE_ENSINO (
   Id_Unidade_de_Ensino INTEGER  NOT NULL   IDENTITY ,
-  Nome_Unidade_de_Ensino VARCHAR(50)  NOT NULL  ,
-  Site_Unidade_de_Ensino VARCHAR(100)    ,
+  Nome_Unidade_de_Ensino VARCHAR(100)  NOT NULL  ,
+  Site_Unidade_de_Ensino VARCHAR(255)    ,
   Id_Cidade INTEGER  NOT NULL  ,
   Endereco_Unidade_de_Ensino VARCHAR(150)    ,
-  Descrição_Unidade_de_Ensino TEXT      ,
+  Descricao_Unidade_de_Ensino TEXT      ,
 PRIMARY KEY(Id_Unidade_de_Ensino)  ,
   FOREIGN KEY(Id_Cidade)
     REFERENCES TB_CIDADE(Id_Cidade));
@@ -231,3 +233,5 @@ GO
 Insert into TB_USUARIO(Nome_Usuario, Email_Usuario, Senha_Usuario) VALUES('Tiago', 't@t.com','123');
 
 select * from TB_USUARIO;
+
+GO

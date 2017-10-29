@@ -36,7 +36,7 @@ public class PerfilController
 
     public void ValidarPerfil(UsuarioBean usu)
     {
-        //Verifica se as varias estão nulas
+        //Verifica se as variaveis estão nulas
         if (string.IsNullOrWhiteSpace(usu.Nome))
         {
             throw new UsuarioInvalidoException();
@@ -59,9 +59,15 @@ public class PerfilController
     }
 
     public PerfilBean ConsultarPerfilPorIdUsuario(int idusuario) {
-       perfildao = new PerfilDao();
-        var perfil = perfildao.ConsultarPerfilPorIdUsuario(idusuario);
+        try
+        {
+            perfildao = new PerfilDao();
+            var perfil = perfildao.ConsultarPerfilPorIdUsuario(idusuario);
             //retorna normal   
             return perfil;
+        }
+        catch {
+            return null;
+        }
     }
 }

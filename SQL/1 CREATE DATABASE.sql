@@ -38,7 +38,7 @@ GO
 
 CREATE TABLE TB_AREA (
   Id_Area INTEGER  NOT NULL   IDENTITY ,
-  Nome_Area VARCHAR(30)  NOT NULL    ,
+  Nome_Area VARCHAR(50)  NOT NULL    ,
 PRIMARY KEY(Id_Area));
 GO
 

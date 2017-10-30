@@ -21,4 +21,18 @@ public class UnidadeController
             return null;
         }
     }
+
+    public UnidadeEnsinoBean ConsultarUnidadeId(int idunidade)
+    {
+        try
+        {
+            unidadedao = new Unidade_de_EnsinoDao();
+            var unidade = unidadedao.ConsultarUnidadeID(idunidade);
+            return unidade;
+        }
+        catch
+        {
+            return null;
+        }
+    }
 }

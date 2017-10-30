@@ -101,4 +101,47 @@ public class Unidade_de_EnsinoDao
             Conexao.Desconectar();
         }
     }
+
+    public UnidadeEnsinoBean ConsultarUnidadeID(int idunidade)
+    {
+        try
+        {
+            //Conectar com o banco
+            Conexao.Conectar();
+            var command = new SqlCommand();
+            command.Connection = Conexao.connection;
+            //Comando no banco
+            command.CommandText = "SELECT * FROM TB_UNIDADE_DE_ENSINO WHERE  Id_Unidade_de_Ensino = @idunidade";
+            //Entrada doa parâmetros
+            command.Parameters.AddWithValue("@idunidade", idunidade);
+            //Executar o comando 
+            var reader = command.ExecuteReader();
+            UnidadeEnsinoBean unidade = null;
+            //Inserir os valores do resultado no bean
+            while (reader.Read())
+            {
+                unidade= new UnidadeEnsinoBean();
+                unidade.Id = Convert.ToInt32(reader["Id_Unidade_de_Ensino"]);
+                unidade.Nome = Convert.ToString(reader["Nome_Unidade_de_Ensino"]);
+                unidade.Site = Convert.ToString(reader["Site_Unidade_de_Ensino"]);
+                unidade.Id = Convert.ToInt32(reader["Id_Cidade"]);
+                unidade.Endereco = Convert.ToString(reader["Endereco_Unidade_de_Ensino"]);
+                unidade.Descricao = Convert.ToString(reader["Descricao_Unidade_de_Ensino"]);
+         
+
+            }
+            return unidade;
+        }
+        catch (Exception)
+        {
+
+            throw;
+        }
+        //encerrar conexão com o banco
+        finally
+        {
+            Conexao.Desconectar();
+        }
+
+    }
 }

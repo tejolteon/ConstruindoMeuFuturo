@@ -24,7 +24,19 @@ public class CursoConstroller
         }
     }
 
-    
+    public CursoBean ConsultarCursoId(int idcurso)
+    {
+        try
+        {
+            cursodao = new CursoDao();
+            var curso = cursodao.ConsultarCursoID(idcurso);
+            return curso;
+        }
+        catch {
+            return null;
+        }
+    }
 
-   
+
+
 }

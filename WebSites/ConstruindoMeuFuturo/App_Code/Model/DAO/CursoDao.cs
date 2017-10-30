@@ -52,4 +52,45 @@ public class CursoDao
         }
 
     }
+
+    public CursoBean ConsultarCursoID(int idcurso)
+    {
+        try
+        {
+            //Conectar com o banco
+            Conexao.Conectar();
+            var command = new SqlCommand();
+            command.Connection = Conexao.connection;
+            //Comando no banco
+            command.CommandText = "SELECT * FROM TB_CURSO WHERE  Id_Curso = @idcurso";
+            //Entrada doa parâmetros
+            command.Parameters.AddWithValue("@idcurso", idcurso);
+            //Executar o comando 
+            var reader = command.ExecuteReader();
+            CursoBean curso = null;
+            //Inserir os valores do resultado no bean
+            while (reader.Read())
+            {
+                curso = new CursoBean();
+                curso.Id = Convert.ToInt32(reader["Id_Curso"]);
+                curso.Nome = Convert.ToString(reader["Nome_Curso"]);
+                curso.Tipo = Convert.ToString(reader["Tipo_Curso"]);
+                curso.Descricao = Convert.ToString(reader["Descricao_Curso"]);
+                
+
+            }
+            return curso;
+        }
+        catch (Exception)
+        {
+
+            throw;
+        }
+        //encerrar conexão com o banco
+        finally
+        {
+            Conexao.Desconectar();
+        }
+
+    }
 }

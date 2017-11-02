@@ -21,6 +21,11 @@ public partial class View_Alterar_Perfil : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        // Se não tiver usuario logado ele volta pra Home
+        if (Session["usuario"] == null)
+        {
+            Response.Redirect("Home.aspx");
+        }
         //Verifica se a lista de areas está vazia antes de executar o código
         if (DDLarea.Items.Count <= 1)
         {
@@ -40,9 +45,10 @@ public partial class View_Alterar_Perfil : System.Web.UI.Page
         perfil = new PerfilBean();
         cidade = new CidadeBean();
         area = new AreaBean();
+        int usuarioID = int.Parse(Session["usuarioId"].ToString());
 
         perfcont = new PerfilController();
-        perfil = perfcont.ConsultarPerfilPorIdUsuario(MasterPage.usuarioID);
+        perfil = perfcont.ConsultarPerfilPorIdUsuario(usuarioID);
         /*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                                         ARRUMAR     OS      TRY's     CATCH's     cCOM        ERROS
          *********************************************             *********                                              *******************/
@@ -125,8 +131,8 @@ public partial class View_Alterar_Perfil : System.Web.UI.Page
         //Pega o Id do usuario da MasterPage
         usuario = new UsuarioBean
         {
-            Id = MasterPage.usuarioID
-        };
+            Id = int.Parse(Session["usuarioId"].ToString())
+    };
         perfil = new PerfilBean();
 
         //Consulta o perfil pelo id do usuario

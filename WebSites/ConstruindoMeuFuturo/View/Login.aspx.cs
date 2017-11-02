@@ -27,11 +27,11 @@ public partial class View_Usuario_Login : System.Web.UI.Page
         try
         {
             usuario = usucont.ConsultarUsuario(usuario.Email, usuario.Senha);
-            MasterPage.log = true;
-            MasterPage.nome = usuario.Nome;
-            MasterPage.usuarioID = usuario.Id;
+            // Criando sessão de Usuario
+            Session["usuario"] = usuario.Nome;
+            Session["usuarioId"] = usuario.Id;
             //??????Criar pagina depois de logado???????
-            Response.Redirect("Home.aspx");
+            Response.Redirect("Perfil.aspx");
         }
         catch (UsuarioNaoCadastradoException)
 
@@ -42,7 +42,7 @@ public partial class View_Usuario_Login : System.Web.UI.Page
         }
         catch (Exception)
         {
-            Labelerro.Text = "Erro inesperado do sistema, cantate um administrador";
+            Labelerro.Text = "Erro inesperado do sistema, contate um administrador";
         }
 
     }

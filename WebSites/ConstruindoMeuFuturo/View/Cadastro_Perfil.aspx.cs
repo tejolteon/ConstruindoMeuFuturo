@@ -20,6 +20,11 @@ public partial class View_Cadastro_Perfil : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        // Se não tiver usuario logado ele volta pra Home
+        if (Session["usuario"] == null)
+        {
+            Response.Redirect("Home.aspx");
+        }
         areacont = new AreaController();
         //Lista todas as areas
         foreach (AreaBean area in this.areacont.ListarAreas())
@@ -43,7 +48,7 @@ public partial class View_Cadastro_Perfil : System.Web.UI.Page
         cidade.Id_cidade = Convert.ToInt32(DDLcidade.SelectedValue);
 
         usuario = new UsuarioBean();
-        usuario.Id = MasterPage.usuarioID;
+        usuario.Id = int.Parse(Session["usuarioId"].ToString());
 
         //Mandando para o controler
         perfcont = new PerfilController();

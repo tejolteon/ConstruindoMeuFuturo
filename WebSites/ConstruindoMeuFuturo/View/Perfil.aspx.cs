@@ -19,17 +19,23 @@ public partial class View_Perfil : System.Web.UI.Page
     
     protected void Page_Load(object sender, EventArgs e)
     {
+        // Se não tiver usuario logado ele volta pra Home
+        if(Session["usuario"] == null)
+        {
+            Response.Redirect("Home.aspx");
+        }
         perfil = new PerfilBean();
         perfcont = new PerfilController();
         cursocont = new CursoConstroller();
         areacont = new AreaController();
         unidadecont = new UnidadeController();
         //Label com nome do usuario
-        lbNome.Text = MasterPage.nome;
+        lbNome.Text = Session["usuario"].ToString();
+        int UsuarioId = int.Parse(Session["usuarioId"].ToString());
         //Consultando o ID do Perfil e tentando jogar para a tabela os cursos
         try
         {
-            perfil = perfcont.ConsultarPerfilPorIdUsuario(MasterPage.usuarioID);
+            perfil = perfcont.ConsultarPerfilPorIdUsuario(UsuarioId);
             area = areacont.ConsultarAreaPerfil(perfil.Id_perfil);
             /*!!!!!!!!!!!!!!! Terminar de formatar a tabela e deixar com links acessiveis, mostrar apenas cursos que tenha na cidade depois e
            depois relacionar o curso com as unidades que tem ele,*/
@@ -83,8 +89,9 @@ public partial class View_Perfil : System.Web.UI.Page
 
     protected void lbtAlterarPerfil_Click(object sender, EventArgs e)
     {
+        int UsuarioId = int.Parse(Session["usuarioId"].ToString());
         perfcont = new PerfilController();
-        perfil = perfcont.ConsultarPerfilPorIdUsuario(MasterPage.usuarioID);
+        perfil = perfcont.ConsultarPerfilPorIdUsuario(UsuarioId);
 
         if (perfil == null) {
             Response.Redirect("Cadastro_Perfil.aspx");

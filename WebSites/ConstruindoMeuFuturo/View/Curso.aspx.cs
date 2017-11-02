@@ -9,6 +9,10 @@ public partial class View_Cursos_Curso : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        // Se não tiver usuario logado ele volta pra Home
+        if (Session["usuario"] == null)
+        {
+            Response.Redirect("Home.aspx");
+        }
     }
 }

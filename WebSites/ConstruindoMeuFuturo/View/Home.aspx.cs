@@ -9,7 +9,7 @@ public partial class View_Home : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (MasterPage.log)
+        if (Session["usuario"] != null)
         {
             pnCursos.Visible = true;
             pnPassos.Visible = false;

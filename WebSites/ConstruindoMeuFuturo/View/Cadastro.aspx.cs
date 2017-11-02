@@ -28,10 +28,9 @@ public partial class View_Cadastro : System.Web.UI.Page
         {
             usucont.InserirNovoUsuario(usuario);
             usuario = usucont.ConsultarUsuario(usuario.Email, usuario.Senha);
-            MasterPage.nome = usuario.Nome;
-            MasterPage.usuarioID = usuario.Id;
-            MasterPage.log = true;
-            
+            // criando sessão de usuário
+            Session["usuario"] = usuario.Nome;
+            Session["usuarioId"] = usuario.Id;
             Response.Redirect("Cadastro_Perfil.aspx");
         }
         catch (SenhaUsuarioInvalidaException)

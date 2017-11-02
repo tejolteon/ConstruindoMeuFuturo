@@ -7,29 +7,26 @@ using System.Web.UI.WebControls;
 
 public partial class MasterPage : System.Web.UI.MasterPage
 {
-    public static bool log;
-    public static string nome;
-    public static int usuarioID;
+    // váriaveis da master removida
     protected void Page_Load(object sender, EventArgs e)
     {
-        if(log)
+        if(Session["usuario"] != null)
         {
             pnOn.Visible = true;
             pnOff.Visible = false;
-            lbNome.Text = nome;
+            lbNome.Text = Session["usuario"].ToString();
         }    
         else
         {
             pnOff.Visible = true;
             pnOn.Visible = false;
-            nome = "nome";
-            usuarioID = 0;
         }
     }
 
     protected void Sair_Click(object sender, EventArgs e)
     {
-        log = false;
+        Session.Remove("usuario");
+        Session.Remove("usuarioId");
         Response.Redirect("../View/Home.aspx");
     }
 

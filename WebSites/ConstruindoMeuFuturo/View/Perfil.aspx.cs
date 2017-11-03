@@ -48,23 +48,12 @@ public partial class View_Perfil : System.Web.UI.Page
                     {
                         foreach (UnidadeEnsinoBean unidade in this.unidadecont.ListarUnidadeCurso(curso.Id))
                         {
-                            TableCell tc = new TableCell();
-                            //Insere 
-                            tc.Text = "<font size=5><br><a href="+"Curso.aspx"+">" + curso.Nome + "<p></a>" + unidade.Nome + "</br></font>";
-                            tr.Cells.Add(tc);
-
-                            //Alinha as células
-                            tr.HorizontalAlign = HorizontalAlign.Center;
-                            tr.VerticalAlign = VerticalAlign.Top;
-
-                            //Adiciona 2 colunas na tabela (FALTA SER RESPONSIVO)
-                            if (tr.Cells.Count == 2)
-                            {
-                                TabelaCursos.Rows.Add(tr);
-                                tr = new TableRow();
-                            }
-
-
+                         Literal1.Text += "" +
+                                "<div class=" + "\"" + "col-6 col-lg-4" + "\"" + " >" +
+                                "<p><h2>" + curso.Nome + "</h2></p>" +
+                                "<p>" + unidade.Nome + "</p>" +
+                                "<p><a class= " + "\"" + "btn btn-primary btn-lg" + "\"" + " href= " + "\"" + "http://getbootstrap.com/docs/4.0/examples/offcanvas/# " + "\"" + " role= " + "\"" + "button" + "\"" + " >Ver detalhes »</a></p>" +
+                                "</div>";
                         }
                     }
                     catch

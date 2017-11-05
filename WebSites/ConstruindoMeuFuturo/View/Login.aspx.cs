@@ -30,7 +30,7 @@ public partial class View_Usuario_Login : System.Web.UI.Page
             // Criando sessão de Usuario
             Session["usuario"] = usuario.Nome;
             Session["usuarioId"] = usuario.Id;
-            //??????Criar pagina depois de logado???????
+
             Response.Redirect("Perfil.aspx");
         }
         catch (UsuarioNaoCadastradoException)

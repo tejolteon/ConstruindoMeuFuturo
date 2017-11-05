@@ -26,6 +26,18 @@ public class UsuarioController
         }
     }
 
+    public void ConfirmarSenha(int id, string senha) {
+
+        usuariodao = new UsuarioDao();
+        var linhasafetadas = usuariodao.ConfirmarSenha(id, senha);
+
+        if (linhasafetadas <= 0)
+        {
+            throw new UsuarioNaoCadastradoException();
+        }
+
+    }
+
     public UsuarioBean ConsultarUsuarioPorID(int id)
     {
         usuariodao = new UsuarioDao();
@@ -67,5 +79,18 @@ public class UsuarioController
         {
             throw new UsuarioInvalidoException();
         }
+    }
+
+    public void AlterarSenha(UsuarioBean usuario)
+    {
+        usuariodao = new UsuarioDao();
+        var linhasafetadas = usuariodao.AlterarSenha(usuario);
+
+        if(linhasafetadas == 0)
+        {
+            throw new UsuarioNaoCadastradoException();
+        }
+        
+
     }
 }

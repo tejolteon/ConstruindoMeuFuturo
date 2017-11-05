@@ -24,19 +24,17 @@
                     <br />
                     <asp:LinkButton ID="lbtAlterarPerfil" runat="server" OnClick="lbtAlterarPerfil_Click">Alterar Informações</asp:LinkButton>
                     <br />
-                    <asp:LinkButton ID="lbtAlterarSenha" runat="server">Alterar Senha</asp:LinkButton>
+                    <asp:LinkButton ID="lbtAlterarSenha" runat="server" OnClick="lbtAlterarSenha_Click" >Alterar Senha</asp:LinkButton>
                     <br />
                 </div>
             </asp:Panel>
         </div>      
         <div class="container well col-lg-8 col-sm-6 col-xs-12" style="margin-top:2%;">
             <!-- !!!!!! A TABELA NÃO ESTÁ RESPONSIVA !!!!!! PENDENTE SOLUÇÃO -->
-            <asp:Panel ID="pnPerfil" runat="server">
+            <asp:Panel ID="pnPerfil" runat="server" class="row">
              
-                        <h1>Sugestões de Cursos</h1>           
-                          <asp:Panel ID="pnCurso" runat="server" class="row">
-                               <asp:Literal ID="Literal1" runat="server"></asp:Literal>
-                          </asp:Panel>        
+                   <h1>Sugestões de Cursos</h1>
+                   <asp:Literal ID="ltPainel" runat="server"></asp:Literal>      
              </asp:Panel>
         </div>
         </div>

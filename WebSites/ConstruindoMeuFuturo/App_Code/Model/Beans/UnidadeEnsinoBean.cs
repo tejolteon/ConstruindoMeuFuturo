@@ -54,19 +54,7 @@ public class UnidadeEnsinoBean
             site = value;
         }
     }
-    //get e set endereco
-    public string Endereco
-    {
-        get
-        {
-            return Endereco;
-        }
 
-        set
-        {
-            Endereco = value;
-        }
-    }
 
     // get e set descricao
 
@@ -80,6 +68,20 @@ public class UnidadeEnsinoBean
         set
         {
             descricao = value;
+        }
+    }
+
+    // get e set endereco
+    public string Endereco
+    {
+        get
+        {
+            return endereco;
+        }
+
+        set
+        {
+            endereco = value;
         }
     }
 }

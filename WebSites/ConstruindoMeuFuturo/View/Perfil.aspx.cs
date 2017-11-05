@@ -48,12 +48,15 @@ public partial class View_Perfil : System.Web.UI.Page
                     {
                         foreach (UnidadeEnsinoBean unidade in this.unidadecont.ListarUnidadeCurso(curso.Id))
                         {
-                         Literal1.Text += "" +
+                            //Insere os valores no literal com a formatação devida
+                            ltPainel.Text += "" +
                                 "<div class=" + "\"" + "col-6 col-lg-4" + "\"" + " >" +
                                 "<p><h2>" + curso.Nome + "</h2></p>" +
                                 "<p>" + unidade.Nome + "</p>" +
-                                "<p><a class= " + "\"" + "btn btn-primary btn-lg" + "\"" + " href= " + "\"" + "http://getbootstrap.com/docs/4.0/examples/offcanvas/# " + "\"" + " role= " + "\"" + "button" + "\"" + " >Ver detalhes »</a></p>" +
+                                //Button para ver detalhes
+                                "<p><a class= " + "\"" + "btn btn-primary btn-lg" + "\"" + " href= " + "\"" + "Curso.aspx?CursoId="+curso.Id+"&UnidadeId="+ unidade.Id+" " + "\"" + " role= " + "\"" + "button" + "\"" + " >Ver detalhes »</a></p>" +
                                 "</div>";
+                            //obs.: "\"" é igual a "
                         }
                     }
                     catch
@@ -86,5 +89,12 @@ public partial class View_Perfil : System.Web.UI.Page
             Response.Redirect("Cadastro_Perfil.aspx");
         } else
         Response.Redirect("Alterar_Perfil.aspx");
+    }
+
+    protected void lbtAlterarSenha_Click(object sender, EventArgs e)
+    {
+        int UsuarioId = int.Parse(Session["usuarioId"].ToString());
+        Response.Redirect("Alterar_Senha.aspx");
+      
     }
 }

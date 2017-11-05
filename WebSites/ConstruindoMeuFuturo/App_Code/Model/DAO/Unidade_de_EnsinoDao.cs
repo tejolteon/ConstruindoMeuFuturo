@@ -124,7 +124,6 @@ public class Unidade_de_EnsinoDao
                 unidade.Id = Convert.ToInt32(reader["Id_Unidade_de_Ensino"]);
                 unidade.Nome = Convert.ToString(reader["Nome_Unidade_de_Ensino"]);
                 unidade.Site = Convert.ToString(reader["Site_Unidade_de_Ensino"]);
-                unidade.Id = Convert.ToInt32(reader["Id_Cidade"]);
                 unidade.Endereco = Convert.ToString(reader["Endereco_Unidade_de_Ensino"]);
                 unidade.Descricao = Convert.ToString(reader["Descricao_Unidade_de_Ensino"]);
          

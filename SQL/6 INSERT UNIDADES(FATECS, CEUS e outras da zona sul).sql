@@ -89,7 +89,7 @@ INSERT INTO TB_UNIDADE_DE_ENSINO(Id_Unidade_de_Ensino, Nome_Unidade_de_Ensino,Si
 (80,'Fatec Sebrae','https://fatecsebrae.wordpress.com/',5270,'Alameda Nothman, 598 - Campos Elíseos',''),
 (81,'Fatec Tatuapé - Victor Civita','http://www.fatectatuape.edu.br/',5270,'Rua Antonio de Barros, 800 - Tatuapé',''),
 (82,'Fatec Zona Leste','http://www.ctzl.edu.br/',5270,'Aenida Aguia de Haia, 2983 - Cidade A. E. Carvalho',''),
-(83,'Fatec Zona Sul - Dom Paulo Evaristo Arns','http://www.fateczonasul.edu.br/',5270,'R. Frederico Grotte, 322 - Jd. São Luis','');
+(83,'Fatec Zona Sul - Dom Paulo Evaristo Arns','http://www.fateczonasul.edu.br/',5270,'R. Frederico Grotte, 322 - Jd. São Luis','As Fatecs são importantes instituições brasileiras de ensino superior, sendo pioneiras na graduação de tecnólogos. É uma das seis instituições estaduais de educação superior mantidas pelo governo do estado de São Paulo no Brasil');
 GO
 
 SET IDENTITY_INSERT TB_UNIDADE_DE_ENSINO OFF;

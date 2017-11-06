@@ -43,10 +43,10 @@ public class AreaController
     }
 
     /*Teste com list POR ser N * N no MER
-     * public List<AreaBean> ConsultarIdAreaPerfil(PerfilBean id) {
+     * public List<AreaBean> ConsultarIdAreaPerfil(PerfilBean id_estado) {
         areadao = new AreaDao();
         var areas = new List<AreaBean>();
-        areas = areadao.ListarIdAreaPerfil(id);
+        areas = areadao.ListarIdAreaPerfil(id_estado);
         return areas;
     }*/
 }

@@ -35,4 +35,27 @@ public class UnidadeController
             return null;
         }
     }
+
+    public void InserirNovaUnidade(UnidadeEnsinoBean unidade)
+    {
+        //Verifica se unidade está sem nome
+        ValidarUnidade(unidade);
+   
+        unidadedao = new Unidade_de_EnsinoDao();
+        var linhasafetadas = unidadedao.InserirUnidade(unidade);
+        //verifica se retornou nenhuma linha afetada
+        if (linhasafetadas == 0)
+        {
+            throw new UsuarioNaoCadastradoException();
+        }
+    }
+
+    public void ValidarUnidade(UnidadeEnsinoBean unidade)
+    {
+        //Verifica se as variaveis estão nulas
+        if (string.IsNullOrWhiteSpace(unidade.Nome_unidade))
+        {
+            throw new UnidadeInvalidaException();
+        }
+    }
 }

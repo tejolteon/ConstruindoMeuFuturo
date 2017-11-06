@@ -37,9 +37,13 @@ public partial class View_Cadastro : System.Web.UI.Page
         {
             Labelerro.Text = "Campos de senha não condizem";
         }
-        catch (UsuarioNaoCadastradoException)
+        catch (UsuarioInvalidoException)
         {
             Labelerro.Text = "Todos os campos são obrigatórios";
+        }
+        catch (EmailJaCadastradoException)
+        {
+            Labelerro.Text = "Esse email já está cadastrado";
         }
         catch (Exception)
         {

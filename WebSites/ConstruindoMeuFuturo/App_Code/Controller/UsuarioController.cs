@@ -26,22 +26,20 @@ public class UsuarioController
         }
     }
 
-    public UsuarioBean ConfirmarSenha(int id, string senha) {
-
+    public UsuarioBean ConfirmarSenha(UsuarioBean usuario) {
+        //String para armazenar o confirmar senha, pois ela será apagada depois da consulta
+        String confirmarsenha;
+        confirmarsenha = usuario.Confirmarsenha;
+        //Consulta o usuario no banco para ver se a senha bate
         usuariodao = new UsuarioDao();
-        var usuario = usuariodao.ConfirmarSenha(id, senha);
 
-        if (usuario == null)
-        {
-            throw new UsuarioNaoCadastradoException();
-        }
-        else
-        {
-            //retorna normal   
-            return usuario;
-        }
-
+        usuario = usuariodao.ConfirmarSenha(usuario.Id, usuario.Senha);
+        //Verifica se está null
+        ValidarUsuario(usuario);
+        return usuario;
     }
+
+   
 
     public UsuarioBean ConsultarUsuarioPorID(int id)
     {
@@ -60,8 +58,13 @@ public class UsuarioController
     }
     public void InserirNovoUsuario(UsuarioBean usuario)
     {
+        //verifica se as senhas convergem
         ValidarSenhaUsuario(usuario);
+        //Verifica se as variaveis estão nulas
         ValidarUsuario(usuario);
+        //Valida o email, verificando se já tem um cadastrado
+        ValidarEmailUsuario(usuario);
+        //insere valores no BD
         usuariodao = new UsuarioDao();
         var linhasafetadas = usuariodao.InserirUsuario(usuario);
         //verifica se retornou nenhuma linha afetada
@@ -79,15 +82,27 @@ public class UsuarioController
     }
     public void ValidarUsuario(UsuarioBean usuario)
     {
-        //Verifica se as varias estão nulas
-        if (string.IsNullOrWhiteSpace(usuario.Email) || string.IsNullOrWhiteSpace(usuario.Senha))
+        //Verifica se as variaveis estão nulas
+        if (usuario == null || string.IsNullOrWhiteSpace(usuario.Email) || string.IsNullOrWhiteSpace(usuario.Senha))
         {
             throw new UsuarioInvalidoException();
         }
     }
 
+    public void ValidarEmailUsuario(UsuarioBean usuario) {
+        usuariodao = new UsuarioDao();
+        usuario = usuariodao.ConsultarUsuarioEmail(usuario.Email);
+        if (usuario != null)
+        {
+            throw new EmailJaCadastradoException();
+        }
+    }
+
     public void AlterarSenha(UsuarioBean usuario)
     {
+        //verifica se as senhas convergem
+        ValidarSenhaUsuario(usuario);
+
         usuariodao = new UsuarioDao();
         var linhasafetadas = usuariodao.AlterarSenha(usuario);
 

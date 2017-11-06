@@ -84,6 +84,44 @@ public class UsuarioDao
 
     }
 
+    public UsuarioBean ConsultarUsuarioEmail(string email)
+    {
+        try
+        {
+            //Conectar com o banco
+            Conexao.Conectar();
+            var command = new SqlCommand();
+            command.Connection = Conexao.connection;
+            //Comando no banco
+            command.CommandText = "SELECT Id_Usuario,Email_Usuario,Nome_Usuario FROM TB_USUARIO WHERE Email_Usuario = @email";
+            //Entrada doa parâmetros
+            command.Parameters.AddWithValue("@email", email);
+            //Executar o comando 
+            var reader = command.ExecuteReader();
+            UsuarioBean usuario = null;
+            //Inserir os valores do resultado no bean
+            while (reader.Read())
+            {
+                usuario = new UsuarioBean();
+                usuario.Id = Convert.ToInt32(reader["Id_Usuario"]);
+                usuario.Nome = Convert.ToString(reader["Nome_Usuario"]);
+                usuario.Email = Convert.ToString(reader["Email_Usuario"]);
+            }
+            return usuario;
+        }
+        catch (Exception)
+        {
+
+            throw;
+        }
+        //encerrar conexão com o banco
+        finally
+        {
+            Conexao.Desconectar();
+        }
+
+    }
+
     public UsuarioBean ConfirmarSenha(int id, string senha)
     {
         try

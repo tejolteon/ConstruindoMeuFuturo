@@ -32,7 +32,7 @@ public class CidadeDao
                 var cidade = new CidadeBean();
                 cidade.Id_cidade = Convert.ToInt32(reader["Id_Cidade"]);
                 cidade.Nome = Convert.ToString(reader["Nome_Cidade"]);
-                cidade.Id = Convert.ToInt32(reader["Id_Estado"]);
+                cidade.Id_estado = Convert.ToInt32(reader["Id_Estado"]);
                 cidades.Add(cidade);
             }
             return cidades;
@@ -73,7 +73,7 @@ public class CidadeDao
                 cidade = new CidadeBean();
                 cidade.Id_cidade = Convert.ToInt32(reader["Id_Cidade"]);
                 cidade.Nome = Convert.ToString(reader["Nome_Cidade"]);
-                cidade.Id = Convert.ToInt32(reader["Id_Estado"]);
+                cidade.Id_estado = Convert.ToInt32(reader["Id_Estado"]);
             }
             return cidade;
         }
@@ -126,7 +126,7 @@ public class CidadeDao
     
 
     /*Teste com List por ser N * N no MER
-    public List<CidadeBean> ListarIdCidadePerfil(int id) {
+    public List<CidadeBean> ListarIdCidadePerfil(int id_estado) {
         try
         {
             //Conectar com o banco
@@ -136,7 +136,7 @@ public class CidadeDao
             //Comando no banco
             command.CommandText = "SELECT * FROM TB_PERFIL_has_TB_CIDADE WHERE Id_Perfil = @id_perfil";
             //Entrada doa parâmetros
-            command.Parameters.AddWithValue("@id_perfil", id);
+            command.Parameters.AddWithValue("@id_perfil", id_estado);
             //Executar o comando 
             var reader = command.ExecuteReader();
             //Criar list

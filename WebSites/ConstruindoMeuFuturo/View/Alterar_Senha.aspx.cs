@@ -40,25 +40,20 @@ public partial class View_Alterar_Perfil : System.Web.UI.Page
             usuario = new UsuarioBean();
             usuario.Id = int.Parse(Session["usuarioId"].ToString());
             usuario.Senha = TxtSenha.Text;
-            usucont.ConfirmarSenha(usuario.Id, usuario.Senha);
+            usuario.Confirmarsenha = TxtConfirmarSenhaNova.Text;
+            usucont.ConfirmarSenha(usuario);
             try {
-                //Verificando se os campos conforem
-                if (TxtSenhaNova.Text == TxtConfirmarSenhaNova.Text)
-                {
-                   
                     usuario.Senha = TxtSenhaNova.Text;
                     usucont.AlterarSenha(usuario);
-                    Response.Redirect("Perfil.aspx");
-                }
-                else {
-                    Labelerro.Text = "Campos de senha nova não conferem";
-                }
+                    Response.Redirect("Perfil.aspx");             
+               
             }
-            catch {
-            }
+            catch (SenhaUsuarioInvalidaException) {
+            Labelerro.Text = "Campos de senha nova não conferem";
+        }
 
         }
-        catch (UsuarioNaoCadastradoException)
+        catch (UsuarioInvalidoException)
 
         {
             Labelerro.Text = "Campo senha atual incorreto";

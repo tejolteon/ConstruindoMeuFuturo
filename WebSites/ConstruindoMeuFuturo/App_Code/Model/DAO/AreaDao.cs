@@ -54,9 +54,9 @@ public class AreaDao
             var command = new SqlCommand();
             command.Connection = Conexao.connection;
             //Comando no banco
-            command.CommandText = "SELECT * FROM TB_AREA WHERE Id_Area = @id";
+            command.CommandText = "SELECT * FROM TB_AREA WHERE Id_Area = @id_area";
             //Entrada doa parâmetros
-            command.Parameters.AddWithValue("@id", id);
+            command.Parameters.AddWithValue("@id_area", id);
             //Executar o comando 
             var reader = command.ExecuteReader();
             AreaBean area = null;
@@ -118,7 +118,7 @@ public class AreaDao
     }
 
     /* Teste com List por ser N * N no MER
-    public List<AreaBean> ListarIdAreaPerfil(PerfilBean id)
+    public List<AreaBean> ListarIdAreaPerfil(PerfilBean id_estado)
     {
         try
         {
@@ -129,7 +129,7 @@ public class AreaDao
             //Comando no banco
             command.CommandText = "SELECT * FROM TB_PERFIL_has_TB_AREA WHERE Id_Perfil = @id_perfil";
             //Entrada doa parâmetros
-            command.Parameters.AddWithValue("@id_perfil", id);
+            command.Parameters.AddWithValue("@id_perfil", id_estado);
             //Executar o comando 
             var reader = command.ExecuteReader();
             //Criar list

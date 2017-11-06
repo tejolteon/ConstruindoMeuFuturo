@@ -11,7 +11,7 @@ public class CidadeBean:EstadoBean
     private int id_cidade;
     private String nome;
 
-    //Get e Set id
+    //Get e Set id_cidade
     public int Id_cidade
     {
         get

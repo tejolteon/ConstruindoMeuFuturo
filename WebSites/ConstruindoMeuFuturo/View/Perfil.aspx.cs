@@ -54,7 +54,7 @@ public partial class View_Perfil : System.Web.UI.Page
                                 "<p><h2>" + curso.Nome + "</h2></p>" +
                                 "<p>" + unidade.Nome + "</p>" +
                                 //Button para ver detalhes
-                                "<p><a class= " + "\"" + "btn btn-primary btn-lg" + "\"" + " href= " + "\"" + "Curso.aspx?CursoId="+curso.Id+"&UnidadeId="+ unidade.Id+" " + "\"" + " role= " + "\"" + "button" + "\"" + " >Ver detalhes »</a></p>" +
+                                "<p><a class= " + "\"" + "btn btn-primary btn-lg" + "\"" + " href= " + "\"" + "Curso.aspx?CursoId="+curso.Id+"&UnidadeId="+ unidade.Id_unidade+" " + "\"" + " role= " + "\"" + "button" + "\"" + " >Ver detalhes »</a></p>" +
                                 "</div>";
                             //obs.: "\"" é igual a "
                         }

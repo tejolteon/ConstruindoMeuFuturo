@@ -23,7 +23,7 @@ public partial class View_Cursos_Curso : System.Web.UI.Page
         unidadecont = new UnidadeController();
 
         //Le o Id da unidade que está na URL
-        unidade.Id = Convert.ToInt32(Request.QueryString["UnidadeId"]);
+        unidade.Id_unidade = Convert.ToInt32(Request.QueryString["UnidadeId"]);
 
         curso = new CursoBean();
         cursocont = new CursoConstroller();
@@ -31,7 +31,7 @@ public partial class View_Cursos_Curso : System.Web.UI.Page
         curso.Id = Convert.ToInt32(Request.QueryString["CursoId"]);
         try
         {
-            unidade = unidadecont.ConsultarUnidadeId(unidade.Id);
+            unidade = unidadecont.ConsultarUnidadeId(unidade.Id_unidade);
         }
         catch {
             //Erro ao consulta Unidade
@@ -47,13 +47,13 @@ public partial class View_Cursos_Curso : System.Web.UI.Page
         try
         {
             //Colocar Os valores das variaveis no literal, jogando com a formatação 
-            ltConteudo.Text = " <div class=" + "\"" + "text-center" + "\"" + " ><h2><p>" + curso.Nome + " - " + unidade.Nome + "</p></h2></div>" +
-            "<p>De acordo com seus dados selecionamos o curso de " + curso.Nome + " na " + unidade.Nome + "</p>" +
+            ltConteudo.Text = " <div class=" + "\"" + "text-center" + "\"" + " ><h2><p>" + curso.Nome + " - " + unidade.Nome_unidade + "</p></h2></div>" +
+            "<p>De acordo com seus dados selecionamos o curso de " + curso.Nome + " na " + unidade.Nome_unidade + "</p>" +
             "<div class=" + "\"" + "text-center" + "\"" + " > <h2><p>O Curso</p></h2></div>" +
             "<p>" + curso.Descricao + "</p>" +
             "<div class=" + "\"" + "text-center" + "\"" + " > <h2><p>A faculdade</p></h2></div>" +
-            "<p>" + unidade.Descricao + "</p>" +
-            "<p>Endereço: "+unidade.Endereco+"</p>"+
+            "<p>" + unidade.Descricao_unidade + "</p>" +
+            "<p>Endereço: "+unidade.Endereco_unidade+"</p>"+
             //Button para entrar no site da unidade de ensino
             "<p><a class= " + "\"" + "btn btn-primary btn-lg" + "\"" + " href= " + "\"" + unidade.Site + "\"" + " role= " + "\"" + "button" + "\"" + " >Site da faculdade</a></p>";
         }

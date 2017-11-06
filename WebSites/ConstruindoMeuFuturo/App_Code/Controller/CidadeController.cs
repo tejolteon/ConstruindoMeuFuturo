@@ -27,7 +27,7 @@ public class CidadeController
     public CidadeBean ConsultaCidadePerfil(int idperfil)
     {
         cidadedao = new CidadeDao();
-        //consulta o id da cidade que está cadastrado no perfil
+        //consulta o id_estado da cidade que está cadastrado no perfil
         cidade = cidadedao.ConsultarIdCidadePerfil(idperfil);
 
         //consulta o nome da cidade
@@ -39,16 +39,16 @@ public class CidadeController
         catch
         {
             cidade.Id_cidade = 0;
-            cidade.Id = 0;
+            cidade.Id_estado = 0;
             return cidade;
         }
         
     }
     /*Teste com list por ser N * N no MER
-    public List<CidadeBean> ListarIdCidadePerfil(int id) {
+    public List<CidadeBean> ListarIdCidadePerfil(int id_estado) {
         cidadedao = new CidadeDao();
         var cidades = new List<CidadeBean>();
-        cidades = cidadedao.ListarIdCidadePerfil(id);
+        cidades = cidadedao.ListarIdCidadePerfil(id_estado);
         return cidades;
     }*/
 }

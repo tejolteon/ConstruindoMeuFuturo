@@ -30,14 +30,14 @@ public class Unidade_de_EnsinoDao
             {
                 var unidade = new UnidadeEnsinoBean();
 
-                unidade.Id = Convert.ToInt32(reader["Id_Unidade_de_Ensino"]);
-                unidade.Nome = reader["Nome_Unidade_de_Ensino"].ToString();
+                unidade.Id_unidade = Convert.ToInt32(reader["Id_Unidade_de_Ensino"]);
+                unidade.Nome_unidade = reader["Nome_Unidade_de_Ensino"].ToString();
                 unidade.Site = reader["Site_Unidade_de_Ensino"].ToString();
                 //unidade. = reader[].ToString();Faltando
 
-                unidade.Endereco = reader["Endereco_Unidade_de_Ensino"].ToString();
+                unidade.Endereco_unidade = reader["Endereco_Unidade_de_Ensino"].ToString();
 
-                unidade.Descricao = reader["Descrição_Unidade_de_Ensino"].ToString();
+                unidade.Descricao_unidade = reader["Descrição_Unidade_de_Ensino"].ToString();
                 unidades.Add(unidade);
             }
 
@@ -82,8 +82,8 @@ public class Unidade_de_EnsinoDao
             while (reader.Read())
             {
                 var unidade = new UnidadeEnsinoBean();
-                unidade.Id = Convert.ToInt32(reader["Id_Unidade_de_Ensino"]);
-                unidade.Nome = reader["Nome_Unidade_de_Ensino"].ToString();   
+                unidade.Id_unidade = Convert.ToInt32(reader["Id_Unidade_de_Ensino"]);
+                unidade.Nome_unidade = reader["Nome_Unidade_de_Ensino"].ToString();   
                 unidades.Add(unidade);
             }
 
@@ -121,15 +121,49 @@ public class Unidade_de_EnsinoDao
             while (reader.Read())
             {
                 unidade= new UnidadeEnsinoBean();
-                unidade.Id = Convert.ToInt32(reader["Id_Unidade_de_Ensino"]);
-                unidade.Nome = Convert.ToString(reader["Nome_Unidade_de_Ensino"]);
+                unidade.Id_unidade = Convert.ToInt32(reader["Id_Unidade_de_Ensino"]);
+                unidade.Nome_unidade = Convert.ToString(reader["Nome_Unidade_de_Ensino"]);
                 unidade.Site = Convert.ToString(reader["Site_Unidade_de_Ensino"]);
-                unidade.Endereco = Convert.ToString(reader["Endereco_Unidade_de_Ensino"]);
-                unidade.Descricao = Convert.ToString(reader["Descricao_Unidade_de_Ensino"]);
+                unidade.Endereco_unidade = Convert.ToString(reader["Endereco_Unidade_de_Ensino"]);
+                unidade.Descricao_unidade = Convert.ToString(reader["Descricao_Unidade_de_Ensino"]);
          
 
             }
             return unidade;
+        }
+        catch (Exception)
+        {
+
+            throw;
+        }
+        //encerrar conexão com o banco
+        finally
+        {
+            Conexao.Desconectar();
+        }
+
+    }
+
+    public int InserirUnidade(UnidadeEnsinoBean unidade)
+    {
+        try
+        {
+            //Conectar com o banco
+            Conexao.Conectar();
+            var command = new SqlCommand();
+            command.Connection = Conexao.connection;
+            //Comando no banco
+            command.CommandText = "INSERT INTO TB_UNIDADE_DE_ENSINO(Nome_Unidade_de_Ensino,Site_Unidade_de_Ensino,Id_Cidade,Endereco_Unidade_de_Ensino, Descricao_Unidade_de_Ensino)" +
+                                " VALUES (@nome, @site, @idcidade, @endereco, @descricao)";
+            //Entrada doa parâmetros
+            command.Parameters.AddWithValue("@nome", unidade.Nome_unidade);
+            command.Parameters.AddWithValue("@site", unidade.Site);
+            command.Parameters.AddWithValue("@idcidade", unidade.Id_cidade);
+            command.Parameters.AddWithValue("@endereco", unidade.Endereco_unidade);
+            command.Parameters.AddWithValue("@descricao", unidade.Descricao_unidade);
+
+            //Executa e retorna o tanto de linhas que foram afetadas
+            return command.ExecuteNonQuery();
         }
         catch (Exception)
         {

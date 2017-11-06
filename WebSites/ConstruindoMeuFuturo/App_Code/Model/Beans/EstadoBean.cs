@@ -8,23 +8,23 @@ using System.Web;
 /// </summary>
 public class EstadoBean
 {
-    private int id;
+    private int id_estado;
     private String nome;
     private String sigla;
 
 
-    //Get e Set id
+    //Get e Set id_estado
 
-    public int Id
+    public int Id_estado
     {
         get
         {
-            return id;
+            return id_estado;
         }
 
         set
         {
-            id = value;
+            id_estado = value;
         }
     }
 

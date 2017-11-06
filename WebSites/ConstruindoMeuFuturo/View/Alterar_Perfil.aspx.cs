@@ -63,12 +63,12 @@ public partial class View_Alterar_Perfil : System.Web.UI.Page
 
         }
 
-        if (cidade.Id != 0)
+        if (cidade.Id_estado != 0)
         {
             idcidadeantiga = cidade.Id_cidade;//Não funcional ainda(Servira para quando a tabela estiver N * N)
            
             //Seleciona o estado que já estava cadastrado no BD
-            DDLestado.SelectedValue = Convert.ToString(cidade.Id);
+            DDLestado.SelectedValue = Convert.ToString(cidade.Id_estado);
         }
         
         

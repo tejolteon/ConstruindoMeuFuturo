@@ -6,7 +6,7 @@ using System.Web;
 /// <summary>
 /// Descrição resumida de UnidadeEnsinoBean
 /// </summary>
-public class UnidadeEnsinoBean
+public class UnidadeEnsinoBean:CidadeBean
 {
     private int id;
     private string nome;
@@ -15,7 +15,7 @@ public class UnidadeEnsinoBean
     private string descricao;
 
     //get e set id
-    public int Id
+    public int Id_unidade
     {
         get
         {
@@ -28,7 +28,7 @@ public class UnidadeEnsinoBean
         }
     }
 
-    public string Nome
+    public string Nome_unidade
     {
         get
         {
@@ -58,7 +58,7 @@ public class UnidadeEnsinoBean
 
     // get e set descricao
 
-    public string Descricao
+    public string Descricao_unidade
     {
         get
         {
@@ -72,7 +72,7 @@ public class UnidadeEnsinoBean
     }
 
     // get e set endereco
-    public string Endereco
+    public string Endereco_unidade
     {
         get
         {

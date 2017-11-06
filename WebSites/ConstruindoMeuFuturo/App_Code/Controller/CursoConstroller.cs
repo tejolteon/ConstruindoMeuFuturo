@@ -9,7 +9,6 @@ using System.Web;
 public class CursoConstroller
 {
     CursoDao cursodao;
-    CursoBean curso;
     public List<CursoBean> ListaCursoPorArea(int idarea)
     {
         try

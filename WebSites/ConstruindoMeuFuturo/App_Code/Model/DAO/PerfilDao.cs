@@ -20,12 +20,12 @@ public class PerfilDao
             var command = new SqlCommand();
             command.Connection = Conexao.connection;
             //Comando no banco
-            command.CommandText = "INSERT INTO TB_PERFIL(Id_Usuario, Data_Nascimento_Perfil, Escolaridade_Perfil) OUTPUT INSERTED.Id_Perfil VALUES(@id,@datanascimento,@escolaridade)";
+            command.CommandText = "INSERT INTO TB_PERFIL(Id_Usuario, Data_Nascimento_Perfil, Escolaridade_Perfil) OUTPUT INSERTED.Id_Perfil VALUES(@id_usuario,@datanascimento,@escolaridade)";
             //Entrada doa parâmetros
-            command.Parameters.AddWithValue("@id", perfil.Id);
+            command.Parameters.AddWithValue("@id_usuario", perfil.Id);
             command.Parameters.AddWithValue("@datanascimento", perfil.Datanascimento);
             command.Parameters.AddWithValue("@escolaridade", perfil.Escolaridade);
-            //Executa e retorna o id que foi gerado
+            //Executa e retorna o id_usuario que foi gerado
             return (Int32)command.ExecuteScalar();
         }
         catch (Exception)
@@ -105,9 +105,9 @@ public class PerfilDao
             var command = new SqlCommand();
             command.Connection = Conexao.connection;
             //Comando no banco 
-            command.CommandText = "UPDATE  TB_PERFIL SET Data_Nascimento_Perfil = @datanascimento, Escolaridade_Perfil= @escolaridade WHERE Id_Perfil = @id;";
+            command.CommandText = "UPDATE  TB_PERFIL SET Data_Nascimento_Perfil = @datanascimento, Escolaridade_Perfil= @escolaridade WHERE Id_Perfil = @id_perfil;";
             //Entrada doa parâmetros
-            command.Parameters.AddWithValue("@id", perfil.Id_perfil);
+            command.Parameters.AddWithValue("@id_perfil", perfil.Id_perfil);
             command.Parameters.AddWithValue("@datanascimento", perfil.Datanascimento);
             command.Parameters.AddWithValue("@escolaridade", perfil.Escolaridade);
             //Executa
@@ -189,9 +189,9 @@ public class PerfilDao
             var command = new SqlCommand();
             command.Connection = Conexao.connection;
             //Comando no banco
-            command.CommandText = "SELECT * FROM TB_PERFIL WHERE Id_Usuario = @id";
+            command.CommandText = "SELECT * FROM TB_PERFIL WHERE Id_Usuario = @id_usuario";
             //Entrada doa parâmetros
-            command.Parameters.AddWithValue("@id", idusuario);
+            command.Parameters.AddWithValue("@id_usuario", idusuario);
             //Executar o comando 
             var reader = command.ExecuteReader();
             PerfilBean perfil = null;

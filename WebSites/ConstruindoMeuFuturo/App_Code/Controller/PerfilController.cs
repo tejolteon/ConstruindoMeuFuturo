@@ -11,7 +11,6 @@ public class PerfilController
     //**!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!ATENÇÃO ALTERAR O ALTERAR AREA E INSERIR AREA, POQUE ESTÁ N * N no MER
 
     private PerfilDao perfildao;
-    private PerfilBean perfil;
     public void InserirNovoPerfil(UsuarioBean usuario, PerfilBean perfil,AreaBean area, CidadeBean cidade)
     {
        //Verifica se as Variaveis obrigatórias estão null
@@ -19,10 +18,10 @@ public class PerfilController
         perfil.Id = usuario.Id;
         perfildao = new PerfilDao();
         var id_perfil = perfildao.InserirPerfilRetornandoId(perfil);
-        //Recebe o id do perfil inserido
+        //Recebe o id_estado do perfil inserido
         perfil.Id_perfil = id_perfil;
 
-        //verifica se retornou nenhum id
+        //verifica se retornou nenhum id_estado
         if (id_perfil == null)
         {
             throw new PerfilNaoCadastradoException();

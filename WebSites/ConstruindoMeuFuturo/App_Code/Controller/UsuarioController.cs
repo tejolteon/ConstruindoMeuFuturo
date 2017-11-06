@@ -26,14 +26,19 @@ public class UsuarioController
         }
     }
 
-    public void ConfirmarSenha(int id, string senha) {
+    public UsuarioBean ConfirmarSenha(int id, string senha) {
 
         usuariodao = new UsuarioDao();
-        var linhasafetadas = usuariodao.ConfirmarSenha(id, senha);
+        var usuario = usuariodao.ConfirmarSenha(id, senha);
 
-        if (linhasafetadas <= 0)
+        if (usuario == null)
         {
             throw new UsuarioNaoCadastradoException();
+        }
+        else
+        {
+            //retorna normal   
+            return usuario;
         }
 
     }

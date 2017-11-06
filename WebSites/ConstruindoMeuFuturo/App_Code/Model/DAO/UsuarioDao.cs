@@ -84,6 +84,46 @@ public class UsuarioDao
 
     }
 
+    public UsuarioBean ConfirmarSenha(int id, string senha)
+    {
+        try
+        {
+            //Conectar com o banco
+            Conexao.Conectar();
+            var command = new SqlCommand();
+            command.Connection = Conexao.connection;
+            //Comando no banco
+            command.CommandText = "SELECT * FROM TB_USUARIO WHERE Id_Usuario = @id AND Senha_Usuario = @senha";
+            //Entrada doa parâmetros
+            command.Parameters.AddWithValue("@id", id);
+            command.Parameters.AddWithValue("@senha", senha);
+            var reader = command.ExecuteReader();
+            UsuarioBean usuario = null;
+            //Inserir os valores do resultado no bean
+            while (reader.Read())
+            {
+                usuario = new UsuarioBean();
+                usuario.Id = Convert.ToInt32(reader["Id_Usuario"]);
+                usuario.Nome = Convert.ToString(reader["Nome_Usuario"]);
+                usuario.Email = Convert.ToString(reader["Email_Usuario"]);
+                usuario.Senha = Convert.ToString(reader["Senha_Usuario"]);
+
+            }
+            return usuario;
+        }
+        catch (Exception)
+        {
+
+            throw;
+        }
+        //encerrar conexão com o banco
+        finally
+        {
+            Conexao.Desconectar();
+        }
+
+    }
+
     public UsuarioBean ConsultarUsuarioPorID(int id)
     {
         try
@@ -124,4 +164,31 @@ public class UsuarioDao
 
     }
 
+    public int AlterarSenha(UsuarioBean usuario)
+    {
+        try
+        {
+            //Conectar com o banco
+            Conexao.Conectar();
+            var command = new SqlCommand();
+            command.Connection = Conexao.connection;
+            //Comando no banco 
+            command.CommandText = "UPDATE TB_USUARIO SET Senha_Usuario = @senha WHERE Id_Usuario = @id;";
+            //Entrada doa parâmetros
+            command.Parameters.AddWithValue("@id", usuario.Id);
+            command.Parameters.AddWithValue("@senha", usuario.Senha);
+            //Executa
+            return command.ExecuteNonQuery();
+        }
+        catch (Exception)
+        {
+
+            throw;
+        }
+        //encerrar conexão com o banco
+        finally
+        {
+            Conexao.Desconectar();
+        }
+    }
 }

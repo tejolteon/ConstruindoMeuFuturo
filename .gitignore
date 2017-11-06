@@ -9,3 +9,9 @@ Projects/ConstruindoMeuFuturo/.vs/ConstruindoMeuFuturo/v15/.suo
 Projects/ConstruindoMeuFuturo/.vs/ConstruindoMeuFuturo/v15/Server/sqlite3/storage.ide
 Projects/ConstruindoMeuFuturo/.vs/ConstruindoMeuFuturo/v15/Server/sqlite3/storage.ide
 WebSites/ConstruindoMeuFuturo/App_Code/Model/conexao.cs
+*.ide
+*.ide
+*.ide-shm
+*.ide-wal
+*.config
+WebSites/ConstruindoMeuFuturo/App_Code/Model/conexao.cs

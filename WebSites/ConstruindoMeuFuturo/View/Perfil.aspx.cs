@@ -52,7 +52,7 @@ public partial class View_Perfil : System.Web.UI.Page
                             ltPainel.Text += "" +
                                 "<div class=" + "\"" + "col-6 col-lg-4" + "\"" + " >" +
                                 "<p><h2>" + curso.Nome + "</h2></p>" +
-                                "<p>" + unidade.Nome + "</p>" +
+                                "<p>" + unidade.Nome_unidade + "</p>" +
                                 //Button para ver detalhes
                                 "<p><a class= " + "\"" + "btn btn-primary btn-lg" + "\"" + " href= " + "\"" + "Curso.aspx?CursoId="+curso.Id+"&UnidadeId="+ unidade.Id_unidade+" " + "\"" + " role= " + "\"" + "button" + "\"" + " >Ver detalhes »</a></p>" +
                                 "</div>";

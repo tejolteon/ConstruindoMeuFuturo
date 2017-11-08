@@ -14,6 +14,9 @@ public class UsuarioBean
     private string email;
     private string senha;
     private string confirmarsenha;
+    private string tipo;
+    private string status;
+    private string datacadastro;
 
     //Get e Set id
 
@@ -81,6 +84,45 @@ public class UsuarioBean
         set
         {
             confirmarsenha = value;
+        }
+    }
+
+    public string Tipo
+    {
+        get
+        {
+            return tipo;
+        }
+
+        set
+        {
+            tipo = value;
+        }
+    }
+
+    public string Status
+    {
+        get
+        {
+            return status;
+        }
+
+        set
+        {
+            status = value;
+        }
+    }
+
+    public string Datacadastro
+    {
+        get
+        {
+            return datacadastro;
+        }
+
+        set
+        {
+            datacadastro = value;
         }
     }
 }

@@ -21,11 +21,13 @@ public class UsuarioDao
             var command = new SqlCommand();
             command.Connection = Conexao.connection;
             //Comando no banco
-            command.CommandText = "INSERT INTO TB_USUARIO(Nome_Usuario,Email_Usuario,Senha_Usuario) VALUES(@nome, @email, @senha)";
+            command.CommandText = "INSERT INTO TB_USUARIO(Nome_Usuario, Email_Usuario, Senha_Usuario,Tipo_Usuario,Status_Usuario,Data_Cadastro_Usuario) " +
+                " VALUES(@nome, @email, @senha,@tipo,'A',GETDATE())";
             //Entrada doa parâmetros
             command.Parameters.AddWithValue("@nome", usuario.Nome);
             command.Parameters.AddWithValue("@email", usuario.Email);
             command.Parameters.AddWithValue("@senha", usuario.Senha);
+            command.Parameters.AddWithValue("@tipo", usuario.Tipo);
 
             //Executa e retorna o tanto de linhas que foram afetadas
             return command.ExecuteNonQuery();

@@ -1,7 +1,6 @@
 SET IDENTITY_INSERT TB_CIDADE ON;
 
 GO
-
 INSERT INTO TB_CIDADE(Id_Cidade,Nome_Cidade,Id_Estado) VALUES
 (1, 'Afonso Cláudio', 8),
 (2, 'Água Doce do Norte', 8),

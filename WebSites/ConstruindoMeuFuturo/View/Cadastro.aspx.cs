@@ -19,6 +19,7 @@ public partial class View_Cadastro : System.Web.UI.Page
         usuario = new UsuarioBean();
         usuario.Nome = txtNome.Text;
         usuario.Email = Txtemail.Text;
+        usuario.Tipo = DDLtipo.SelectedValue;
         usuario.Senha = TxtSenha.Text;
         usuario.Confirmarsenha = TxtConfirmarSenha.Text;       
 

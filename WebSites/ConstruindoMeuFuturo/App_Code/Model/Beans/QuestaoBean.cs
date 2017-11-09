@@ -9,7 +9,7 @@ using System.Web;
 public class QuestaoBean
 {
     private int id;
-    private int texto;
+    private string texto;
 
     public int Id_questao
     {
@@ -24,7 +24,7 @@ public class QuestaoBean
         }
     }
 
-    public int Texto_questao
+    public string Texto_questao
     {
         get
         {

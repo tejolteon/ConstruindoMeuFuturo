@@ -11,7 +11,7 @@ public partial class View_Perfil : System.Web.UI.Page
     private PerfilController perfcont;
     private PerfilBean perfil;
     private CursoBean curso;
-    private CursoConstroller cursocont;
+    private CursoController cursocont;
     private AreaBean area;
     private AreaController areacont;
     private UnidadeEnsinoBean unidade;
@@ -26,7 +26,7 @@ public partial class View_Perfil : System.Web.UI.Page
         }
         perfil = new PerfilBean();
         perfcont = new PerfilController();
-        cursocont = new CursoConstroller();
+        cursocont = new CursoController();
         areacont = new AreaController();
         unidadecont = new UnidadeController();
         //Label com nome do usuario

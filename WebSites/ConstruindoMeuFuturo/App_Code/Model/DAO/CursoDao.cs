@@ -9,6 +9,71 @@ using System.Web;
 /// </summary>
 public class CursoDao
 {
+    public int InserirCurso(CursoBean curso)
+    {
+        try
+        {
+            //Conectar com o banco
+            Conexao.Conectar();
+            var command = new SqlCommand();
+            command.Connection = Conexao.connection;
+            //Comando no banco
+            command.CommandText = "INSERT INTO TB_CURSO (Tipo_Curso,Nome_Curso,Descricao_Curso) VALUES (@tipo, @nome, @descricao)";
+            //Entrada doa parâmetros
+            command.Parameters.AddWithValue("@nome",curso.Nome);
+            command.Parameters.AddWithValue("@tipo", curso.Tipo);
+            command.Parameters.AddWithValue("@descricao", curso.Descricao);
+
+            //Executa e retorna o tanto de linhas que foram afetadas
+            return command.ExecuteNonQuery();
+        }
+        catch (Exception)
+        {
+
+            throw;
+        }
+        //encerrar conexão com o banco
+        finally
+        {
+            Conexao.Desconectar();
+        }
+
+    }
+
+    public int AlterarCurso(CursoBean curso)
+    {
+        try
+        {
+            //Conectar com o banco
+            Conexao.Conectar();
+            var command = new SqlCommand();
+            command.Connection = Conexao.connection;
+            //Comando no banco
+            command.CommandText = "UPDATE  TB_CURSO SET " +
+                "Tipo_Curso = @tipo, Nome_Curso = @nome, Descricao_Curso = @descricao WHERE Id_Curso = @id;";
+            //Entrada doa parâmetros
+            command.Parameters.AddWithValue("@nome", curso.Nome);
+            command.Parameters.AddWithValue("@tipo", curso.Tipo);
+            command.Parameters.AddWithValue("@descricao", curso.Descricao);
+            command.Parameters.AddWithValue("@id", curso.Id);
+
+
+            //Executa e retorna o tanto de linhas que foram afetadas
+            return command.ExecuteNonQuery();
+        }
+        catch (Exception)
+        {
+
+            throw;
+        }
+        //encerrar conexão com o banco
+        finally
+        {
+            Conexao.Desconectar();
+        }
+
+    }
+
     public List<CursoBean> ListarCursoArea(int idarea)
     {
         try
@@ -93,4 +158,46 @@ public class CursoDao
         }
 
     }
+
+    public List<CursoBean> ListarCursoNome(string nomecurso)
+    {
+        try
+        {
+            //Conectar com o banco
+            Conexao.Conectar();
+            var command = new SqlCommand();
+            command.Connection = Conexao.connection;
+            //Comando no banco
+            command.CommandText = "SELECT * FROM TB_CURSO WHERE  Nome_Curso = '%'+@nome+'%'";
+            //Entrada doa parâmetros
+            command.Parameters.AddWithValue("@nomecurso", nomecurso);
+            //Executar o comando 
+            var reader = command.ExecuteReader();
+            //Cria List
+            var cursosareas = new List<CursoBean>();
+            //Inserir os valores do resultado no bean
+            while (reader.Read())
+            {
+                var curso = new CursoBean();
+                curso.Id = Convert.ToInt32(reader["Id_Curso"]);
+                curso.Nome = Convert.ToString(reader["Nome_Curso"]);
+                curso.Tipo = Convert.ToString(reader["Tipo_Curso"]);
+                curso.Descricao = Convert.ToString(reader["Descricao_Curso"]);
+                cursosareas.Add(curso);
+            }
+            return cursosareas;
+        }
+        catch (Exception)
+        {
+
+            throw;
+        }
+        //encerrar conexão com o banco
+        finally
+        {
+            Conexao.Desconectar();
+        }
+
+    }
+
 }

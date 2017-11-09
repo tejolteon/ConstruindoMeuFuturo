@@ -9,6 +9,124 @@ using System.Web;
 /// </summary>
 public class Unidade_de_EnsinoDao
 {
+    public UnidadeEnsinoBean ConsultarUnidadeID(int idunidade)
+    {
+        try
+        {
+            //Conectar com o banco
+            Conexao.Conectar();
+            var command = new SqlCommand();
+            command.Connection = Conexao.connection;
+            //Comando no banco
+            command.CommandText = "SELECT * FROM TB_UNIDADE_DE_ENSINO WHERE  Id_Unidade_de_Ensino = @idunidade";
+            //Entrada doa parâmetros
+            command.Parameters.AddWithValue("@idunidade", idunidade);
+            //Executar o comando 
+            var reader = command.ExecuteReader();
+            UnidadeEnsinoBean unidade = null;
+            //Inserir os valores do resultado no bean
+            while (reader.Read())
+            {
+                unidade = new UnidadeEnsinoBean();
+                unidade.Id_unidade = Convert.ToInt32(reader["Id_Unidade_de_Ensino"]);
+                unidade.Nome_unidade = Convert.ToString(reader["Nome_Unidade_de_Ensino"]);
+                unidade.Site = Convert.ToString(reader["Site_Unidade_de_Ensino"]);
+                unidade.Endereco_unidade = Convert.ToString(reader["Endereco_Unidade_de_Ensino"]);
+                unidade.Descricao_unidade = Convert.ToString(reader["Descricao_Unidade_de_Ensino"]);
+
+
+            }
+            return unidade;
+        }
+        catch (Exception)
+        {
+
+            throw;
+        }
+        //encerrar conexão com o banco
+        finally
+        {
+            Conexao.Desconectar();
+        }
+
+    }
+
+    public int InserirUnidade(UnidadeEnsinoBean unidade)
+    {
+        try
+        {
+            //Conectar com o banco
+            Conexao.Conectar();
+            var command = new SqlCommand();
+            command.Connection = Conexao.connection;
+            //Comando no banco
+            command.CommandText = "INSERT INTO TB_UNIDADE_DE_ENSINO(Nome_Unidade_de_Ensino,Site_Unidade_de_Ensino,Id_Cidade,Endereco_Unidade_de_Ensino, Descricao_Unidade_de_Ensino)" +
+                                " VALUES (@nome, @site, @idcidade, @endereco, @descricao)";
+            //Entrada doa parâmetros
+            command.Parameters.AddWithValue("@nome", unidade.Nome_unidade);
+            command.Parameters.AddWithValue("@site", unidade.Site);
+            command.Parameters.AddWithValue("@idcidade", unidade.Id_cidade);
+            command.Parameters.AddWithValue("@endereco", unidade.Endereco_unidade);
+            command.Parameters.AddWithValue("@descricao", unidade.Descricao_unidade);
+
+            //Executa e retorna o tanto de linhas que foram afetadas
+            return command.ExecuteNonQuery();
+        }
+        catch (Exception)
+        {
+
+            throw;
+        }
+        //encerrar conexão com o banco
+        finally
+        {
+            Conexao.Desconectar();
+        }
+
+    }
+
+    public int AlterarUnidade(UnidadeEnsinoBean unidade)
+    {
+        try
+        {
+            //Conectar com o banco
+            Conexao.Conectar();
+            var command = new SqlCommand();
+            command.Connection = Conexao.connection;
+            //Comando no banco
+            command.CommandText = "UPDATE  TB_CURSO SET " +
+               "Tipo_Curso = @tipo, Nome_Curso = @nome, Descricao_Curso = @descricao WHERE Id_Curso = @id;";
+            command.CommandText = "UPDATE TB_UNIDADE_DE_ENSINO SET " +
+                "Nome_Unidade_de_Ensino = @nome, " +
+                "Site_Unidade_de_Ensino =@site, " +
+                "Id_Cidade = @idcidade," +
+                "Endereco_Unidade_de_Ensino = @endereco, " +
+                "Descricao_Unidade_de_Ensino = @descricao" +
+                "WHERE Id_Unidade_de_Ensino = @id";
+            //Entrada doa parâmetros
+            command.Parameters.AddWithValue("@nome", unidade.Nome_unidade);
+            command.Parameters.AddWithValue("@site", unidade.Site);
+            command.Parameters.AddWithValue("@idcidade", unidade.Id_cidade);
+            command.Parameters.AddWithValue("@endereco", unidade.Endereco_unidade);
+            command.Parameters.AddWithValue("@descricao", unidade.Descricao_unidade);
+            command.Parameters.AddWithValue("@id", unidade.Id_unidade);
+
+            //Executa e retorna o tanto de linhas que foram afetadas
+            return command.ExecuteNonQuery();
+        }
+        catch (Exception)
+        {
+
+            throw;
+        }
+        //encerrar conexão com o banco
+        finally
+        {
+            Conexao.Desconectar();
+        }
+
+    }
+
     public List<UnidadeEnsinoBean> ListarFaculdades()
     {
         try
@@ -72,7 +190,7 @@ public class Unidade_de_EnsinoDao
                 "ON B.Id_Curso = C.Id_Curso " +
                 "WHERE B.Id_Curso = @idcurso;";
             //Entrada doa parâmetros
-            command.Parameters.AddWithValue("@idcurso",idcurso);
+            command.Parameters.AddWithValue("@idcurso", idcurso);
             //Executar o comando 
             var reader = command.ExecuteReader();
 
@@ -83,7 +201,7 @@ public class Unidade_de_EnsinoDao
             {
                 var unidade = new UnidadeEnsinoBean();
                 unidade.Id_unidade = Convert.ToInt32(reader["Id_Unidade_de_Ensino"]);
-                unidade.Nome_unidade = reader["Nome_Unidade_de_Ensino"].ToString();   
+                unidade.Nome_unidade = reader["Nome_Unidade_de_Ensino"].ToString();
                 unidades.Add(unidade);
             }
 
@@ -102,79 +220,4 @@ public class Unidade_de_EnsinoDao
         }
     }
 
-    public UnidadeEnsinoBean ConsultarUnidadeID(int idunidade)
-    {
-        try
-        {
-            //Conectar com o banco
-            Conexao.Conectar();
-            var command = new SqlCommand();
-            command.Connection = Conexao.connection;
-            //Comando no banco
-            command.CommandText = "SELECT * FROM TB_UNIDADE_DE_ENSINO WHERE  Id_Unidade_de_Ensino = @idunidade";
-            //Entrada doa parâmetros
-            command.Parameters.AddWithValue("@idunidade", idunidade);
-            //Executar o comando 
-            var reader = command.ExecuteReader();
-            UnidadeEnsinoBean unidade = null;
-            //Inserir os valores do resultado no bean
-            while (reader.Read())
-            {
-                unidade= new UnidadeEnsinoBean();
-                unidade.Id_unidade = Convert.ToInt32(reader["Id_Unidade_de_Ensino"]);
-                unidade.Nome_unidade = Convert.ToString(reader["Nome_Unidade_de_Ensino"]);
-                unidade.Site = Convert.ToString(reader["Site_Unidade_de_Ensino"]);
-                unidade.Endereco_unidade = Convert.ToString(reader["Endereco_Unidade_de_Ensino"]);
-                unidade.Descricao_unidade = Convert.ToString(reader["Descricao_Unidade_de_Ensino"]);
-         
-
-            }
-            return unidade;
-        }
-        catch (Exception)
-        {
-
-            throw;
-        }
-        //encerrar conexão com o banco
-        finally
-        {
-            Conexao.Desconectar();
-        }
-
-    }
-
-    public int InserirUnidade(UnidadeEnsinoBean unidade)
-    {
-        try
-        {
-            //Conectar com o banco
-            Conexao.Conectar();
-            var command = new SqlCommand();
-            command.Connection = Conexao.connection;
-            //Comando no banco
-            command.CommandText = "INSERT INTO TB_UNIDADE_DE_ENSINO(Nome_Unidade_de_Ensino,Site_Unidade_de_Ensino,Id_Cidade,Endereco_Unidade_de_Ensino, Descricao_Unidade_de_Ensino)" +
-                                " VALUES (@nome, @site, @idcidade, @endereco, @descricao)";
-            //Entrada doa parâmetros
-            command.Parameters.AddWithValue("@nome", unidade.Nome_unidade);
-            command.Parameters.AddWithValue("@site", unidade.Site);
-            command.Parameters.AddWithValue("@idcidade", unidade.Id_cidade);
-            command.Parameters.AddWithValue("@endereco", unidade.Endereco_unidade);
-            command.Parameters.AddWithValue("@descricao", unidade.Descricao_unidade);
-
-            //Executa e retorna o tanto de linhas que foram afetadas
-            return command.ExecuteNonQuery();
-        }
-        catch (Exception)
-        {
-
-            throw;
-        }
-        //encerrar conexão com o banco
-        finally
-        {
-            Conexao.Desconectar();
-        }
-
-    }
 }

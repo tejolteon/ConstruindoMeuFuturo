@@ -9,6 +9,33 @@ using System.Web;
 /// </summary>
 public class AreaDao
 {
+    public int InserirArea(AreaBean area)
+    {
+        try
+        {
+            //Conectar com o banco
+            Conexao.Conectar();
+            var command = new SqlCommand();
+            command.Connection = Conexao.connection;
+            //Comando no banco
+            command.CommandText = "INSERT INTO TB_AREA(Nome_Area) VALUES(@nome),";
+            //Entrada doa parâmetros
+            command.Parameters.AddWithValue("@nome", area.Nome);
+            //Executa e retorna o tanto de linhas que foram afetadas
+            return command.ExecuteNonQuery();
+        }
+        catch (Exception)
+        {
+
+            throw;
+        }
+        //encerrar conexão com o banco
+        finally
+        {
+            Conexao.Desconectar();
+        }
+
+    }
     public List<AreaBean> ListarArea()
     {
         try
@@ -116,6 +143,7 @@ public class AreaDao
         }
 
     }
+
 
     /* Teste com List por ser N * N no MER
     public List<AreaBean> ListarIdAreaPerfil(PerfilBean id_estado)

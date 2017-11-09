@@ -8,7 +8,7 @@ using System.Web.UI.WebControls;
 public partial class View_Cursos_Curso : System.Web.UI.Page
 {
     private CursoBean curso;
-    private CursoConstroller cursocont;
+    private CursoController cursocont;
     private UnidadeEnsinoBean unidade;
     private UnidadeController unidadecont;
     protected void Page_Load(object sender, EventArgs e)
@@ -26,7 +26,7 @@ public partial class View_Cursos_Curso : System.Web.UI.Page
         unidade.Id_unidade = Convert.ToInt32(Request.QueryString["UnidadeId"]);
 
         curso = new CursoBean();
-        cursocont = new CursoConstroller();
+        cursocont = new CursoController();
         //Ler o Id do curso que está na URL
         curso.Id = Convert.ToInt32(Request.QueryString["CursoId"]);
         try

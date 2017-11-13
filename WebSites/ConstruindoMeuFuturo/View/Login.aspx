@@ -8,25 +8,28 @@
         </head>
     <body>
         <link href="../General/Design.css" rel="stylesheet" />
-        <div class="well container" style="margin-top:2%; max-width:60%;">
+        <div class="container" style="margin-top:2%; max-width:30%">
             <asp:Panel ID="Panel1" runat="server">
-                <asp:Label ID="Label1" runat="server" Text=""><h1>Login</h1></asp:Label>
+                <asp:Label ID="Label1" CssClass="text-center" runat="server" Text=""><h1>Login</h1></asp:Label>
                 <br/>
                 <div class="form-group">
-                    <label for="email">E-mail:</label>
-                    <asp:TextBox ID="Txtemail" CssClass="form-control" runat="server"></asp:TextBox>
-                </div>
+                    <%--<label for="email">E-mail:</label>--%>
+                    <asp:TextBox ID="Txtemail" CssClass="form-control"  width="100%"  Height="40px" runat="server" placeholder="E-mail"></asp:TextBox>
+                <%--</div>
                 <br/>
-                <div class="form-group">
-                    <label for="senha">Senha:</label>
-                    <asp:TextBox ID="TxtSenha" CssClass="form-control" runat="server" TextMode="Password"></asp:TextBox>
+                <div class="form-group">--%>
+                    <%--<label for="senha">Senha:</label>--%>
+                    <asp:TextBox ID="TxtSenha" CssClass="form-control" runat="server"  width="100%" Height="40px" TextMode="Password" placeholder="Senha"></asp:TextBox>
                 </div>
-                <br/>
                 <div class="form-group text-right">
-                    <asp:Button ID="Btlogin" CssClass="btn btn-primary" Text="Entrar" runat="server" width="100px" OnClick="Btlogin_Click" />
+                    <div style="float:left"><asp:CheckBox ID="cbLembrar" Text="Lembre de mim" CssClass="text-left" runat="server"/></div>
+                    <asp:LinkButton ID="btEsqueci" runat="server" Text="Esqueci minha senha"/>
+                </div>
+                <div class="form-group">
+                    <asp:Button ID="Btlogin" CssClass="btn btn-primary" Text="Entrar" runat="server" width="100%" Height="40px" OnClick="Btlogin_Click" />
                 </div>
                 <br/>
-                <asp:Label id="Labelerro" runat="server"></asp:Label>
+                <asp:Label id="Labelerro" CssClass="text-danger" runat="server"></asp:Label>
             </asp:Panel>
         </div>
     </body>

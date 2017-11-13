@@ -32,6 +32,22 @@ public partial class View_Perfil : System.Web.UI.Page
         //Label com nome do usuario
         lbNome.Text = Session["usuario"].ToString();
         int UsuarioId = int.Parse(Session["usuarioId"].ToString());
+
+        //Verifica se o usuário fez o cadastro de perfil
+        try
+        {
+            perfil = perfcont.ConsultarPerfilPorIdUsuario(UsuarioId);
+            if (perfil == null)
+            {
+                ltPainel.Text = "<div>Complete seu cadastro para receber opções de curso" +
+                    "<p><a class= " + "\"" + "btn btn-primary btn-lg" + "\"" + " href= " + "\"" + "Cadastro_Perfil.aspx" + "\"" + " role= " + "\"" + "button" + "\"" + " >Concluir Cadastro »</a></p></div>";
+            }
+        }
+        catch
+        {
+
+        }
+        
         //Consultando o ID do Perfil e tentando jogar para a tabela os cursos
         try
         {
@@ -58,6 +74,7 @@ public partial class View_Perfil : System.Web.UI.Page
                                 "</div>";
                             //obs.: "\"" é igual a "
                         }
+
                     }
                     catch
                     {

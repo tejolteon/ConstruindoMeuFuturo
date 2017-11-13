@@ -10,7 +10,7 @@
     <body>
         <link href="../General/Design.css" rel="stylesheet" />
         <div class="col-lg-12">
-        <div class="container well col-lg-4 col-sm-6 col-xs-12" style="margin-top:2%;">
+        <div class="container well col-lg-4 col-sm-6 col-xs-12" style="margin-top:2%; background-color:aliceblue">
             <h1>Meu Perfil</h1>
             <asp:Panel ID="pnInfo" runat="server">
                 <div class="col-lg-12 col-sm-12 col-xs-4">

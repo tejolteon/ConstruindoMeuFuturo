@@ -20,7 +20,7 @@ public partial class View_Alterar_Perfil : System.Web.UI.Page
         // Se não tiver usuario logado ele volta pra Home
         if (Session["usuario"] == null)
         {
-            Response.Redirect("Home.aspx");
+            Response.Redirect("Perfil.aspx");
         }
         
     }
@@ -68,6 +68,6 @@ public partial class View_Alterar_Perfil : System.Web.UI.Page
 
     protected void lbtMTarde_Click(object sender, EventArgs e)
     {
-        Response.Redirect("Home.aspx");
+        Response.Redirect("Perfil.aspx");
     }
 }

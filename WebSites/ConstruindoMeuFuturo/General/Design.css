@@ -1,7 +1,13 @@
 ﻿body {
-    padding-top:50px;
-    font-family:Bariol;
-    font-size:medium;
+    padding-top: 50px;
+    font-family: Bariol;
+    background-color: whitesmoke;
+    font-size: medium;
+}
+html, body
+{
+    height:100%;
+    margin:0;
 }
 
 @font-face {

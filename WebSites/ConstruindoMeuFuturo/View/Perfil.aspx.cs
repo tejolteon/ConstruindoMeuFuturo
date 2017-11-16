@@ -66,7 +66,7 @@ public partial class View_Perfil : System.Web.UI.Page
                         {
                             //Insere os valores no literal com a formatação devida
                             ltPainel.Text += "" +
-                                "<div class=" + "\"" + "col-6 col-lg-4" + "\"" + " >" +
+                                "<div class=" + "\"" + "col-lg-5" + "\"" + " style="+ "\"" + "border:1px solid gray; margin-right:20px; margin-bottom:20px; background-color: #D8D8D8; border-radius:5px;" + "\"" + " > " +
                                 "<p><h2>" + curso.Nome + "</h2></p>" +
                                 "<p>" + unidade.Nome_unidade + "</p>" +
                                 //Button para ver detalhes

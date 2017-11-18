@@ -10,11 +10,9 @@ public partial class View_Perfil : System.Web.UI.Page
 {
     private PerfilController perfcont;
     private PerfilBean perfil;
-    private CursoBean curso;
     private CursoController cursocont;
     private AreaBean area;
     private AreaController areacont;
-    private UnidadeEnsinoBean unidade;
     private UnidadeController unidadecont;
     
     protected void Page_Load(object sender, EventArgs e)
@@ -24,24 +22,50 @@ public partial class View_Perfil : System.Web.UI.Page
         {
             Response.Redirect("Home.aspx");
         }
+        //Label com nome do usuario
+        lbNome.Text = Session["usuario"].ToString(); 
+        //Carrega os cursos segundo o perfil
+        ListarCursos();
+    }
+   
+
+    protected void LbtAlterarPerfil_Click(object sender, EventArgs e)
+    {
+        int UsuarioId = int.Parse(Session["usuarioId"].ToString());
+        perfcont = new PerfilController();
+        perfil = perfcont.ConsultarPerfilPorIdUsuario(UsuarioId);
+
+        if (perfil == null) {
+            Response.Redirect("Cadastro_Perfil.aspx");
+        } else
+        Response.Redirect("Alterar_Perfil.aspx");
+    }
+
+    protected void LbtAlterarSenha_Click(object sender, EventArgs e)
+    {
+        int UsuarioId = int.Parse(Session["usuarioId"].ToString());
+        Response.Redirect("Alterar_Senha.aspx");
+      
+    }
+
+    protected void ListarCursos()
+    {
         perfil = new PerfilBean();
         perfcont = new PerfilController();
         cursocont = new CursoController();
         areacont = new AreaController();
         unidadecont = new UnidadeController();
-        //Label com nome do usuario
-        lbNome.Text = Session["usuario"].ToString();
-        int UsuarioId = int.Parse(Session["usuarioId"].ToString());
+
         //Consultando o ID do Perfil e tentando jogar para a tabela os cursos
         try
         {
+            int UsuarioId = int.Parse(Session["usuarioId"].ToString());
             perfil = perfcont.ConsultarPerfilPorIdUsuario(UsuarioId);
             area = areacont.ConsultarAreaPerfil(perfil.Id_perfil);
             /*!!!!!!!!!!!!!!! Terminar de formatar a tabela e deixar com links acessiveis, mostrar apenas cursos que tenha na cidade depois e
            depois relacionar o curso com as unidades que tem ele,*/
             try
             {
-                TableRow tr = new TableRow();
                 foreach (CursoBean curso in this.cursocont.ListaCursoPorArea(area.Id))
                 {
                     try
@@ -54,7 +78,7 @@ public partial class View_Perfil : System.Web.UI.Page
                                 "<p><h2>" + curso.Nome + "</h2></p>" +
                                 "<p>" + unidade.Nome_unidade + "</p>" +
                                 //Button para ver detalhes
-                                "<p><a class= " + "\"" + "btn btn-primary btn-lg" + "\"" + " href= " + "\"" + "Curso.aspx?CursoId="+curso.Id+"&UnidadeId="+ unidade.Id_unidade+" " + "\"" + " role= " + "\"" + "button" + "\"" + " >Ver detalhes »</a></p>" +
+                                "<p><a class= " + "\"" + "btn btn-primary btn-lg" + "\"" + " href= " + "\"" + "Curso.aspx?CursoId=" + curso.Id + "&UnidadeId=" + unidade.Id_unidade + " " + "\"" + " role= " + "\"" + "button" + "\"" + " >Ver detalhes »</a></p>" +
                                 "</div>";
                             //obs.: "\"" é igual a "
                         }
@@ -62,8 +86,8 @@ public partial class View_Perfil : System.Web.UI.Page
                     catch
                     {
 
-                    }   
-          
+                    }
+
                 }
             }
             catch
@@ -71,30 +95,9 @@ public partial class View_Perfil : System.Web.UI.Page
                 throw new ErroTabelaCursoException("Erro ao preencher tabela");
             }
         }
-        catch {
+        catch
+        {
 
         }
-        
-        
-    }
-   
-
-    protected void lbtAlterarPerfil_Click(object sender, EventArgs e)
-    {
-        int UsuarioId = int.Parse(Session["usuarioId"].ToString());
-        perfcont = new PerfilController();
-        perfil = perfcont.ConsultarPerfilPorIdUsuario(UsuarioId);
-
-        if (perfil == null) {
-            Response.Redirect("Cadastro_Perfil.aspx");
-        } else
-        Response.Redirect("Alterar_Perfil.aspx");
-    }
-
-    protected void lbtAlterarSenha_Click(object sender, EventArgs e)
-    {
-        int UsuarioId = int.Parse(Session["usuarioId"].ToString());
-        Response.Redirect("Alterar_Senha.aspx");
-      
     }
 }

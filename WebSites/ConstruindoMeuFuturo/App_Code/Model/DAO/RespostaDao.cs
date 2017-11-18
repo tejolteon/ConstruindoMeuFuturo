@@ -19,7 +19,7 @@ public class RespostaDao
             command.Connection = Conexao.connection;
             //Comando no banco
             command.CommandText = "INSERT INTO TB_RESPOSTA(Id_Questao, Id_Perfil, Texto_Resposta) " +
-                "VALUES (@id_questao, @id_resposta, @texto),";
+                "VALUES (@id_questao, @id_perfil, @texto)";
             //Entrada doa parâmetros
 
             command.Parameters.AddWithValue("@id_questao", resposta.Id_questao);

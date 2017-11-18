@@ -15,6 +15,7 @@ public class QuestaoController
     {
         //Verifica se as Variaveis obrigatórias estão null
         ValidarQuestao(questao);
+        questaodao =  new QuestaoDao();
         questaodao.InserirQuestao(questao);
     }
 

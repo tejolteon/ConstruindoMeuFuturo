@@ -13,6 +13,7 @@ public class RespostaController
 
     public void InserirNovaResposta(RespostaBean resposta)
     {
+        respostadao = new RespostaDao();
         //Verifica se as Variaveis obrigatórias estão null
         ValidarResposta(resposta);
         respostadao.InserirResposta(resposta);

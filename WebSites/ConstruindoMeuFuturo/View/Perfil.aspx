@@ -2,12 +2,7 @@
 
 <asp:Content ContentPlaceHolderID="Content" runat="server">
     <!DOCTYPE html>
-    <html>
-    <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-        <title></title>
-    </head>
-    <body>
+   
         <link href="../General/Design.css" rel="stylesheet" />
         <div class="col-lg-12">
         <div class="container well col-lg-4 col-sm-6 col-xs-12" style="margin-top:2%;">
@@ -22,22 +17,21 @@
                     <br />
                     <asp:Label ID="lbCidade" runat="server" Text="São Paulo"></asp:Label>
                     <br />
-                    <asp:LinkButton ID="lbtAlterarPerfil" runat="server" OnClick="lbtAlterarPerfil_Click">Alterar Informações</asp:LinkButton>
+                    <asp:LinkButton ID="LbtAlterarPerfil" runat="server" OnClick="LbtAlterarPerfil_Click">Alterar Informações</asp:LinkButton>
                     <br />
-                    <asp:LinkButton ID="lbtAlterarSenha" runat="server" OnClick="lbtAlterarSenha_Click" >Alterar Senha</asp:LinkButton>
+                    <asp:LinkButton ID="LbtAlterarSenha" runat="server" OnClick="LbtAlterarSenha_Click" >Alterar Senha</asp:LinkButton>
                     <br />
                 </div>
             </asp:Panel>
         </div>      
         <div class="container well col-lg-8 col-sm-6 col-xs-12" style="margin-top:2%;">
             <!-- !!!!!! A TABELA NÃO ESTÁ RESPONSIVA !!!!!! PENDENTE SOLUÇÃO -->
-            <asp:Panel ID="pnPerfil" runat="server" class="row">
+            <asp:Panel ID="pnPerfil" runat="server">
              
                    <h1>Sugestões de Cursos</h1>
                    <asp:Literal ID="ltPainel" runat="server"></asp:Literal>      
              </asp:Panel>
         </div>
         </div>
-    </body>
-    </html>
+ 
 </asp:Content>

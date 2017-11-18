@@ -41,7 +41,7 @@ public partial class View_Alterar_Perfil : System.Web.UI.Page
         }
         
     }
-    public void CarregarCamposAlterar() {
+    private void CarregarCamposAlterar() {
         perfil = new PerfilBean();
         cidade = new CidadeBean();
         area = new AreaBean();
@@ -110,7 +110,7 @@ public partial class View_Alterar_Perfil : System.Web.UI.Page
         }
     }
 
-    public void CarregarCidades()
+    private void CarregarCidades()
     {
         //Limpa a lista antes de receber
         DDLcidade.Items.Clear();
@@ -132,7 +132,7 @@ public partial class View_Alterar_Perfil : System.Web.UI.Page
         usuario = new UsuarioBean
         {
             Id = int.Parse(Session["usuarioId"].ToString())
-    };
+        };
         perfil = new PerfilBean();
 
         //Consulta o perfil pelo id do usuario

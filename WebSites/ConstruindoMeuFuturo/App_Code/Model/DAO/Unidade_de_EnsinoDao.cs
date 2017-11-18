@@ -33,6 +33,7 @@ public class Unidade_de_EnsinoDao
                 unidade.Site = Convert.ToString(reader["Site_Unidade_de_Ensino"]);
                 unidade.Endereco_unidade = Convert.ToString(reader["Endereco_Unidade_de_Ensino"]);
                 unidade.Descricao_unidade = Convert.ToString(reader["Descricao_Unidade_de_Ensino"]);
+                unidade.Id_cidade = Convert.ToInt32(reader["Id_Cidade"]);
 
 
             }
@@ -127,7 +128,7 @@ public class Unidade_de_EnsinoDao
 
     }
 
-    public List<UnidadeEnsinoBean> ListarFaculdades()
+    public List<UnidadeEnsinoBean> ListarUnidades()
     {
         try
         {
@@ -152,10 +153,8 @@ public class Unidade_de_EnsinoDao
                 unidade.Nome_unidade = reader["Nome_Unidade_de_Ensino"].ToString();
                 unidade.Site = reader["Site_Unidade_de_Ensino"].ToString();
                 //unidade. = reader[].ToString();Faltando
-
                 unidade.Endereco_unidade = reader["Endereco_Unidade_de_Ensino"].ToString();
-
-                unidade.Descricao_unidade = reader["Descrição_Unidade_de_Ensino"].ToString();
+                unidade.Descricao_unidade = reader["Descricao_Unidade_de_Ensino"].ToString();
                 unidades.Add(unidade);
             }
 

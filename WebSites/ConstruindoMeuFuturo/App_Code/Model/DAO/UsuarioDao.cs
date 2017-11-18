@@ -69,7 +69,9 @@ public class UsuarioDao
                 usuario.Nome = Convert.ToString(reader["Nome_Usuario"]);
                 usuario.Email = Convert.ToString(reader["Email_Usuario"]);
                 usuario.Senha = Convert.ToString(reader["Senha_Usuario"]);
-  
+                usuario.Tipo = Convert.ToString(reader["Tipo_Usuario"]);
+                usuario.Status = Convert.ToString(reader["Status_Usuario"]);
+
             }
             return usuario;
         }

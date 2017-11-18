@@ -17,14 +17,7 @@
                     <label for="nome">Nome:</label>
                     <asp:TextBox CssClass="form-control" ID="txtNome" runat="server"></asp:TextBox>
                 </div>
-                <div class="form-group">
-                   <!-- os tipos sao: A=Administrador | B=Colaborador | C=Consultador--> 
-                    <label for="tipo">Tipo de usuario</label>
-                    <asp:DropDownList ID="DDLtipo" runat="server" CssClass="form-control">
-                        <asp:ListItem Text="Quero usar o site para consultar cursos " Value="C"/>
-                        <asp:ListItem Text="Quero colaborar com o site, para melhorar as sugestões de cursos" Value="B"/>
-                    </asp:DropDownList>
-                </div>
+            
                 <br/>
                 <br />
                 <div class="form-group">

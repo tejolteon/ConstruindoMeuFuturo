@@ -10,12 +10,17 @@ public partial class View_Cadastro_Questao : System.Web.UI.Page
     private QuestaoBean questao;
     protected void Page_Load(object sender, EventArgs e)
     {
-       /*
-        if (Session["usuario"] == null)
+        try
+        {
+            if (Session["usuario"] == null || Session["UsuarioTipo"].ToString() != "A")
+            {
+                Response.Redirect("Home.aspx");
+            }
+        }
+        catch
         {
             Response.Redirect("Home.aspx");
         }
-        */
     }
     protected void Btcadastras_Click(object sender, EventArgs e)
     {

@@ -20,6 +20,7 @@ public class CidadeController
     }
 
     public CidadeBean ConsultarCidadePorId(int idcidade) {
+        cidadedao = new CidadeDao();
         cidade = cidadedao.ConsultarCidadePorId(idcidade);
         return cidade;
     }

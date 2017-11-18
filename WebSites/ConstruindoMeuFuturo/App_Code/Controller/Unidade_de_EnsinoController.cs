@@ -22,6 +22,21 @@ public class UnidadeController
         }
     }
 
+    public List<UnidadeEnsinoBean> ListarUnidades()
+    {
+        try
+        {
+            unidadedao = new Unidade_de_EnsinoDao();
+            var unidades = unidadedao.ListarUnidades();
+            return unidades;
+        }
+        catch
+        {
+            //Erro ao listar unidade curso
+            return null;
+        }
+    }
+
     public UnidadeEnsinoBean ConsultarUnidadeId(int idunidade)
     {
         try

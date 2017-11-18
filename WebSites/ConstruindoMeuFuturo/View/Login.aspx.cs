@@ -30,6 +30,7 @@ public partial class View_Usuario_Login : System.Web.UI.Page
             // Criando sessão de Usuario
             Session["usuario"] = usuario.Nome;
             Session["usuarioId"] = usuario.Id;
+            Session["UsuarioTipo"] = usuario.Tipo;
 
             Response.Redirect("Perfil.aspx");
         }

@@ -15,11 +15,17 @@ public partial class View_Cadastro_Curso : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        /* Se não tiver usuario logado ele volta pra Home
-        if (Session["usuario"] == null)
+        try
+        {
+            if (Session["usuario"] == null || Session["UsuarioTipo"].ToString() != "A")
+            {
+                Response.Redirect("Home.aspx");
+            }
+        }
+        catch
         {
             Response.Redirect("Home.aspx");
-        }*/
+        }
     }
 
 

@@ -46,11 +46,13 @@ public class RespostaBean
     {
         get
         {
+            id_perfil = perfil.Id_perfil;
             return id_perfil;
         }
 
         set
         {
+            perfil.Id_perfil = id_perfil;
             id_perfil = value;
         }
     }
@@ -59,11 +61,14 @@ public class RespostaBean
     {
         get
         {
+            id_questao = questao.Id_questao;
             return id_questao;
         }
 
         set
         {
+
+            questao.Id_questao = Id_resposta;
             id_questao = value;
         }
     }

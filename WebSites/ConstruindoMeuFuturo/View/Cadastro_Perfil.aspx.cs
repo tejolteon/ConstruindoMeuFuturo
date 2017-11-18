@@ -67,7 +67,7 @@ public partial class View_Cadastro_Perfil : System.Web.UI.Page
 
     protected void lbtMTarde_Click(object sender, EventArgs e)
     {
-        Response.Redirect("Home.aspx");
+        Response.Redirect("Perfil.aspx");
     }
 
     //Após selecionar estado ele adiciona as cidades do estado

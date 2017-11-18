@@ -10,9 +10,11 @@ public partial class View_Perfil : System.Web.UI.Page
 {
     private PerfilController perfcont;
     private PerfilBean perfil;
+    private CursoBean curso;
     private CursoController cursocont;
     private AreaBean area;
     private AreaController areacont;
+    private UnidadeEnsinoBean unidade;
     private UnidadeController unidadecont;
     
     protected void Page_Load(object sender, EventArgs e)
@@ -22,14 +24,79 @@ public partial class View_Perfil : System.Web.UI.Page
         {
             Response.Redirect("Home.aspx");
         }
+        perfil = new PerfilBean();
+        perfcont = new PerfilController();
+        cursocont = new CursoController();
+        areacont = new AreaController();
+        unidadecont = new UnidadeController();
         //Label com nome do usuario
-        lbNome.Text = Session["usuario"].ToString(); 
-        //Carrega os cursos segundo o perfil
-        ListarCursos();
+        lbNome.Text = Session["usuario"].ToString();
+        int UsuarioId = int.Parse(Session["usuarioId"].ToString());
+
+        //Verifica se o usuário fez o cadastro de perfil
+        try
+        {
+            perfil = perfcont.ConsultarPerfilPorIdUsuario(UsuarioId);
+            if (perfil == null)
+            {
+                ltPainel.Text = "<div>Complete seu cadastro para receber opções de curso" +
+                    "<p><a class= " + "\"" + "btn btn-primary btn-lg" + "\"" + " href= " + "\"" + "Cadastro_Perfil.aspx" + "\"" + " role= " + "\"" + "button" + "\"" + " >Concluir Cadastro »</a></p></div>";
+            }
+        }
+        catch
+        {
+
+        }
+        
+        //Consultando o ID do Perfil e tentando jogar para a tabela os cursos
+        try
+        {
+            perfil = perfcont.ConsultarPerfilPorIdUsuario(UsuarioId);
+            area = areacont.ConsultarAreaPerfil(perfil.Id_perfil);
+            /*!!!!!!!!!!!!!!! Terminar de formatar a tabela e deixar com links acessiveis, mostrar apenas cursos que tenha na cidade depois e
+           depois relacionar o curso com as unidades que tem ele,*/
+            try
+            {
+                TableRow tr = new TableRow();
+                foreach (CursoBean curso in this.cursocont.ListaCursoPorArea(area.Id))
+                {
+                    try
+                    {
+                        foreach (UnidadeEnsinoBean unidade in this.unidadecont.ListarUnidadeCurso(curso.Id))
+                        {
+                            //Insere os valores no literal com a formatação devida
+                            ltPainel.Text += "" +
+                                "<div class=" + "\"" + "col-lg-5" + "\"" + " style="+ "\"" + "border:1px solid gray; margin-right:20px; margin-bottom:20px; background-color: #D8D8D8; border-radius:5px;" + "\"" + " > " +
+                                "<p><h2>" + curso.Nome + "</h2></p>" +
+                                "<p>" + unidade.Nome_unidade + "</p>" +
+                                //Button para ver detalhes
+                                "<p><a class= " + "\"" + "btn btn-primary btn-lg" + "\"" + " href= " + "\"" + "Curso.aspx?CursoId="+curso.Id+"&UnidadeId="+ unidade.Id_unidade+" " + "\"" + " role= " + "\"" + "button" + "\"" + " >Ver detalhes »</a></p>" +
+                                "</div>";
+                            //obs.: "\"" é igual a "
+                        }
+
+                    }
+                    catch
+                    {
+
+                    }   
+          
+                }
+            }
+            catch
+            {
+                throw new ErroTabelaCursoException("Erro ao preencher tabela");
+            }
+        }
+        catch {
+
+        }
+        
+        
     }
    
 
-    protected void LbtAlterarPerfil_Click(object sender, EventArgs e)
+    protected void lbtAlterarPerfil_Click(object sender, EventArgs e)
     {
         int UsuarioId = int.Parse(Session["usuarioId"].ToString());
         perfcont = new PerfilController();
@@ -41,63 +108,10 @@ public partial class View_Perfil : System.Web.UI.Page
         Response.Redirect("Alterar_Perfil.aspx");
     }
 
-    protected void LbtAlterarSenha_Click(object sender, EventArgs e)
+    protected void lbtAlterarSenha_Click(object sender, EventArgs e)
     {
         int UsuarioId = int.Parse(Session["usuarioId"].ToString());
         Response.Redirect("Alterar_Senha.aspx");
       
-    }
-
-    protected void ListarCursos()
-    {
-        perfil = new PerfilBean();
-        perfcont = new PerfilController();
-        cursocont = new CursoController();
-        areacont = new AreaController();
-        unidadecont = new UnidadeController();
-
-        //Consultando o ID do Perfil e tentando jogar para a tabela os cursos
-        try
-        {
-            int UsuarioId = int.Parse(Session["usuarioId"].ToString());
-            perfil = perfcont.ConsultarPerfilPorIdUsuario(UsuarioId);
-            area = areacont.ConsultarAreaPerfil(perfil.Id_perfil);
-            /*!!!!!!!!!!!!!!! Terminar de formatar a tabela e deixar com links acessiveis, mostrar apenas cursos que tenha na cidade depois e
-           depois relacionar o curso com as unidades que tem ele,*/
-            try
-            {
-                foreach (CursoBean curso in this.cursocont.ListaCursoPorArea(area.Id))
-                {
-                    try
-                    {
-                        foreach (UnidadeEnsinoBean unidade in this.unidadecont.ListarUnidadeCurso(curso.Id))
-                        {
-                            //Insere os valores no literal com a formatação devida
-                            ltPainel.Text += "" +
-                                "<div class=" + "\"" + "col-6 col-lg-4" + "\"" + " >" +
-                                "<p><h2>" + curso.Nome + "</h2></p>" +
-                                "<p>" + unidade.Nome_unidade + "</p>" +
-                                //Button para ver detalhes
-                                "<p><a class= " + "\"" + "btn btn-primary btn-lg" + "\"" + " href= " + "\"" + "Curso.aspx?CursoId=" + curso.Id + "&UnidadeId=" + unidade.Id_unidade + " " + "\"" + " role= " + "\"" + "button" + "\"" + " >Ver detalhes »</a></p>" +
-                                "</div>";
-                            //obs.: "\"" é igual a "
-                        }
-                    }
-                    catch
-                    {
-
-                    }
-
-                }
-            }
-            catch
-            {
-                throw new ErroTabelaCursoException("Erro ao preencher tabela");
-            }
-        }
-        catch
-        {
-
-        }
     }
 }

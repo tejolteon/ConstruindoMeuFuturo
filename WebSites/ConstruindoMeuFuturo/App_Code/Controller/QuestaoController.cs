@@ -22,6 +22,7 @@ public class QuestaoController
     {
         //Verifica se as Variaveis obrigatórias estão null
         ValidarQuestao(questao);
+        questaodao = new QuestaoDao();
         questaodao.AlterarQuestao(questao);
     }
 
@@ -44,9 +45,9 @@ public class QuestaoController
 
     public QuestaoBean ConsultarQuestaoPorId(int idquestao)
     {
+        questaodao = new QuestaoDao();
         questao = questaodao.ConsultarQuestaoPorId(idquestao);
         return questao;
     }
     
-
 }

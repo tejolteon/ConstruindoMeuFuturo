@@ -47,7 +47,6 @@ public partial class View_Cadastro_Unidade_de_Ensino : System.Web.UI.Page
         try
         {
             unicont.InserirNovaUnidade(unidade);
-            ///!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! iremos ver para onde vai direcionar
             Response.Redirect("Perfil.aspx");
         }
         catch (Exception)

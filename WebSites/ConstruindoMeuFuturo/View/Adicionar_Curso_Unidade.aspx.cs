@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class View_Consulta_Unidade_de_Ensino : System.Web.UI.Page
+public partial class View_Lista_Unidade_de_Ensino : System.Web.UI.Page
 {
 
 
@@ -36,7 +36,7 @@ public partial class View_Consulta_Unidade_de_Ensino : System.Web.UI.Page
         unicont = new UnidadeController();
         if (!Page.IsPostBack)
         {
-            var listaUnidades = unicont.ListarUnidades();
+            var listaUnidades = unicont.ListarUnidade();
             if (listaUnidades != null)
             {
                 this.grdDados.DataSource = listaUnidades;
@@ -48,14 +48,24 @@ public partial class View_Consulta_Unidade_de_Ensino : System.Web.UI.Page
 
     protected void grdDados_RowCommand(object sender, GridViewCommandEventArgs e)
     {
-        if (e.CommandName.Equals("Editar"))
+        if (e.CommandName.Equals("Adicionar"))
         {
             string idUnidade = e.CommandArgument.ToString();
             if (!String.IsNullOrEmpty(idUnidade))
-                this.Response.Redirect("Alterar_Unidade_de_Ensino.aspx?Id_Unidade=" + idUnidade);
+                this.Response.Redirect("Adicionar_Alterar_Curso_Unidade.aspx?Id_Unidade=" + idUnidade);
         }
     }
     //Após selecionar estado ele adiciona as cidades do estado
 
+    protected void Txtpesquisa_TextChanged(object sender, EventArgs e)
+    {
+        this.grdDados.DataSource = null;
+        var listaUnidades = unicont.ListarUnidadeNome(Txtpesquisa.Text) ;
+        if (listaUnidades != null)
+        {
+            this.grdDados.DataSource = listaUnidades;
+            this.grdDados.DataBind();
 
+        }
+    }
 }

@@ -10,10 +10,8 @@ public partial class View_Alterar_Unidade_de_Ensino : System.Web.UI.Page
 
 
     private CidadeBean cidade;
-    private UsuarioBean usuario;
     private UnidadeEnsinoBean unidade;
 
-    private UsuarioController usuCont;
     private CidadeController cidadecont;
     private UnidadeController unicont;
 
@@ -30,8 +28,10 @@ public partial class View_Alterar_Unidade_de_Ensino : System.Web.UI.Page
         {
             Response.Redirect("Home.aspx");
         }
-
-        CarregarCamposAlterar();
+        if (Txtnome.Text == "")
+        {
+            CarregarCamposAlterar();
+        }
     }
     private void CarregarCamposAlterar()
     {
@@ -98,9 +98,10 @@ public partial class View_Alterar_Unidade_de_Ensino : System.Web.UI.Page
     }
 
 
-    protected void Btcadastrar_Click(object sender, EventArgs e)
+    protected void Btalterar_Click(object sender, EventArgs e)
     {
         unidade = new UnidadeEnsinoBean();
+        unidade.Id_unidade = Convert.ToInt32(Request.QueryString["Id_Unidade"]);
         unidade.Nome_unidade = Txtnome.Text;
         unidade.Site = TxtSite.Text;
         unidade.Endereco_unidade = Txtendereco.Text;
@@ -110,19 +111,13 @@ public partial class View_Alterar_Unidade_de_Ensino : System.Web.UI.Page
         unicont = new UnidadeController();
         try
         {
-            unicont.InserirNovaUnidade(unidade);
-            ///!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! iremos ver para onde vai direcionar
-            Response.Redirect("Perfil.aspx");
+            unicont.AlterarUnidade(unidade);
+            Response.Redirect("Lista_Unidade_de_Ensino.aspx");
         }
         catch (Exception)
         {
             throw;
         }
-    }
-
-    protected void lbtMTarde_Click(object sender, EventArgs e)
-    {
-        Response.Redirect("Home.aspx");
     }
 
     //Após selecionar estado ele adiciona as cidades do estado

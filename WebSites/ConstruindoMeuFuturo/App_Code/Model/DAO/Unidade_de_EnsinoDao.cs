@@ -95,14 +95,12 @@ public class Unidade_de_EnsinoDao
             var command = new SqlCommand();
             command.Connection = Conexao.connection;
             //Comando no banco
-            command.CommandText = "UPDATE  TB_CURSO SET " +
-               "Tipo_Curso = @tipo, Nome_Curso = @nome, Descricao_Curso = @descricao WHERE Id_Curso = @id;";
             command.CommandText = "UPDATE TB_UNIDADE_DE_ENSINO SET " +
                 "Nome_Unidade_de_Ensino = @nome, " +
                 "Site_Unidade_de_Ensino =@site, " +
                 "Id_Cidade = @idcidade," +
                 "Endereco_Unidade_de_Ensino = @endereco, " +
-                "Descricao_Unidade_de_Ensino = @descricao" +
+                "Descricao_Unidade_de_Ensino = @descricao " +
                 "WHERE Id_Unidade_de_Ensino = @id";
             //Entrada doa parâmetros
             command.Parameters.AddWithValue("@nome", unidade.Nome_unidade);
@@ -201,6 +199,53 @@ public class Unidade_de_EnsinoDao
                 var unidade = new UnidadeEnsinoBean();
                 unidade.Id_unidade = Convert.ToInt32(reader["Id_Unidade_de_Ensino"]);
                 unidade.Nome_unidade = reader["Nome_Unidade_de_Ensino"].ToString();
+                unidades.Add(unidade);
+            }
+
+            return unidades;
+
+        }
+        catch (Exception)
+        {
+
+            throw;
+        }
+        //encerrar conexão com o banco
+        finally
+        {
+            Conexao.Desconectar();
+        }
+    }
+
+    public List<UnidadeEnsinoBean> ListarUnidadeNome(String nome)
+    {
+        try
+        {
+
+            //Conectar com o banco
+            Conexao.Conectar();
+            var command = new SqlCommand();
+            command.Connection = Conexao.connection;
+            //Comando no banco
+            command.CommandText = "SELECT * FROM TB_UNIDADE_DE_ENSINO WHERE Nome_Unidade_de_Ensino LIKE @nome";
+            //Entrada doa parâmetros
+            command.Parameters.AddWithValue("@nome", nome + "%");
+            //Executar o comando 
+            var reader = command.ExecuteReader();
+
+            var unidades = new List<UnidadeEnsinoBean>();
+
+            //Inserir os valores do resultado no bean
+            while (reader.Read())
+            {
+                var unidade = new UnidadeEnsinoBean();
+
+                unidade.Id_unidade = Convert.ToInt32(reader["Id_Unidade_de_Ensino"]);
+                unidade.Nome_unidade = reader["Nome_Unidade_de_Ensino"].ToString();
+                unidade.Site = reader["Site_Unidade_de_Ensino"].ToString();
+                //unidade. = reader[].ToString();Faltando
+                unidade.Endereco_unidade = reader["Endereco_Unidade_de_Ensino"].ToString();
+                unidade.Descricao_unidade = reader["Descricao_Unidade_de_Ensino"].ToString();
                 unidades.Add(unidade);
             }
 

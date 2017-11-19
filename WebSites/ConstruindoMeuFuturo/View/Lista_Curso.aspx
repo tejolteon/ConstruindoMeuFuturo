@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Perfil" Language="C#" MasterPageFile="~/General/Site.master" AutoEventWireup="true" CodeFile="Consulta_Unidade_de_Ensino.aspx.cs" Inherits="View_Consulta_Unidade_de_Ensino" %>
+﻿<%@ Page Title="Perfil" Language="C#" MasterPageFile="~/General/Site.master" AutoEventWireup="true" CodeFile="Lista_Curso.aspx.cs" Inherits="View_Lista_Curso" %>
 
 
 <asp:Content ID="Content2" ContentPlaceHolderID="Content" Runat="Server">
@@ -12,17 +12,16 @@
         <link href="../General/Design.css" rel="stylesheet" />
         <div class="well container" style="margin-top:2%; max-width:60%;">
             <asp:Panel ID="Panel1" runat="server">
-                <asp:Label ID="Label1" runat="server" Text=""><h1>Cadastro Unidade de Ensino</h1></asp:Label>
+                <asp:Label ID="Label1" runat="server" Text=""><h1>Cursos</h1></asp:Label>
                 <br/>
                 <asp:GridView ID="grdDados" runat="server" AutoGenerateColumns="false" OnRowCommand="grdDados_RowCommand">
                     <Columns>        
-                        <asp:BoundField DataField="Nome_unidade" HeaderText="Nome" />
-                        <asp:BoundField DataField="Site" HeaderText="Site" />
-                        <asp:BoundField DataField="Endereco_unidade" HeaderText="Endereco" />
+                        <asp:BoundField DataField="Nome" HeaderText="Nome" />
+                        <asp:BoundField DataField="Tipo" HeaderText="Tipo" />
                         <asp:TemplateField>
                             <ItemTemplate>
                                 <asp:Button ID="btnEditar" runat="server" CommandName="Editar" Text="Editar Dados"
-                                    CommandArgument='<%# DataBinder.Eval(Container.DataItem, "Id_unidade")%>' />
+                                    CommandArgument='<%# DataBinder.Eval(Container.DataItem, "Id")%>' />
                             </ItemTemplate>
                         </asp:TemplateField>
                     </Columns>

@@ -22,12 +22,27 @@ public class UnidadeController
         }
     }
 
-    public List<UnidadeEnsinoBean> ListarUnidades()
+    public List<UnidadeEnsinoBean> ListarUnidade()
     {
         try
         {
             unidadedao = new Unidade_de_EnsinoDao();
             var unidades = unidadedao.ListarUnidades();
+            return unidades;
+        }
+        catch
+        {
+            //Erro ao listar unidade curso
+            return null;
+        }
+    }
+
+    public List<UnidadeEnsinoBean> ListarUnidadeNome(String nome)
+    {
+        try
+        {
+            unidadedao = new Unidade_de_EnsinoDao();
+            var unidades = unidadedao.ListarUnidadeNome(nome);
             return unidades;
         }
         catch
@@ -58,6 +73,20 @@ public class UnidadeController
    
         unidadedao = new Unidade_de_EnsinoDao();
         var linhasafetadas = unidadedao.InserirUnidade(unidade);
+        //verifica se retornou nenhuma linha afetada
+        if (linhasafetadas == 0)
+        {
+            throw new UsuarioNaoCadastradoException();
+        }
+    }
+
+    public void AlterarUnidade(UnidadeEnsinoBean unidade)
+    {
+        //Verifica se unidade está sem nome
+        ValidarUnidade(unidade);
+
+        unidadedao = new Unidade_de_EnsinoDao();
+        var linhasafetadas = unidadedao.AlterarUnidade(unidade);
         //verifica se retornou nenhuma linha afetada
         if (linhasafetadas == 0)
         {

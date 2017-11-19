@@ -48,7 +48,16 @@ public partial class View_Perfil : System.Web.UI.Page
                                  "<p><a class= " + "\"" + "btn btn-primary btn-lg" + "\"" + " href= " + "\"" + "Cadastro_Unidade_de_Ensino.aspx" + "\"" + " role= " + "\"" + "button" + "\"" + " >Cadastrar uma unidade de ensino nova</a></p>" +
                                  "</div>" +
                                  "<div class=" + "\"" + "col-lg-5" + "\"" + " style=" + "\"" + "border:1px solid gray; margin-right:2px; margin-bottom:2px; background-color: #D8D8D8; border-radius:1px;" + "\"" + " > " +
-                                 "<p><a class= " + "\"" + "btn btn-primary btn-lg" + "\"" + " href= " + "\"" + "Consulta_Unidade_de_Ensino.aspx" + "\"" + " role= " + "\"" + "button" + "\"" + " >Consultar todas as unidades de ensino/editar</a></p>" +
+                                 "<p><a class= " + "\"" + "btn btn-primary btn-lg" + "\"" + " href= " + "\"" + "Adicionar_Curso_Unidade.aspx" + "\"" + " role= " + "\"" + "button" + "\"" + " >Adicionar Curso a unidade</a></p>" +
+                                 "</div>" +
+                                 "<div class=" + "\"" + "col-lg-5" + "\"" + " style=" + "\"" + "border:1px solid gray; margin-right:2px; margin-bottom:2px; background-color: #D8D8D8; border-radius:1px;" + "\"" + " > " +
+                                 "<p><a class= " + "\"" + "btn btn-primary btn-lg" + "\"" + " href= " + "\"" + "Lista_Curso.aspx" + "\"" + " role= " + "\"" + "button" + "\"" + " >Consultar todos os Cursos/editar</a></p>" +
+                                 "</div>"+
+                                 "<div class=" + "\"" + "col-lg-5" + "\"" + " style=" + "\"" + "border:1px solid gray; margin-right:2px; margin-bottom:2px; background-color: #D8D8D8; border-radius:1px;" + "\"" + " > " +
+                                 "<p><a class= " + "\"" + "btn btn-primary btn-lg" + "\"" + " href= " + "\"" + "Lista_Questao.aspx" + "\"" + " role= " + "\"" + "button" + "\"" + " >Consultar todas as Questoes/editar</a></p>" +
+                                 "</div>" +
+                                 "<div class=" + "\"" + "col-lg-5" + "\"" + " style=" + "\"" + "border:1px solid gray; margin-right:2px; margin-bottom:2px; background-color: #D8D8D8; border-radius:1px;" + "\"" + " > " +
+                                 "<p><a class= " + "\"" + "btn btn-primary btn-lg" + "\"" + " href= " + "\"" + "Lista_Unidade_de_Ensino.aspx" + "\"" + " role= " + "\"" + "button" + "\"" + " >Consultar todas as unidades de ensino/editar</a></p>" +
                                  "</div>";
             }
             else
@@ -69,13 +78,12 @@ public partial class View_Perfil : System.Web.UI.Page
                 }
 
 
-                //Consultando o ID do Perfil e tentando jogar para a tabela os cursos
+                
                 try
                 {
+                    //Consultando o ID do Perfil
                     perfil = perfcont.ConsultarPerfilPorIdUsuario(UsuarioId);
                     area = areacont.ConsultarAreaPerfil(perfil.Id_perfil);
-                    /*!!!!!!!!!!!!!!! Terminar de formatar a tabela e deixar com links acessiveis, mostrar apenas cursos que tenha na cidade depois e
-                   depois relacionar o curso com as unidades que tem ele,*/
                     try
                     {
                         foreach (CursoBean curso in this.cursocont.ListaCursoPorArea(area.Id))

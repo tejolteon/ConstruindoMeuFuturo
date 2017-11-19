@@ -27,7 +27,7 @@ public partial class View_Alterar_Perfil : System.Web.UI.Page
             Response.Redirect("Home.aspx");
         }
         //Verifica se a lista de areas está vazia antes de executar o código
-        if (DDLarea.Items.Count <= 1)
+        if (!Page.IsPostBack)
         {
             areacont = new AreaController();
             //Lista todas as areas

@@ -37,6 +37,20 @@ public class CursoController
         }
     }
 
+    public List<CursoBean> ListaCurso()
+    {
+        try
+        {
+            cursodao = new CursoDao();
+            var cursos = cursodao.ListarCurso();
+            return cursos;
+        }
+        catch
+        {
+            return null;
+        }
+    }
+
     public CursoBean ConsultarCursoId(int idcurso)
     {
         try
@@ -57,6 +71,18 @@ public class CursoController
 
         cursodao = new CursoDao();
         var linhasafetadas = cursodao.InserirCurso(curso);
+        //verifica se retornou nenhuma linha afetada
+        if (linhasafetadas == 0)
+        {
+            throw new UsuarioNaoCadastradoException();
+        }
+    }
+
+    public void InserirCursoUnidade(int idcurso, int idunidade)
+    {
+       
+        cursodao = new CursoDao();
+        var linhasafetadas = cursodao.InserirCursoUnidade(idcurso,idunidade);
         //verifica se retornou nenhuma linha afetada
         if (linhasafetadas == 0)
         {

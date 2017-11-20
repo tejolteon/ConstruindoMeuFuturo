@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Perfil" Language="C#" MasterPageFile="~/General/Site.master" AutoEventWireup="true" CodeFile="Lista_Unidade_de_Ensino.aspx.cs" Inherits="View_Lista_Unidade_de_Ensino" %>
+﻿<%@ Page Title="Lista das Unidades" Language="C#" MasterPageFile="~/General/Site.master" AutoEventWireup="true" CodeFile="Lista_Unidade_de_Ensino.aspx.cs" Inherits="View_Lista_Unidade_de_Ensino" %>
 
 
 <asp:Content ID="Content2" ContentPlaceHolderID="Content" Runat="Server">
@@ -13,6 +13,9 @@
         <div class="well container" style="margin-top:2%; max-width:60%;">
             <asp:Panel ID="Panel1" runat="server">
                 <asp:Label ID="Label1" runat="server" Text=""><h1>Cadastro Unidade de Ensino</h1></asp:Label>
+                <div class="form-group">
+                    <asp:TextBox ID="Txtpesquisa" runat="server" AutoPostBack="True" OnTextChanged="Txtpesquisa_TextChanged" placeholder="Pesquisar por nome"></asp:TextBox>
+                </div>
                 <br/>
                 <asp:GridView ID="grdDados" runat="server" AutoGenerateColumns="false" OnRowCommand="grdDados_RowCommand">
                     <Columns>        

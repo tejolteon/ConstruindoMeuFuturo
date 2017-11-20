@@ -20,9 +20,10 @@ public partial class View_Cadastro_Perfil : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        // Se não tiver usuario logado ele volta pra Home
-        if (Session["usuario"] == null)
-        {
+        //Verifica se o usuario está logado e se ele está ativo
+        
+        if (Session["usuario"] == null || Session["UsuarioStatus"].ToString() != "A")
+            {
             Response.Redirect("Home.aspx");
         }
         areacont = new AreaController();
@@ -85,10 +86,5 @@ public partial class View_Cadastro_Perfil : System.Web.UI.Page
             DDLcidade.Items.Add(new ListItem(cidade.Nome, Convert.ToString(cidade.Id_cidade)));
         }
         //!!!!!!!!!!!!!!!ATENÇÃO!! ao trocar para outros estados devemos limpar a lista, senão ele apenas dicionara mais cidades
-    }
-
-    protected void DDLarea_SelectedIndexChanged(object sender, EventArgs e)
-    {
-
     }
 }

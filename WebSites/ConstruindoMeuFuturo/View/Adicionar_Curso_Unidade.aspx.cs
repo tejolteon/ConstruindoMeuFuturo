@@ -10,19 +10,18 @@ public partial class View_Lista_Unidade_de_Ensino : System.Web.UI.Page
 
 
     private CidadeBean cidade;
-    private UsuarioBean usuario;
     private UnidadeEnsinoBean unidade;
 
-    private UsuarioController usuCont;
     private CidadeController cidadecont;
     private UnidadeController unicont;
 
     protected void Page_Load(object sender, EventArgs e)
     {
      
+        //Verifica se o usuario está logado, se é Administrador e se ele está ativo
         try
         {
-            if (Session["usuario"] == null || Session["UsuarioTipo"].ToString() != "A")
+            if (Session["usuario"] == null || Session["UsuarioTipo"].ToString() != "A" || Session["UsuarioStatus"].ToString() != "A")
             {
                 Response.Redirect("Home.aspx");
             }
@@ -39,6 +38,7 @@ public partial class View_Lista_Unidade_de_Ensino : System.Web.UI.Page
             var listaUnidades = unicont.ListarUnidade();
             if (listaUnidades != null)
             {
+                
                 this.grdDados.DataSource = listaUnidades;
                 this.grdDados.DataBind();
                 
@@ -52,7 +52,7 @@ public partial class View_Lista_Unidade_de_Ensino : System.Web.UI.Page
         {
             string idUnidade = e.CommandArgument.ToString();
             if (!String.IsNullOrEmpty(idUnidade))
-                this.Response.Redirect("Adicionar_Alterar_Curso_Unidade.aspx?Id_Unidade=" + idUnidade);
+                this.Response.Redirect("Adicionar_Excluir_Curso_Unidade.aspx?Id_Unidade=" + idUnidade);
         }
     }
     //Após selecionar estado ele adiciona as cidades do estado
@@ -65,7 +65,6 @@ public partial class View_Lista_Unidade_de_Ensino : System.Web.UI.Page
         {
             this.grdDados.DataSource = listaUnidades;
             this.grdDados.DataBind();
-
         }
     }
 }

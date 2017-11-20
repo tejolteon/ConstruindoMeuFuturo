@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Perfil" Language="C#" MasterPageFile="~/General/Site.master" AutoEventWireup="true" CodeFile="Lista_Questao.aspx.cs" Inherits="View_Lista_Questao" %>
+﻿<%@ Page Title="Lista de todas as questões" Language="C#" MasterPageFile="~/General/Site.master" AutoEventWireup="true" CodeFile="Lista_Questao.aspx.cs" Inherits="View_Lista_Questao" %>
 
 
 <asp:Content ID="Content2" ContentPlaceHolderID="Content" Runat="Server">
@@ -14,6 +14,9 @@
             <asp:Panel ID="Panel1" runat="server">
                 <asp:Label ID="Label1" runat="server" Text=""><h1>Questões</h1></asp:Label>
                 <br/>
+                 <div class="form-group">
+                    <asp:TextBox ID="Txtpesquisa" runat="server" AutoPostBack="True" OnTextChanged="Txtpesquisa_TextChanged" placeholder="Pesquisar por nome"></asp:TextBox>
+                </div>
                 <asp:GridView ID="grdDados" runat="server" AutoGenerateColumns="false" OnRowCommand="grdDados_RowCommand">
                     <Columns>      
                         <asp:BoundField DataField="Id_Questao" HeaderText="Número" />

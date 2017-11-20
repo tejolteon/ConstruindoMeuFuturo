@@ -56,7 +56,7 @@
                 <!-- Lista da area de interesse -->
                 <div class="form-group">
                     <label for="area">Area de Interesse</label>
-                    <asp:DropDownList ID="DDLarea" runat="server" CssClass="form-control" OnSelectedIndexChanged="DDLarea_SelectedIndexChanged">
+                    <asp:DropDownList ID="DDLarea" runat="server" CssClass="form-control">
                         <asp:ListItem Text="Selecione uma area" Value="0"/>
                         
                     </asp:DropDownList>

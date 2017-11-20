@@ -15,6 +15,7 @@ public class QuestaoController
     {
         //Verifica se as Variaveis obrigatórias estão null
         ValidarQuestao(questao);
+        questaodao = new QuestaoDao();
         questaodao.InserirQuestao(questao);
     }
 
@@ -39,6 +40,15 @@ public class QuestaoController
         questaodao = new QuestaoDao();
         var questoes = new List<QuestaoBean>();
         questoes = questaodao.ListarQuestao();
+
+        return questoes;
+    }
+
+    public List<QuestaoBean> ListarQuestaoTexto(String texto)
+    {
+        questaodao = new QuestaoDao();
+        var questoes = new List<QuestaoBean>();
+        questoes = questaodao.ListarQuestaoTexto(texto);
 
         return questoes;
     }

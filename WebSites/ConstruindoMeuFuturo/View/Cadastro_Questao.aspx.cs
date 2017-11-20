@@ -10,9 +10,10 @@ public partial class View_Cadastro_Questao : System.Web.UI.Page
     private QuestaoBean questao;
     protected void Page_Load(object sender, EventArgs e)
     {
+        //Verifica se o usuario está logado, se é Administrador e se ele está ativo
         try
         {
-            if (Session["usuario"] == null || Session["UsuarioTipo"].ToString() != "A")
+            if (Session["usuario"] == null || Session["UsuarioTipo"].ToString() != "A" || Session["UsuarioStatus"].ToString() != "A")
             {
                 Response.Redirect("Home.aspx");
             }

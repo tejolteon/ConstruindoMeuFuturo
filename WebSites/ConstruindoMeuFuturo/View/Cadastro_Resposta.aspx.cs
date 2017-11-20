@@ -16,11 +16,13 @@ public partial class View_Cadastro_Questao : System.Web.UI.Page
     private int cont = 1;
     protected void Page_Load(object sender, EventArgs e)
     {
+
+        //Verifica se o usuario está logado e se ele está ativo
        
-        if (Session["usuario"] == null)
-        {
+       if (Session["usuario"] == null || Session["UsuarioStatus"].ToString() != "A")
+       { 
             Response.Redirect("Home.aspx");
-        }
+       }
         
     }
     protected void Btcadastras_Click(object sender, EventArgs e)

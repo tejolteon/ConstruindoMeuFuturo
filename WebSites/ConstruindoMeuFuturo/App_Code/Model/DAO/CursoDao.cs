@@ -70,7 +70,6 @@ public class CursoDao
 
     }
 
-
     public int AlterarCurso(CursoBean curso)
     {
         try
@@ -105,6 +104,33 @@ public class CursoDao
 
     }
 
+    public int ExcluirCursoUnidade(int idunidade, int idcurso)
+    {
+        try
+        {
+            //Conectar com o banco
+            Conexao.Conectar();
+            var command = new SqlCommand();
+            command.Connection = Conexao.connection;
+            //Comando no banco
+            command.CommandText = "DELETE FROM TB_UNIDADE_DE_ENSINO_has_TB_CURSO WHERE Id_Unidade_de_Ensino = @idunidade AND Id_Curso = @idcurso;";
+            //Entrada doa parâmetros
+            command.Parameters.AddWithValue("@idunidade", idunidade);
+            command.Parameters.AddWithValue("@idcurso", idcurso);
+
+            //Executa e retorna o tanto de linhas que foram afetadas
+            return command.ExecuteNonQuery();
+        }
+        catch (Exception)
+        {
+            throw;
+        }
+        //encerrar conexão com o banco
+        finally
+        {
+            Conexao.Desconectar();
+        }
+    }
     public CursoBean ConsultarCursoID(int idcurso)
     {
         try
@@ -229,6 +255,51 @@ public class CursoDao
 
     }
 
+    public List<CursoBean> ListarCursoUnidade(int idunidade)
+    {
+        try
+        {
+            //Conectar com o banco
+            Conexao.Conectar();
+            var command = new SqlCommand();
+            command.Connection = Conexao.connection;
+            //Comando no banco
+            command.CommandText = "SELECT C.Nome_Curso, C.Tipo_Curso, B.Id_Curso " +
+                "FROM TB_UNIDADE_DE_ENSINO A INNER JOIN TB_UNIDADE_DE_ENSINO_has_TB_CURSO B " +
+                "ON A.Id_Unidade_de_Ensino = B.Id_Unidade_de_Ensino " +
+                "INNER JOIN TB_CURSO C " +
+                "ON B.Id_Curso = C.Id_Curso " +
+                "WHERE A.Id_Unidade_de_Ensino = @idunidade;";
+            //Entrada doa parâmetros
+            command.Parameters.AddWithValue("@idunidade", idunidade);
+            //Executar o comando 
+            var reader = command.ExecuteReader();
+            //Cria List
+            var cursosareas = new List<CursoBean>();
+            //Inserir os valores do resultado no bean
+            while (reader.Read())
+            {
+                var curso = new CursoBean();
+                curso.Id = Convert.ToInt32(reader["Id_Curso"]);
+                curso.Nome = Convert.ToString(reader["Nome_Curso"]);
+                curso.Tipo = Convert.ToString(reader["Tipo_Curso"]);
+                cursosareas.Add(curso);
+            }
+            return cursosareas;
+        }
+        catch (Exception)
+        {
+
+            throw;
+        }
+        //encerrar conexão com o banco
+        finally
+        {
+            Conexao.Desconectar();
+        }
+
+    }
+
     public List<CursoBean> ListarCursoNome(string nomecurso)
     {
         try
@@ -238,9 +309,9 @@ public class CursoDao
             var command = new SqlCommand();
             command.Connection = Conexao.connection;
             //Comando no banco
-            command.CommandText = "SELECT * FROM TB_CURSO WHERE  Nome_Curso = '%'+@nome+'%'";
+            command.CommandText = "SELECT * FROM TB_CURSO WHERE  Nome_Curso like @nomecurso";
             //Entrada doa parâmetros
-            command.Parameters.AddWithValue("@nomecurso", nomecurso);
+            command.Parameters.AddWithValue("@nomecurso", "%"+nomecurso+"%");
             //Executar o comando 
             var reader = command.ExecuteReader();
             //Cria List

@@ -104,6 +104,44 @@ public class QuestaoDao
         }
 
     }
+    public List<QuestaoBean> ListarQuestaoTexto(String texto)
+    {
+        try
+        {
+            //Conectar com o banco
+            Conexao.Conectar();
+            var command = new SqlCommand();
+            command.Connection = Conexao.connection;
+            //Comando no banco
+            command.CommandText = "SELECT * FROM TB_QUESTAO WHERE Texto_Questao LIKE @texto";
+            //Entrada doa parâmetros
+            command.Parameters.AddWithValue("@texto", "%"+texto+"%");
+            //Executar o comando 
+            var reader = command.ExecuteReader();
+            //Cria list
+            var questoes = new List<QuestaoBean>();
+            //Inserir os valores do resultado no bean
+            while (reader.Read())
+            {
+                var questao = new QuestaoBean();
+                questao.Id_questao = Convert.ToInt32(reader["Id_Questao"]);
+                questao.Texto_questao = Convert.ToString(reader["Texto_Questao"]);
+                questoes.Add(questao);
+            }
+            return questoes;
+        }
+        catch (Exception)
+        {
+
+            throw;
+        }
+        //encerrar conexão com o banco
+        finally
+        {
+            Conexao.Desconectar();
+        }
+
+    }
     public QuestaoBean ConsultarQuestaoPorId(int id)
     {
         try

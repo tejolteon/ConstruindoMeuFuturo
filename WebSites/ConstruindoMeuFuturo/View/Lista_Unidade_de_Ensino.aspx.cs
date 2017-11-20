@@ -19,10 +19,11 @@ public partial class View_Lista_Unidade_de_Ensino : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-     
+
+        //Verifica se o usuario está logado, se é Administrador e se ele está ativo
         try
         {
-            if (Session["usuario"] == null || Session["UsuarioTipo"].ToString() != "A")
+            if (Session["usuario"] == null || Session["UsuarioTipo"].ToString() != "A" || Session["UsuarioStatus"].ToString() != "A")
             {
                 Response.Redirect("Home.aspx");
             }
@@ -56,6 +57,15 @@ public partial class View_Lista_Unidade_de_Ensino : System.Web.UI.Page
         }
     }
     //Após selecionar estado ele adiciona as cidades do estado
-
+    protected void Txtpesquisa_TextChanged(object sender, EventArgs e)
+    {
+        this.grdDados.DataSource = null;
+        var listaUnidades = unicont.ListarUnidadeNome(Txtpesquisa.Text);
+        if (listaUnidades != null)
+        {
+            this.grdDados.DataSource = listaUnidades;
+            this.grdDados.DataBind();
+        }
+    }
 
 }

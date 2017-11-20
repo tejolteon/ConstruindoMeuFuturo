@@ -15,10 +15,11 @@ public partial class View_Lista_Curso : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-     
+
+        //Verifica se o usuario está logado, se é Administrador e se ele está ativo
         try
         {
-            if (Session["usuario"] == null || Session["UsuarioTipo"].ToString() != "A")
+            if (Session["usuario"] == null || Session["UsuarioTipo"].ToString() != "A" || Session["UsuarioStatus"].ToString() != "A")
             {
                 Response.Redirect("Home.aspx");
             }
@@ -51,7 +52,17 @@ public partial class View_Lista_Curso : System.Web.UI.Page
                 this.Response.Redirect("Alterar_Curso.aspx?Id_Curso=" + idCurso);
         }
     }
-    //Após selecionar estado ele adiciona as cidades do estado
+    protected void Txtpesquisa_TextChanged(object sender, EventArgs e)
+    {
+        this.grdDados.DataSource = null;
+        var listaCursos = cursocont.ListaCursoPorNome(Txtpesquisa.Text);
+        if (listaCursos != null)
+        {
+            this.grdDados.DataSource = listaCursos;
+            this.grdDados.DataBind();
+
+        }
+    }
 
 
 }

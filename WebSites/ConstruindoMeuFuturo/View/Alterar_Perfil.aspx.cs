@@ -21,8 +21,9 @@ public partial class View_Alterar_Perfil : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        // Se não tiver usuario logado ele volta pra Home
-        if (Session["usuario"] == null)
+        //Verifica se o usuario está logado, e se ele está ativo
+       
+        if (Session["usuario"] == null || Session["UsuarioStatus"].ToString() != "A")
         {
             Response.Redirect("Home.aspx");
         }

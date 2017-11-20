@@ -9,16 +9,17 @@ public partial class View_Lista_Questao : System.Web.UI.Page
 {
 
 
-  
+
     private QuestaoBean questao;
     private QuestaoController questaocont;
 
     protected void Page_Load(object sender, EventArgs e)
     {
-     
+
+        //Verifica se o usuario está logado, se é Administrador e se ele está ativo
         try
         {
-            if (Session["usuario"] == null || Session["UsuarioTipo"].ToString() != "A")
+            if (Session["usuario"] == null || Session["UsuarioTipo"].ToString() != "A" || Session["UsuarioStatus"].ToString() != "A")
             {
                 Response.Redirect("Home.aspx");
             }
@@ -37,7 +38,7 @@ public partial class View_Lista_Questao : System.Web.UI.Page
             {
                 this.grdDados.DataSource = listaQuestoes;
                 this.grdDados.DataBind();
-                
+
             }
         }
     }
@@ -51,7 +52,15 @@ public partial class View_Lista_Questao : System.Web.UI.Page
                 this.Response.Redirect("Alterar_Questao.aspx?Id_Questao=" + idQuestao);
         }
     }
-    //Após selecionar estado ele adiciona as cidades do estado
+    protected void Txtpesquisa_TextChanged(object sender, EventArgs e)
+    {
+        this.grdDados.DataSource = null;
+        var listaQuestoes = questaocont.ListarQuestaoTexto(Txtpesquisa.Text);
+        if (listaQuestoes != null)
+        {
+            this.grdDados.DataSource = listaQuestoes;
+            this.grdDados.DataBind();
 
-
+        }
+    }
 }

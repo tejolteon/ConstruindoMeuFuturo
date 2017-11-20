@@ -9,6 +9,19 @@ using System.Web;
 public class CursoController
 {
     CursoDao cursodao;
+    public List<CursoBean> ListaCurso()
+    {
+        try
+        {
+            cursodao = new CursoDao();
+            var cursos = cursodao.ListarCurso();
+            return cursos;
+        }
+        catch
+        {
+            return null;
+        }
+    }
     public List<CursoBean> ListaCursoPorArea(int idarea)
     {
         try
@@ -36,13 +49,12 @@ public class CursoController
             return null;
         }
     }
-
-    public List<CursoBean> ListaCurso()
+    public List<CursoBean> ListaCursoUnidade(int idunidade)
     {
         try
         {
             cursodao = new CursoDao();
-            var cursos = cursodao.ListarCurso();
+            var cursos = cursodao.ListarCursoUnidade(idunidade);
             return cursos;
         }
         catch
@@ -75,6 +87,18 @@ public class CursoController
         if (linhasafetadas == 0)
         {
             throw new UsuarioNaoCadastradoException();
+        }
+    }
+
+    public void ExcluirCurso(int idunidade,int idcurso)
+    {
+       
+        cursodao = new CursoDao();
+        var linhasafetadas = cursodao.ExcluirCursoUnidade(idunidade, idcurso);
+        //verifica se retornou nenhuma linha afetada
+        if (linhasafetadas == 0)
+        {
+            throw new CursoNaoExcluidoException();
         }
     }
 

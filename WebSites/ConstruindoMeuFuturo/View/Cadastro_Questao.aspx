@@ -5,13 +5,13 @@
 
         <link href="../General/Design.css" rel="stylesheet" />
         <div class="well container" style="margin-top:2%; max-width:80%;">
-            <asp:Panel ID="pnCadstro" runat="server">
+            <asp:Panel ID="pnCadastroQuestao" runat="server">
                 <asp:Label ID="Label1" runat="server" Text=""><h1>Cadastro de questões</h1></asp:Label>
                 <br/>
                 <div class="form-group">
                     <label for="textoquestao">Texto:</label>
                     <br/>
-                    <textarea id="txtTextoquestao" name="S1" rows="3" runat="server" ></textarea>
+                    <textarea id="txtTextoquestao" name="S1" rows="3" runat="server" style="width:100%;"></textarea>
                 </div>
                 <div class="form-group text-right">
                     <asp:Button ID="Btcadastrar" CssClass="btn btn-primary" Text="Cadastrar" runat="server" Width="100px" OnClick="Btcadastras_Click"/>

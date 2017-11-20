@@ -17,6 +17,7 @@ public class UsuarioController
 
         if (usuario == null)
         {
+            
             throw new UsuarioNaoCadastradoException();
         }
         else

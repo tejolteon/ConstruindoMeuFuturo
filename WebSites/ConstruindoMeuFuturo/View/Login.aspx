@@ -17,7 +17,7 @@
                     <asp:TextBox ID="Txtemail" CssClass="form-control"  width="100%"  Height="40px" runat="server" placeholder="E-mail"></asp:TextBox>
                 <%--</div>
                 <br/>
-                <div class="form-group">--%>
+                <div class="form-group">--%> 
                     <%--<label for="senha">Senha:</label>--%>
                     <asp:TextBox ID="TxtSenha" CssClass="form-control" runat="server"  width="100%" Height="40px" TextMode="Password" placeholder="Senha"></asp:TextBox>
                 </div>

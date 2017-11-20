@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Perfil" Language="C#" MasterPageFile="~/General/Site.master" AutoEventWireup="true" CodeFile="Adicionar_Excluir_Curso_Unidade.aspx.cs" Inherits="View_Adicionar_Excluir_Curso" %>
+﻿<%@ Page Title="Perfil" Language="C#" MasterPageFile="~/General/Site.master" AutoEventWireup="true" CodeFile="Adicionar_Excluir_Curso_Unidade.aspx.cs" Inherits="View_Adicionar_Excluir_Curso_Unidade" %>
 
 
 <asp:Content ID="Content2" ContentPlaceHolderID="Content" Runat="Server">
@@ -11,41 +11,45 @@
     <body>
         <link href="../General/Design.css" rel="stylesheet" />
         <div class="well container" style="margin-top:2%; max-width:60%;">
+           
             <asp:Panel ID="Panel1" runat="server">
-                <asp:Label ID="Label1" runat="server" Text=""><h1>Cadastro de um novo Curso</h1></asp:Label>
-               
-                <asp:Label ID="Label3" runat="server" Text=""><h4>Cursos já cadastrados</h4></asp:Label>
-                <asp:GridView ID="grdCursosUnidade" runat="server" AutoGenerateColumns="false" OnRowCommand="grdCursosUnidade_RowCommand">
+                <asp:Label ID="Label1" runat="server" Text=""><h1>Cursos</h1></asp:Label>
+                <br/>
+                <asp:Label ID="LblJaCadastrados" runat="server" Text=""><h3>Cursos já cadastrados:</h3></asp:Label>
+                <asp:GridView ID="grdCusoUnidade" runat="server" AutoGenerateColumns="false" OnRowCommand="grdCusoUnidade_RowCommand" width="100%">
                     <Columns>        
                         <asp:BoundField DataField="Nome" HeaderText="Nome" />
                         <asp:BoundField DataField="Tipo" HeaderText="Tipo" />
                         <asp:TemplateField>
                             <ItemTemplate>
-                                <asp:Button ID="btnExcluir" runat="server" CommandName="Excluir" Text="Excluir o curso"
-                                    CommandArgument='<%# DataBinder.Eval(Container.DataItem, "Id")%>' />   
+                                <asp:Button ID="btnExcluir" CssClass="btn btn-primary" width="100%" runat="server" CommandName="Excluir" Text="Excluir Curso"
+                                    CommandArgument='<%# DataBinder.Eval(Container.DataItem, "Id")%>' />
                             </ItemTemplate>
                         </asp:TemplateField>
                     </Columns>
                 </asp:GridView>
                 <br/>
-                 <div class="form-group">
-                    <asp:TextBox ID="Txtpesquisa" CssClass="form-control"  width="100%"  Height="40px" runat="server" AutoPostBack="True" OnTextChanged="Txtpesquisa_TextChanged" placeholder="Pesquisar por nome"></asp:TextBox>
+                <div class="form-group">
+                    <asp:TextBox ID="Txtpesquisa" CssClass="form-control"  width="100%"  Height="40px" runat="server" AutoPostBack="True" OnTextChanged="Txtpesquisa_TextChanged" placeholder=" por nome"></asp:TextBox>
                 </div>
-                <asp:Label ID="Label2" runat="server" Text=""></asp:Label>
-                <br/>
-                <asp:GridView ID="grdDados" runat="server" AutoGenerateColumns="false" OnRowCommand="grdDados_RowCommand">
+                
+                <asp:GridView ID="grdDados" runat="server" AutoGenerateColumns="false" OnRowCommand="grdDados_RowCommand"  width="100%">
                     <Columns>        
                         <asp:BoundField DataField="Nome" HeaderText="Nome" />
                         <asp:BoundField DataField="Tipo" HeaderText="Tipo" />
                         <asp:TemplateField>
                             <ItemTemplate>
-                                <asp:Button ID="btnAdicionar" runat="server" CommandName="Adicionar" Text="Adicionar o curso"
-                                    CommandArgument='<%# DataBinder.Eval(Container.DataItem, "Id")%>' />   
+                                <asp:Button ID="btnAdicionar" CssClass="btn btn-primary" width="100%" runat="server" CommandName="Adicionar" Text="Adicionar Curso"
+                                    CommandArgument='<%# DataBinder.Eval(Container.DataItem, "Id")%>' />
                             </ItemTemplate>
                         </asp:TemplateField>
                     </Columns>
                 </asp:GridView>
+                <br/>
+                <asp:Label id="Labelerro" runat="server"></asp:Label>
             </asp:Panel>
+
+           
         </div>
     </body>
     </html>

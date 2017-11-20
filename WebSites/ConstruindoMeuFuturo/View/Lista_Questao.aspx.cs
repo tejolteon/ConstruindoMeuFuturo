@@ -51,6 +51,14 @@ public partial class View_Lista_Questao : System.Web.UI.Page
             if (!String.IsNullOrEmpty(idQuestao))
                 this.Response.Redirect("Alterar_Questao.aspx?Id_Questao=" + idQuestao);
         }
+
+
+        if (e.CommandName.Equals("Adicionar"))
+        {
+            string idQuestao = e.CommandArgument.ToString();
+            if (!String.IsNullOrEmpty(idQuestao))
+                this.Response.Redirect("Adicionar_Resposta_Questao.aspx?Id_Questao=" + idQuestao);
+        }
     }
     protected void Txtpesquisa_TextChanged(object sender, EventArgs e)
     {
@@ -62,5 +70,38 @@ public partial class View_Lista_Questao : System.Web.UI.Page
             this.grdDados.DataBind();
 
         }
+    }
+
+    protected void Btcadastras_Click(object sender, EventArgs e)
+    {
+
+        //Colocando os valores no bean
+        questao = new QuestaoBean();
+        questao.Texto_questao = txtTextoquestao.InnerText;
+
+
+        //Mandando para o controler
+        questaocont = new QuestaoController();
+        try
+        {
+            questaocont.InserirNovaQuestao(questao);
+            pnCadastroQuestao.Visible = false;
+            btnPainelCadastrar.Visible = true;
+        }
+        catch (QuestaoInvalidaException)
+        {
+            Labelerro.Text = "Campo de texto é obrigatório";
+        }
+        catch (Exception)
+        {
+
+            throw;
+        }
+    }
+
+    protected void btnCadastrar_Click(object sender, EventArgs e)
+    {
+        pnCadastroQuestao.Visible = true;
+        btnPainelCadastrar.Visible = false;
     }
 }

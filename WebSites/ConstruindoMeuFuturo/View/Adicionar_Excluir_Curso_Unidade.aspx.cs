@@ -5,17 +5,19 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class View_Adicionar_Excluir_Curso : System.Web.UI.Page
+public partial class View_Adicionar_Excluir_Curso_Unidade : System.Web.UI.Page
 {
+
+
+  
     private CursoBean curso;
     private CursoController cursocont;
-    private UnidadeEnsinoBean unidade;
-    private UnidadeController unicont;
-  
+    private int idunidade;
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        Label2.Text = "";
+        idunidade = Convert.ToInt32(Request.QueryString["Id_Unidade"]);
+
         //Verifica se o usuario está logado, se é Administrador e se ele está ativo
         try
         {
@@ -29,21 +31,43 @@ public partial class View_Adicionar_Excluir_Curso : System.Web.UI.Page
             Response.Redirect("Home.aspx");
         }
 
-        cursocont = new CursoController();
         if (!Page.IsPostBack)
         {
-            var listaCursosUnidade = cursocont.ListaCursoUnidade(Convert.ToInt32(Request.QueryString["Id_Unidade"]));
-            if (listaCursosUnidade != null)
-            {
-                this.grdCursosUnidade.DataSource = listaCursosUnidade;
-                this.grdCursosUnidade.DataBind();
-            }
+            
+            CarregargrdCursoUnidade();
+            CarregargrDados();
+        }
+    }
+    protected void CarregargrDados()
+    {
+    
+            cursocont = new CursoController();
+            idunidade = Convert.ToInt32(Request.QueryString["Id_Unidade"]);
             var listaCursos = cursocont.ListaCurso();
             if (listaCursos != null)
             {
                 this.grdDados.DataSource = listaCursos;
                 this.grdDados.DataBind();
+
+            } 
+    }
+
+    protected void CarregargrdCursoUnidade()
+    {
+            cursocont = new CursoController();
+            var listaCursosUnidades = cursocont.ListaCursoUnidade(idunidade);
+            if (listaCursosUnidades != null)
+            {
+                this.grdCusoUnidade.DataSource = listaCursosUnidades;
+                this.grdCusoUnidade.DataBind();
+
             }
+            if(listaCursosUnidades.Count == 0)
+        {
+            LblJaCadastrados.Text = "";
+        }else
+        {
+            LblJaCadastrados.Text = "Cursos já cadastrados:";
         }
     }
 
@@ -51,22 +75,15 @@ public partial class View_Adicionar_Excluir_Curso : System.Web.UI.Page
     {
         if (e.CommandName.Equals("Adicionar"))
         {
-            unidade = new UnidadeEnsinoBean();
             string idCurso = e.CommandArgument.ToString();
-            if (!String.IsNullOrEmpty(idCurso)) {
-                unidade.Id_unidade= Convert.ToInt32(Request.QueryString["Id_Unidade"]);
+            if (!String.IsNullOrEmpty(idCurso))
+            {
+
                 cursocont = new CursoController();
                 try
                 {
-                    cursocont.InserirCursoUnidade(Convert.ToInt32(idCurso), unidade.Id_unidade);
-                    //Falta colocar mensagem de cadastro com sucesso em algo como um messagebox ou Modal
-                    Label2.Text = "Cadastro feito com sucesso";
-                    var listaCursosUnidade = cursocont.ListaCursoUnidade(Convert.ToInt32(Request.QueryString["Id_Unidade"]));
-                    if (listaCursosUnidade != null)
-                    {
-                        this.grdCursosUnidade.DataSource = listaCursosUnidade;
-                        this.grdCursosUnidade.DataBind();
-                    }
+                    cursocont.InserirCursoUnidade(Convert.ToInt32(idCurso), idunidade);
+                    CarregargrdCursoUnidade();
                 }
                 catch
                 {
@@ -75,48 +92,38 @@ public partial class View_Adicionar_Excluir_Curso : System.Web.UI.Page
             }
         }
     }
-    //Após selecionar estado ele adiciona as cidades do estado
 
+    protected void grdCusoUnidade_RowCommand(object sender, GridViewCommandEventArgs e)
+    {
+        if (e.CommandName.Equals("Excluir"))
+        {
+            string idCurso = e.CommandArgument.ToString();
+            if (!String.IsNullOrEmpty(idCurso))
+            {
+
+                cursocont = new CursoController();
+                try
+                {
+                    cursocont.ExcluirCurso(idunidade, Convert.ToInt32(idCurso));
+                    CarregargrdCursoUnidade();
+                }
+                catch
+                {
+
+                }
+            }
+        }
+    }
     protected void Txtpesquisa_TextChanged(object sender, EventArgs e)
     {
         this.grdDados.DataSource = null;
+        cursocont = new CursoController();
         var listaCursos = cursocont.ListaCursoPorNome(Txtpesquisa.Text);
         if (listaCursos != null)
         {
             this.grdDados.DataSource = listaCursos;
             this.grdDados.DataBind();
 
-        }
-    }
-
-
-    protected void grdCursosUnidade_RowCommand(object sender, GridViewCommandEventArgs e)
-    {
-        if (e.CommandName.Equals("Excluir"))
-        {
-            unidade = new UnidadeEnsinoBean();
-            string idCurso = e.CommandArgument.ToString();
-            if (!String.IsNullOrEmpty(idCurso))
-            {
-                unidade.Id_unidade = Convert.ToInt32(Request.QueryString["Id_Unidade"]);
-                cursocont = new CursoController();
-                try
-                {
-                    cursocont.ExcluirCurso(unidade.Id_unidade, Convert.ToInt32(idCurso));
-                    //Falta colocar mensagem de cadastro com sucesso em algo como um messagebox ou Modal
-                    Label2.Text = "Exclusão feita com sucesso";
-                    var listaCursosUnidade = cursocont.ListaCursoUnidade(Convert.ToInt32(Request.QueryString["Id_Unidade"]));
-                    if (listaCursosUnidade != null)
-                    {
-                        this.grdCursosUnidade.DataSource = listaCursosUnidade;
-                        this.grdCursosUnidade.DataBind();
-                    }
-                }
-                catch
-                {
-                    Label2.Text = "Erro ao excluir";
-                }
-            }
         }
     }
 }

@@ -42,26 +42,15 @@ public partial class View_Perfil : System.Web.UI.Page
                 //Verifica se ele é um administrador
                 if (Session["UsuarioTipo"].ToString() == "A")
                 {
+                    LabelTop.Text = "<h1> Gerenciador </h1>";
                     ltPainel.Text += "<div class=" + "\"" + "col-lg-5" + "\"" + " style=" + "\"" + "border:1px solid gray; margin-right:2px; margin-bottom:2px; background-color: #D8D8D8; border-radius:1px;" + "\"" + " > " +
-                                     "<p><a class= " + "\"" + "btn btn-primary btn-lg" + "\"" + " href= " + "\"" + "Cadastro_Curso.aspx" + "\"" + " role= " + "\"" + "button" + "\"" + " >Cadastrar um curso novo</a></p>" +
+                                     "<p><a class= " + "\"" + "btn btn-primary btn-lg" + "\"" + " href= " + "\"" + "Lista_Curso.aspx" + "\"" + " role= " + "\"" + "button" + "\"" + " >Cursos</a></p>" +
                                      "</div>" +
                                      "<div class=" + "\"" + "col-lg-5" + "\"" + " style=" + "\"" + "border:1px solid gray; margin-right:2px; margin-bottom:2px; background-color: #D8D8D8; border-radius:1px;" + "\"" + " > " +
-                                     "<p><a class= " + "\"" + "btn btn-primary btn-lg" + "\"" + " href= " + "\"" + "Cadastro_Questao.aspx" + "\"" + " role= " + "\"" + "button" + "\"" + " >Cadastrar uma questão nova nova</a></p>" +
+                                     "<p><a class= " + "\"" + "btn btn-primary btn-lg" + "\"" + " href= " + "\"" + "Lista_Questao.aspx" + "\"" + " role= " + "\"" + "button" + "\"" + " >Questionario</a></p>" +
                                      "</div>" +
                                      "<div class=" + "\"" + "col-lg-5" + "\"" + " style=" + "\"" + "border:1px solid gray; margin-right:2px; margin-bottom:2px; background-color: #D8D8D8; border-radius:1px;" + "\"" + " > " +
-                                     "<p><a class= " + "\"" + "btn btn-primary btn-lg" + "\"" + " href= " + "\"" + "Cadastro_Unidade_de_Ensino.aspx" + "\"" + " role= " + "\"" + "button" + "\"" + " >Cadastrar uma unidade de ensino nova</a></p>" +
-                                     "</div>" +
-                                     "<div class=" + "\"" + "col-lg-5" + "\"" + " style=" + "\"" + "border:1px solid gray; margin-right:2px; margin-bottom:2px; background-color: #D8D8D8; border-radius:1px;" + "\"" + " > " +
-                                     "<p><a class= " + "\"" + "btn btn-primary btn-lg" + "\"" + " href= " + "\"" + "Adicionar_Curso_Unidade.aspx" + "\"" + " role= " + "\"" + "button" + "\"" + " >Adicionar Curso a unidade</a></p>" +
-                                     "</div>" +
-                                     "<div class=" + "\"" + "col-lg-5" + "\"" + " style=" + "\"" + "border:1px solid gray; margin-right:2px; margin-bottom:2px; background-color: #D8D8D8; border-radius:1px;" + "\"" + " > " +
-                                     "<p><a class= " + "\"" + "btn btn-primary btn-lg" + "\"" + " href= " + "\"" + "Lista_Curso.aspx" + "\"" + " role= " + "\"" + "button" + "\"" + " >Consultar todos os Cursos/editar</a></p>" +
-                                     "</div>" +
-                                     "<div class=" + "\"" + "col-lg-5" + "\"" + " style=" + "\"" + "border:1px solid gray; margin-right:2px; margin-bottom:2px; background-color: #D8D8D8; border-radius:1px;" + "\"" + " > " +
-                                     "<p><a class= " + "\"" + "btn btn-primary btn-lg" + "\"" + " href= " + "\"" + "Lista_Questao.aspx" + "\"" + " role= " + "\"" + "button" + "\"" + " >Consultar todas as Questoes/editar</a></p>" +
-                                     "</div>" +
-                                     "<div class=" + "\"" + "col-lg-5" + "\"" + " style=" + "\"" + "border:1px solid gray; margin-right:2px; margin-bottom:2px; background-color: #D8D8D8; border-radius:1px;" + "\"" + " > " +
-                                     "<p><a class= " + "\"" + "btn btn-primary btn-lg" + "\"" + " href= " + "\"" + "Lista_Unidade_de_Ensino.aspx" + "\"" + " role= " + "\"" + "button" + "\"" + " >Consultar todas as unidades de ensino/editar</a></p>" +
+                                     "<p><a class= " + "\"" + "btn btn-primary btn-lg" + "\"" + " href= " + "\"" + "Lista_Unidade_de_Ensino.aspx" + "\"" + " role= " + "\"" + "button" + "\"" + " >Unidade de ensino</a></p>" +
                                      "</div>";
                 }
                 else

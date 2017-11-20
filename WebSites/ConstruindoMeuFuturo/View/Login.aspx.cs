@@ -44,8 +44,11 @@ public partial class View_Usuario_Login : System.Web.UI.Page
         }
         catch (Exception)
         {
+            
             Labelerro.Text = "Erro inesperado do sistema, contate um administrador";
         }
 
     }
+
+
 }

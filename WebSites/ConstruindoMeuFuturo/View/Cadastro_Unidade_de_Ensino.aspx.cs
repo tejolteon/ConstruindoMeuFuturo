@@ -56,11 +56,6 @@ public partial class View_Cadastro_Unidade_de_Ensino : System.Web.UI.Page
         }
     }
 
-    protected void lbtMTarde_Click(object sender, EventArgs e)
-    {
-        Response.Redirect("Home.aspx");
-    }
-
     //Após selecionar estado ele adiciona as cidades do estado
     protected void DDLestado_SelectedIndexChanged(object sender, EventArgs e)
     {

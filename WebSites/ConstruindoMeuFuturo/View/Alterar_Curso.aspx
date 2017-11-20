@@ -12,7 +12,7 @@
         <link href="../General/Design.css" rel="stylesheet" />
         <div class="well container" style="margin-top:2%; max-width:60%;">
             <asp:Panel ID="Panel1" runat="server">
-                <asp:Label ID="Label1" runat="server" Text=""><h1>Cadastro de um novo Curso</h1></asp:Label>
+                <asp:Label ID="Label1" runat="server" Text=""><h1>Alterar dados do curso</h1></asp:Label>
                 <br/>
                 <div class="form-group">
 

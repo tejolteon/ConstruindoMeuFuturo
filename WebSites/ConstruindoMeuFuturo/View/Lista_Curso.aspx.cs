@@ -64,5 +64,38 @@ public partial class View_Lista_Curso : System.Web.UI.Page
         }
     }
 
+    protected void Btcadastrar_Click(object sender, EventArgs e)
+    {
+        curso = new CursoBean();
+        curso.Nome = Txtnomecurso.Text;
+        curso.Descricao = Txtdescricao.InnerText;
+        curso.Tipo = DDLcidade.SelectedValue;
 
+        cursocont = new CursoController();
+        try
+        {
+            cursocont.InserirNovoCurso(curso);
+            cursocont = new CursoController();
+           
+            var listaCursos = cursocont.ListaCurso();
+            if (listaCursos != null)
+            {
+                 this.grdDados.DataSource = listaCursos;
+                 this.grdDados.DataBind();
+
+            }
+            PanelCadastro.Visible = false;
+            btnPainelCadastrar.Visible = true;
+        }
+        catch (Exception)
+        {
+            throw;
+        }
+    }
+
+    protected void btnCadastrar_Click(object sender, EventArgs e)
+    {
+        PanelCadastro.Visible = true;
+        btnPainelCadastrar.Visible = false;
+    }
 }

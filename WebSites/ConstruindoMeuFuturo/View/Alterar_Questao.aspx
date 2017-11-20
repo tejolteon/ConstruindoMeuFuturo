@@ -11,7 +11,7 @@
                 <div class="form-group">
                     <label for="textoquestao">Texto:</label>
                     <br/>
-                    <textarea id="txtTextoquestao" name="S1" rows="3" runat="server" ></textarea>
+                    <textarea id="txtTextoquestao" CssClass="form-control"  style="width:100%;" name="S1" rows="3" runat="server" ></textarea>
                 </div>
                 <div class="form-group text-right">
                     <asp:Button ID="Btalterar" CssClass="btn btn-primary" Text="Cadastrar" runat="server" Width="100px" OnClick="Btalterar_Click"/>

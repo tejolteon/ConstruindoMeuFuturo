@@ -51,7 +51,7 @@
                     <label for="descricao">Descrição</label>
                 </div>
                 <br/>
-                <textarea id="Txtdescricao" cols="20" name="S1" rows="2" runat="server"></textarea><div class="form-group">
+                <textarea id="Txtdescricao" cols="20" name="S1" rows="2" runat="server" style="width:100%;"></textarea><div class="form-group">
                     <div class="text-right col-lg-6">
                         <asp:Button ID="Btalterar" CssClass="btn btn-primary" Text="Salvar" runat="server" width="100px" OnClick="Btalterar_Click" />
                     </div>

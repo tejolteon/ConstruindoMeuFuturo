@@ -19,6 +19,8 @@ public class RespostaController
         respostadao.InserirResposta(resposta);
     }
 
+  
+
     public void ExcluirResposta(int idresposta, int idquestao)
     {
         //Verifica se as Variaveis obrigatórias estão null
@@ -31,12 +33,6 @@ public class RespostaController
     {
         respostadao = new RespostaDao();
         respostadao.InserirRespostaQuestao(idresposta,idquestao);
-    }
-
-    public void InserirRespostaQuestaoCurso(int idresposta, int idquestao, int idcurso)
-    {
-        respostadao = new RespostaDao();
-        respostadao.InserirRespostaQuestaoCurso(idresposta,idquestao,idcurso);
     }
 
     public void ValidarResposta(RespostaBean resposta)

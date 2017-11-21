@@ -63,6 +63,20 @@ public class CursoController
         }
     }
 
+    public List<CursoBean> ListaCursoRespostaQuestao(int idquestao, int idresposta)
+    {
+        try
+        {
+            cursodao = new CursoDao();
+            var cursos = cursodao.ListarCursoRespostaQuestao(idquestao, idresposta);
+            return cursos;
+        }
+        catch
+        {
+            return null;
+        }
+    }
+
     public CursoBean ConsultarCursoId(int idcurso)
     {
         try
@@ -89,7 +103,15 @@ public class CursoController
             throw new UsuarioNaoCadastradoException();
         }
     }
-
+    public void InserirCursoRespostaQuestao(int idresposta, int idquestao, int idcurso)
+    {
+        cursodao = new CursoDao();
+        var linhasafetadas = cursodao.InserirCursoRespostaQuestao(idresposta, idquestao, idcurso);
+        if (linhasafetadas == 0)
+        {
+            throw new CursoNaoExcluidoException();
+        }
+    }
     public void ExcluirCurso(int idunidade,int idcurso)
     {
        
@@ -102,6 +124,15 @@ public class CursoController
         }
     }
 
+    public void ExcluirCursoRespostaQuestao(int idresposta, int idquestao, int idcurso)
+    {
+        cursodao = new CursoDao();
+        var linhasafetadas = cursodao.ExcluirRespostaQuestaoCurso(idresposta, idquestao, idcurso);
+        if (linhasafetadas == 0)
+        {
+            throw new CursoNaoExcluidoException();
+        }
+    }
     public void InserirCursoUnidade(int idcurso, int idunidade)
     {
        

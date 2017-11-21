@@ -103,38 +103,6 @@ public class RespostaDao
 
     }
 
-    public int InserirRespostaQuestaoCurso(int idresposta, int idquestao,int idcurso)
-    {
-        try
-        {
-            //Conectar com o banco
-            Conexao.Conectar();
-            var command = new SqlCommand();
-            command.Connection = Conexao.connection;
-            //Comando no banco
-            command.CommandText = "INSERT INTO TB_RESPOSTA_QUESTAO_has_TB_CURSO(Id_Curso,Id_Resposta, Id_Questao)" +
-                " VALUES(@idcurso,@idresposta,@idquestao)";
-            //Entrada doa parâmetros
-            command.Parameters.AddWithValue("@idresposta", idresposta);
-            command.Parameters.AddWithValue("@idquestao", idquestao);
-            command.Parameters.AddWithValue("@idquestao", idresposta);
-
-            //Executa e retorna o tanto de linhas que foram afetadas
-            return command.ExecuteNonQuery();
-        }
-        catch (Exception)
-        {
-
-            throw;
-        }
-        //encerrar conexão com o banco
-        finally
-        {
-            Conexao.Desconectar();
-        }
-
-    }
-
     public RespostaBean ConsultarRespostaPorId(int id)
     {
         try
@@ -294,4 +262,5 @@ public class RespostaDao
         }
 
     }
+   
 }

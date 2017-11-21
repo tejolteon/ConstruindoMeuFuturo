@@ -14,10 +14,12 @@ public partial class View_Adicionar_Resposta_Questao : System.Web.UI.Page
 
     private QuestaoController questaocont;
     private RespostaController respostacont;
+    private int idquestao;
 
     protected void Page_Load(object sender, EventArgs e)
     {
-     
+        idquestao = Convert.ToInt32(Request.QueryString["Id_Questao"]);
+
         //Verifica se o usuario está logado, se é Administrador e se ele está ativo
         try
         {
@@ -41,7 +43,7 @@ public partial class View_Adicionar_Resposta_Questao : System.Web.UI.Page
             try
             {
                 //Consulta o texto da questão
-                questao = questaocont.ConsultarQuestaoPorId(Convert.ToInt32(Request.QueryString["Id_Questao"]));
+                questao = questaocont.ConsultarQuestaoPorId(idquestao);
                 LabelQuestao.Text = "<h1>"+questao.Texto_questao+"</h1>";
             }
             catch {
@@ -57,7 +59,7 @@ public partial class View_Adicionar_Resposta_Questao : System.Web.UI.Page
     protected void CarregagrdRespostasJaAdicionadas()
     {
         //Carregar lista
-        var listaRepostasQuestao = respostacont.ListarRespostaQuestao(Convert.ToInt32(Request.QueryString["Id_Questao"]));
+        var listaRepostasQuestao = respostacont.ListarRespostaQuestao(idquestao);
         if (listaRepostasQuestao != null)
         {
 
@@ -92,8 +94,8 @@ public partial class View_Adicionar_Resposta_Questao : System.Web.UI.Page
                 resposta.Id_resposta = Convert.ToInt32(idResposta);
                 try
                 {
-                    respostacont.InserirRespostaQuestao(resposta.Id_resposta, Convert.ToInt32(Request.QueryString["Id_Questao"]));
-                    var listaRepostasQuestao = respostacont.ListarRespostaQuestao(Convert.ToInt32(Request.QueryString["Id_Questao"]));
+                    respostacont.InserirRespostaQuestao(resposta.Id_resposta, idquestao);
+                    var listaRepostasQuestao = respostacont.ListarRespostaQuestao(idquestao);
                     if (listaRepostasQuestao != null)
                     {
 
@@ -110,14 +112,7 @@ public partial class View_Adicionar_Resposta_Questao : System.Web.UI.Page
                 
         }
 
-        if (e.CommandName.Equals("Associar"))
-        {
-            string idResposta = e.CommandArgument.ToString();
-            if (!String.IsNullOrEmpty(idResposta))
-            {
-                this.Response.Redirect("Associar_Resposta_Questao_Curso.aspx?Id_Resposta=" + idResposta+"&Id_Questao="+Convert.ToInt32(Request.QueryString["Id_Questao"]));
-            }
-        }
+        
     }
     protected void grdRespostaQuestao_RowCommand(object sender, GridViewCommandEventArgs e)
     {
@@ -132,7 +127,7 @@ public partial class View_Adicionar_Resposta_Questao : System.Web.UI.Page
                 resposta.Id_resposta = Convert.ToInt32(idResposta);
                 try
                 {
-                    respostacont.ExcluirResposta(resposta.Id_resposta, Convert.ToInt32(Request.QueryString["Id_Questao"]));
+                    respostacont.ExcluirResposta(resposta.Id_resposta, idquestao);
                     //Atualiza grd com os já cadastrados
                     CarregagrdRespostasJaAdicionadas();
                 }
@@ -140,9 +135,19 @@ public partial class View_Adicionar_Resposta_Questao : System.Web.UI.Page
 
                 }
             }
+        }
 
+        if (e.CommandName.Equals("Associar"))
+        {
+            string idResposta = e.CommandArgument.ToString();
+            if (!String.IsNullOrEmpty(idResposta))
+            {
+                this.Response.Redirect("Associar_Questao_Resposta_Curso.aspx?Id_Resposta=" + idResposta + "&Id_Questao=" + idquestao);
+            }
         }
     }
+
+
     protected void Txtpesquisa_TextChanged(object sender, EventArgs e)
     {
         this.grdDados.DataSource = null;

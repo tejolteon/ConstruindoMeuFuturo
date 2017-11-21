@@ -309,13 +309,13 @@ public class CursoDao
             var command = new SqlCommand();
             command.Connection = Conexao.connection;
             //Comando no banco
-            command.CommandText = "SELECT * FROM TB_CURSO WHERE  Nome_Curso like @nomecurso";
+            command.CommandText = "SELECT * FROM TB_CURSO WHERE  Nome_Curso like @nomecurso ORDERBY Nome_Curso";
             //Entrada doa parâmetros
             command.Parameters.AddWithValue("@nomecurso", "%"+nomecurso+"%");
             //Executar o comando 
             var reader = command.ExecuteReader();
             //Cria List
-            var cursosareas = new List<CursoBean>();
+            var cursos = new List<CursoBean>();
             //Inserir os valores do resultado no bean
             while (reader.Read())
             {
@@ -324,9 +324,9 @@ public class CursoDao
                 curso.Nome = Convert.ToString(reader["Nome_Curso"]);
                 curso.Tipo = Convert.ToString(reader["Tipo_Curso"]);
                 curso.Descricao = Convert.ToString(reader["Descricao_Curso"]);
-                cursosareas.Add(curso);
+                cursos.Add(curso);
             }
-            return cursosareas;
+            return cursos;
         }
         catch (Exception)
         {
@@ -341,6 +341,114 @@ public class CursoDao
 
     }
 
-  
+    public List<CursoBean> ListarCursoRespostaQuestao(int idquestao, int idresposta)
+    {
+        try
+        {
+            //Conectar com o banco
+            Conexao.Conectar();
+            var command = new SqlCommand();
+            command.Connection = Conexao.connection;
+            //Comando no banco
+            command.CommandText = "SELECT A.Id_Curso, A.Nome_Curso, A.Tipo_Curso FROM TB_CURSO A INNER JOIN TB_RESPOSTA_QUESTAO_has_TB_CURSO B "+
+                                "ON A.Id_Curso = B.Id_Curso "+
+                                "WHERE B.Id_Questao = @idquestao "+
+                                "AND "+
+                                "B.Id_Resposta = @idresposta";
+            //Entrada doa parâmetros
+            command.Parameters.AddWithValue("@idquestao", idquestao);
+            command.Parameters.AddWithValue("@idresposta", idresposta);
+            //Executar o comando 
+            var reader = command.ExecuteReader();
+            //Cria list
+            var cursos = new List<CursoBean>();
+            //Inserir os valores do resultado no bean
+            while (reader.Read())
+            {
+                var curso = new CursoBean();
+                curso.Id = Convert.ToInt32(reader["Id_Curso"]);
+                curso.Nome = Convert.ToString(reader["Nome_Curso"]);
+                curso.Tipo = Convert.ToString(reader["Tipo_Curso"]);
+                cursos.Add(curso);
+            }
+            return cursos;
+        }
+        catch (Exception)
+        {
+
+            throw;
+        }
+        //encerrar conexão com o banco
+        finally
+        {
+            Conexao.Desconectar();
+        }
+
+    }
+
+    public int ExcluirRespostaQuestaoCurso(int idresposta, int idquestao, int idcurso)
+    {
+        try
+        {
+            //Conectar com o banco
+            Conexao.Conectar();
+            var command = new SqlCommand();
+            command.Connection = Conexao.connection;
+            //Comando no banco
+            command.CommandText = "DELETE FROM TB_RESPOSTA_QUESTAO_has_TB_CURSO" +
+                " WHERE Id_Curso = @idcurso AND Id_Resposta = @idresposta AND Id_Questao = @idquestao";
+            //Entrada doa parâmetros
+            command.Parameters.AddWithValue("@idresposta", idresposta);
+            command.Parameters.AddWithValue("@idquestao", idquestao);
+            command.Parameters.AddWithValue("@idcurso", idcurso);
+
+            //Executa e retorna o tanto de linhas que foram afetadas
+            return command.ExecuteNonQuery();
+        }
+        catch (Exception)
+        {
+
+            throw;
+        }
+        //encerrar conexão com o banco
+        finally
+        {
+            Conexao.Desconectar();
+        }
+
+    }
+
+    public int InserirCursoRespostaQuestao(int idresposta, int idquestao, int idcurso)
+    {
+        try
+        {
+            //Conectar com o banco
+            Conexao.Conectar();
+            var command = new SqlCommand();
+            command.Connection = Conexao.connection;
+            //Comando no banco
+            command.CommandText = "INSERT INTO TB_RESPOSTA_QUESTAO_has_TB_CURSO(Id_Curso,Id_Resposta, Id_Questao)" +
+                " VALUES(@idcurso,@idresposta,@idquestao)";
+            //Entrada doa parâmetros
+            command.Parameters.AddWithValue("@idresposta", idresposta);
+            command.Parameters.AddWithValue("@idquestao", idquestao);
+            command.Parameters.AddWithValue("@idcurso", idcurso);
+
+            //Executa e retorna o tanto de linhas que foram afetadas
+            return command.ExecuteNonQuery();
+        }
+        catch (Exception)
+        {
+
+            throw;
+        }
+        //encerrar conexão com o banco
+        finally
+        {
+            Conexao.Desconectar();
+        }
+
+    }
+
 
 }

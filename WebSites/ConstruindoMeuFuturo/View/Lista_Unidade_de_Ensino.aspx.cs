@@ -59,7 +59,7 @@ public partial class View_Lista_Unidade_de_Ensino : System.Web.UI.Page
         {
             string idUnidade = e.CommandArgument.ToString();
             if (!String.IsNullOrEmpty(idUnidade))
-                this.Response.Redirect("Adicionar_Excluir_Curso_Unidade.aspx?Id_Unidade=" + idUnidade);
+                this.Response.Redirect("Curso_Unidade.aspx?Id_Unidade=" + idUnidade);
         }
     }
     //Após selecionar estado ele adiciona as cidades do estado

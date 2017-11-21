@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class View_Adicionar_Excluir_Curso_Unidade : System.Web.UI.Page
+public partial class View_Curso_Unidade : System.Web.UI.Page
 {
 
 

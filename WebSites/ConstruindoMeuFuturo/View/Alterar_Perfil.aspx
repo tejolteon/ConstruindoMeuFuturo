@@ -52,16 +52,6 @@
                     </asp:DropDownList>
                 </div>
                 <br/>
-                
-                <!-- Lista da area de interesse -->
-                <div class="form-group">
-                    <label for="area">Area de Interesse</label>
-                    <asp:DropDownList ID="DDLarea" runat="server" CssClass="form-control">
-                        <asp:ListItem Text="Selecione uma area" Value="0"/>
-                        
-                    </asp:DropDownList>
-                </div>
-                <br/>
                 <div class="form-group">
                     <div class="text-left col-lg-6">
                         <asp:LinkButton ID="lbtMTarde" runat="server" CssClass="text-left" OnClick="lbtMTarde_Click">Mais Tarde</asp:LinkButton>

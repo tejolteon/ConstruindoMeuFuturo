@@ -34,9 +34,8 @@ public partial class View_Perfil : System.Web.UI.Page
         //Label com nome do usuario
         lbNome.Text = Session["usuario"].ToString();
         int UsuarioId = int.Parse(Session["usuarioId"].ToString());
-        //verifica se o status do usuario esta ativo
-        if (Session["UsuarioStatus"].ToString() == "A")
-        {
+            //verifica se o status do usuario esta ativo
+           // if (Session["UsuarioStatus"].ToString() == "A") {
             try
             {
                 //Verifica se ele é um administrador
@@ -63,6 +62,7 @@ public partial class View_Perfil : System.Web.UI.Page
                         {
                             ltPainel.Text = "<div>Complete seu cadastro para receber opções de curso" +
                                 "<p><a class= " + "\"" + "btn btn-primary btn-lg" + "\"" + " href= " + "\"" + "Cadastro_Perfil.aspx" + "\"" + " role= " + "\"" + "button" + "\"" + " >Concluir Cadastro »</a></p></div>";
+                            lbtAlterarPerfil.Visible = false;
                         }
                     }
                     catch
@@ -116,7 +116,7 @@ public partial class View_Perfil : System.Web.UI.Page
                 }
             }
             catch { }
-        }
+       // }
     }
    
 

@@ -40,34 +40,6 @@ public class PerfilDao
         }
     }
 
-    public int InserirPerfilArea(PerfilBean perfil, AreaBean area) {
-        try
-        {
-            //Conectar com o banco
-            Conexao.Conectar();
-            var command = new SqlCommand();
-            command.Connection = Conexao.connection;
-            //Comando no banco
-            command.CommandText = "INSERT INTO TB_PERFIL_has_TB_AREA(Id_Perfil,Id_Area) VALUES (@id_perfil,@id_Area)";
-            //Entrada doa parâmetros
-            command.Parameters.AddWithValue("@id_perfil", perfil.Id_perfil);
-            command.Parameters.AddWithValue("@id_area", area.Id);
-            //Executa e retorna o tanto de linhas que foram afetadas
-            return command.ExecuteNonQuery();
-        }
-        catch (Exception)
-        {
-
-            throw;
-        }
-        //encerrar conexão com o banco
-        finally
-        {
-            Conexao.Desconectar();
-        }
-
-    }
-
     public int InserirPerfilCidade(PerfilBean perfil, CidadeBean cidade)
     {
         try
@@ -154,32 +126,6 @@ public class PerfilDao
         }
     }
 
-    public int AlterarPerfilArea(PerfilBean perfil, AreaBean area) {
-        try
-        {
-            //Conectar com o banco
-            Conexao.Conectar();
-            var command = new SqlCommand();
-            command.Connection = Conexao.connection;
-            //Comando no banco
-            command.CommandText = "UPDATE TB_PERFIL_has_TB_AREA SET  Id_Area = @id_area WHERE Id_Perfil = @id_perfil";
-            //Entrada doa parâmetros
-            command.Parameters.AddWithValue("@id_perfil", perfil.Id_perfil);
-            command.Parameters.AddWithValue("@id_area", area.Id);
-            //Executa e retorna o tanto de linhas que foram afetadas
-            return command.ExecuteNonQuery();
-        }
-        catch (Exception)
-        {
-
-            throw;
-        }
-        //encerrar conexão com o banco
-        finally
-        {
-            Conexao.Desconectar();
-        }
-    }
     public PerfilBean ConsultarPerfilPorIdUsuario(int idusuario)
     {
         try

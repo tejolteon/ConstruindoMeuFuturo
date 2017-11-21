@@ -30,14 +30,6 @@ public partial class View_Alterar_Perfil : System.Web.UI.Page
         //Verifica se a lista de areas está vazia antes de executar o código
         if (!Page.IsPostBack)
         {
-            areacont = new AreaController();
-            //Lista todas as areas
-            foreach (AreaBean area in this.areacont.ListarAreas())
-            {
-                DDLarea.Items.Add(new ListItem(area.Nome, Convert.ToString(area.Id)));
-            }
-            //Carrega as informações que já contem no perfil
-
             CarregarCamposAlterar();
         }
         
@@ -81,12 +73,6 @@ public partial class View_Alterar_Perfil : System.Web.UI.Page
         }
         catch {
 
-        }
-
-        //Seleciona a area
-        if (area.Id != 0)
-        {
-            DDLarea.SelectedValue = Convert.ToString(area.Id);
         }
 
         //Seleciona a data de nascimento cadastrada no BD
@@ -143,11 +129,7 @@ public partial class View_Alterar_Perfil : System.Web.UI.Page
         perfil.Datanascimento = Txtdatanascimento.Text;
         perfil.Escolaridade = DDLescolaridade.SelectedValue;
 
-        //Pegando os ids nos campos
-        area = new AreaBean();
-        area.Id = Convert.ToInt32(DDLarea.SelectedValue);
-        
-     
+        //Pegando o id no campo
         cidade = new CidadeBean();
         cidade.Id_cidade = Convert.ToInt32(DDLcidade.SelectedValue);
             
@@ -159,7 +141,7 @@ public partial class View_Alterar_Perfil : System.Web.UI.Page
             //Consulta o Usuario pelo ID para pegar as informações do usuario
             usuario = usuCont.ConsultarUsuarioPorID(usuario.Id);
 
-            perfcont.AlterarPerfil(usuario, perfil, area, cidade,idcidadeantiga);
+            perfcont.AlterarPerfil(usuario, perfil, cidade,idcidadeantiga);
             Response.Redirect("Perfil.aspx");
         }
         catch (Exception)

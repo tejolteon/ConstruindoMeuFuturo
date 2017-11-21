@@ -20,17 +20,20 @@ public partial class View_Cadastro : System.Web.UI.Page
         usuario.Nome = txtNome.Text;
         usuario.Email = Txtemail.Text;
         usuario.Senha = TxtSenha.Text;
-        usuario.Confirmarsenha = TxtConfirmarSenha.Text;       
+        usuario.Confirmarsenha = TxtConfirmarSenha.Text;
+        usuario.Tipo = "P"; //P = Pendente verificação de e-mail(**Pendente para fazer módulo)
 
         //Mandando para o controler
         usucont = new UsuarioController();
         try
         {
+       
             usucont.InserirNovoUsuario(usuario);
             usuario = usucont.ConsultarUsuario(usuario.Email, usuario.Senha);
             // criando sessão de usuário
             Session["usuario"] = usuario.Nome;
             Session["usuarioId"] = usuario.Id;
+            Session["UsuarioStatus"] = usuario.Status;
             Response.Redirect("Cadastro_Perfil.aspx");
         }
         catch (SenhaUsuarioInvalidaException)

@@ -11,8 +11,7 @@
         <link href="../General/Design.css" rel="stylesheet" />
         <div class="col-lg-12">
             
-        <div class="container-fluid well-sm col-lg-2 col-sm-5 col-xs-12" style="margin-top:2%; background-color: white;">
-            
+        <div class="container-fluid well-sm col-lg-2 col-sm-5 col-xs-12" style="margin-top:2%; background-color: white;"> 
             <asp:Panel ID="pnInfo" runat="server">p
                 <h1>Meu Perfil</h1>
                 <div class="col-lg-12">

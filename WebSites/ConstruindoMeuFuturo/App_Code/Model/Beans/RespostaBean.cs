@@ -10,9 +10,8 @@ public class RespostaBean
 {
     private int id;
     private String texto;
-
     private QuestaoBean questao;
-    private PerfilBean perfil;
+
 
     public int Id_resposta
     {
@@ -37,6 +36,19 @@ public class RespostaBean
         set
         {
             texto = value;
+        }
+    }
+
+    public QuestaoBean Questao
+    {
+        get
+        {
+            return questao;
+        }
+
+        set
+        {
+            questao = value;
         }
     }
 }

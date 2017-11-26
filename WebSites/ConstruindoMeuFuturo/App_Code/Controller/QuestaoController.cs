@@ -42,7 +42,18 @@ public class QuestaoController
         questoes = questaodao.ListarQuestao();
 
         return questoes;
+  
     }
+
+    public QuestaoBean ConsultarQuestaoNaorespondia(int idquestao)
+    {
+        questaodao = new QuestaoDao();
+        questao = questaodao.ConsultarQuestaoNaoRespondida(idquestao);
+        return questao;
+    }
+
+
+
 
     public List<QuestaoBean> ListarQuestaoTexto(String texto)
     {

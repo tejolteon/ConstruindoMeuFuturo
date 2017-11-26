@@ -11,7 +11,7 @@ public class PerfilController
     //**!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!ATENÇÃO ALTERAR O ALTERAR AREA E INSERIR AREA, POQUE ESTÁ N * N no MER
 
     private PerfilDao perfildao;
-    public void InserirNovoPerfil(UsuarioBean usuario, PerfilBean perfil, CidadeBean cidade)
+    public int InserirNovoPerfil(UsuarioBean usuario, PerfilBean perfil, CidadeBean cidade)
     {
        //Verifica se as Variaveis obrigatórias estão null
         ValidarPerfil(usuario);
@@ -30,8 +30,22 @@ public class PerfilController
         //?????? fazer mensagens de erros para inser area e cidade depois
 
         perfildao.InserirPerfilCidade(perfil, cidade);
+        return id_perfil;
     }
 
+    public void InserirPerfilArea(PerfilBean perfil, AreaBean area)
+    {
+        perfildao = new PerfilDao();
+        perfildao.InserirPerfilArea(perfil, area);
+
+    }
+
+    public void ExcluirPerfilArea(PerfilBean perfil)
+    {
+        perfildao = new PerfilDao();
+        perfildao.ExcluirPerfilArea(perfil);
+
+    }
     public void ValidarPerfil(UsuarioBean usu)
     {
         //Verifica se as variaveis estão nulas
@@ -52,6 +66,7 @@ public class PerfilController
         perfildao.AlterarPerfilCidade(perfil, cidade, idcidadeantiga);
       
     }
+
 
     public PerfilBean ConsultarPerfilPorIdUsuario(int idusuario) {
         try

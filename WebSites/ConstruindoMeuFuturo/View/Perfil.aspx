@@ -12,7 +12,7 @@
         <div class="col-lg-12">
             
         <div class="container-fluid well-sm col-lg-2 col-sm-5 col-xs-12" style="margin-top:2%; background-color: white;"> 
-            <asp:Panel ID="pnInfo" runat="server">p
+            <asp:Panel ID="pnInfo" runat="server">
                 <h1>Meu Perfil</h1>
                 <div class="col-lg-12">
                     <asp:Image ID="imgPerfil" runat="server" Height="200" Width="150"/>
@@ -32,11 +32,10 @@
         </div>
             <div class="col-lg-1 col-sm-1"></div>
         <div class="container well-lg col-lg-9 col-sm-6 col-xs-12" style="">
-            <!-- !!!!!! A TABELA NÃO ESTÁ RESPONSIVA !!!!!! PENDENTE SOLUÇÃO -->
             <asp:Panel ID="pnPerfil" runat="server" class="row">
-             <asp:Label ID="LabelTop" runat="server" Text="<h1>Sugestões de Cursos</h1>"></asp:Label>
-                   
-                   <asp:Literal ID="ltPainel" runat="server"></asp:Literal>      
+                <asp:Label ID="LabelTop" runat="server" Text="<h1>Sugestões de Cursos</h1>"></asp:Label>
+                   <!-- Literal que recebe cursos ou tela administrativa -->
+                <asp:Literal ID="ltPainel" runat="server"></asp:Literal>      
              </asp:Panel>
         </div>
         </div>

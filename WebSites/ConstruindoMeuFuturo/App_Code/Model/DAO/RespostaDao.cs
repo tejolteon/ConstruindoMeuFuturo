@@ -42,67 +42,6 @@ public class RespostaDao
 
     }
 
-    public int InserirRespostaQuestao(int idresposta, int idquestao)
-    {
-        try
-        {
-            //Conectar com o banco
-            Conexao.Conectar();
-            var command = new SqlCommand();
-            command.Connection = Conexao.connection;
-            //Comando no banco
-            command.CommandText = "INSERT INTO TB_RESPOSTA_QUESTAO(Id_Resposta, Id_Questao) " +
-                "VALUES (@id_resposta, @id_questao)";
-            //Entrada doa parâmetros
-            command.Parameters.AddWithValue("@id_resposta", idresposta);
-            command.Parameters.AddWithValue("@id_questao", idquestao);
-
-            //Executa e retorna o tanto de linhas que foram afetadas
-            return command.ExecuteNonQuery();
-        }
-        catch (Exception)
-        {
-
-            throw;
-        }
-        //encerrar conexão com o banco
-        finally
-        {
-            Conexao.Desconectar();
-        }
-
-    }
-
-    public int ExcluirRespostaQuestao(int idresposta, int idquestao)
-    {
-        try
-        {
-            //Conectar com o banco
-            Conexao.Conectar();
-            var command = new SqlCommand();
-            command.Connection = Conexao.connection;
-            //Comando no banco
-            command.CommandText = "DELETE FROM TB_RESPOSTA_QUESTAO WHERE Id_Resposta = @idresposta AND Id_Questao = @idquestao";
-            //Entrada doa parâmetros
-            command.Parameters.AddWithValue("@idresposta", idresposta);
-            command.Parameters.AddWithValue("@idquestao", idquestao);
-
-            //Executa e retorna o tanto de linhas que foram afetadas
-            return command.ExecuteNonQuery();
-        }
-        catch (Exception)
-        {
-
-            throw;
-        }
-        //encerrar conexão com o banco
-        finally
-        {
-            Conexao.Desconectar();
-        }
-
-    }
-
     public RespostaBean ConsultarRespostaPorId(int id)
     {
         try
@@ -227,8 +166,8 @@ public class RespostaDao
             var command = new SqlCommand();
             command.Connection = Conexao.connection;
             //Comando no banco
-            command.CommandText = "SELECT A.Texto_Resposta, A.Id_Resposta FROM TB_RESPOSTA A "+
-                                "INNER JOIN TB_RESPOSTA_QUESTAO B "+
+            command.CommandText = "SELECT A.Texto_Resposta, A.Id_Resposta FROM TB_RESPOSTA A " +
+                                "INNER JOIN TB_QUESTIONARIO B "+
                                 "ON A.Id_Resposta = B.Id_Resposta "+
                                 "INNER JOIN TB_QUESTAO C "+
                                 "ON B.Id_Questao = C.Id_Questao " +

@@ -25,21 +25,14 @@ public class AreaController
         return area;
     }
 
-    public AreaBean ConsultarAreaPerfil(int idperfil)
+    public List<AreaBean> ListarAreaPerfil(int idperfil)
     {
         areadao = new AreaDao();
-        area = areadao.ConsultarIdAreaPerfil(idperfil);
-        try {
-            //para retornar também o nome da área
-            area = areadao.ConsultarAreaPorId(area.Id);
-            return area;
-        }
-        catch
-        {
-            area.Id = 0;
-            return area;
-        }
-        
+        var areas = new List<AreaBean>();
+        areas = areadao.ListarAreaPerfil(idperfil);
+
+        return areas;
+
     }
 
     /*Teste com list POR ser N * N no MER

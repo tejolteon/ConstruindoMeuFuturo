@@ -53,7 +53,7 @@
                 <div class="form-group">
                     <asp:TextBox ID="Txtpesquisa"  CssClass="form-control"  width="100%"  Height="40px" runat="server" AutoPostBack="True" OnTextChanged="Txtpesquisa_TextChanged" placeholder="Pesquisar por nome"></asp:TextBox>
                 </div>
-                <asp:GridView ID="grdDados" runat="server" AutoGenerateColumns="false" OnRowCommand="grdDados_RowCommand"  width="100%">
+                <asp:GridView ID="grdDados" runat="server" AutoGenerateColumns="False" OnRowCommand="grdDados_RowCommand"  width="100%" BorderWidth="0px">
                     <Columns>        
                         <asp:BoundField DataField="Nome" HeaderText="Nome" />
                         <asp:BoundField DataField="Tipo" HeaderText="Tipo" />

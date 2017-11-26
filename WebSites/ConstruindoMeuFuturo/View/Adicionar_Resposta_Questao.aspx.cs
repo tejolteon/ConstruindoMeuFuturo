@@ -14,6 +14,10 @@ public partial class View_Adicionar_Resposta_Questao : System.Web.UI.Page
 
     private QuestaoController questaocont;
     private RespostaController respostacont;
+
+    private QuestionarioBean questionario;
+    private QuestionarioController questionariocont;
+
     private int idquestao;
 
     protected void Page_Load(object sender, EventArgs e)
@@ -58,6 +62,7 @@ public partial class View_Adicionar_Resposta_Questao : System.Web.UI.Page
 
     protected void CarregagrdRespostasJaAdicionadas()
     {
+        respostacont = new RespostaController();
         //Carregar lista
         var listaRepostasQuestao = respostacont.ListarRespostaQuestao(idquestao);
         if (listaRepostasQuestao != null)
@@ -88,21 +93,14 @@ public partial class View_Adicionar_Resposta_Questao : System.Web.UI.Page
         {
             string idResposta = e.CommandArgument.ToString();
             if (!String.IsNullOrEmpty(idResposta)) {
-                respostacont = new RespostaController();
-                resposta = new RespostaBean();
+                questionariocont = new QuestionarioController();
+                questionario = new QuestionarioBean();
 
-                resposta.Id_resposta = Convert.ToInt32(idResposta);
+                questionario.Id_resposta = Convert.ToInt32(idResposta);
                 try
                 {
-                    respostacont.InserirRespostaQuestao(resposta.Id_resposta, idquestao);
-                    var listaRepostasQuestao = respostacont.ListarRespostaQuestao(idquestao);
-                    if (listaRepostasQuestao != null)
-                    {
-
-                        this.grdRespostaQuestao.DataSource = listaRepostasQuestao;
-                        this.grdRespostaQuestao.DataBind();
-
-                    }
+                    questionariocont.InserirQuestionario(questionario.Id_resposta, idquestao);
+                    CarregagrdRespostasJaAdicionadas();
                 }
                 catch
                 {
@@ -121,13 +119,14 @@ public partial class View_Adicionar_Resposta_Questao : System.Web.UI.Page
             string idResposta = e.CommandArgument.ToString();
             if (!String.IsNullOrEmpty(idResposta))
             {
-                respostacont = new RespostaController();
-                resposta = new RespostaBean();
 
-                resposta.Id_resposta = Convert.ToInt32(idResposta);
+                questionariocont = new QuestionarioController();
+                questionario = new QuestionarioBean();
+
+                questionario.Id_resposta = Convert.ToInt32(idResposta);
                 try
                 {
-                    respostacont.ExcluirResposta(resposta.Id_resposta, idquestao);
+                    questionariocont.ExcluirQuestionario(questionario.Id_resposta, idquestao);
                     //Atualiza grd com os já cadastrados
                     CarregagrdRespostasJaAdicionadas();
                 }

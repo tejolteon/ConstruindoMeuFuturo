@@ -11,6 +11,7 @@ public class QuestaoBean
     private int id;
     private string texto;
 
+
     public int Id_questao
     {
         get
@@ -36,4 +37,6 @@ public class QuestaoBean
             texto = value;
         }
     }
+
+
 }

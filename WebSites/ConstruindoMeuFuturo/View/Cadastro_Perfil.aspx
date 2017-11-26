@@ -50,8 +50,13 @@
                     <asp:DropDownList ID="DDLcidade" runat="server" CssClass="form-control">
                         <asp:ListItem Text="Selecione Uma cidade" Value="0"/>
                     </asp:DropDownList>
+                    <label for="Area">Selecione as matérias que você mais gostava</label>
+                    <asp:CheckBoxList ID="CheckListArea" runat="server">
+                    </asp:CheckBoxList>
                 </div>
+               
                 <br/>
+            </asp:Panel>
                 <div class="form-group">
                     <div class="text-left col-lg-6">
                         <asp:LinkButton ID="lbtMTarde" runat="server" CssClass="text-left" OnClick="lbtMTarde_Click">Mais Tarde</asp:LinkButton>
@@ -62,7 +67,7 @@
                 </div>
                 <br/>
                 <asp:Label id="Labelerro" runat="server"></asp:Label>
-            </asp:Panel>
+            
         </div>
     </body>
     </html>

@@ -58,7 +58,8 @@ public partial class View_Perfil : System.Web.UI.Page
                     try
                     {
                         perfil = perfcont.ConsultarPerfilPorIdUsuario(UsuarioId);
-                        if (perfil == null)
+                        Session["PerfilId"] = perfil.Id_perfil;
+                    if (perfil == null)
                         {
                             ltPainel.Text = "<div>Complete seu cadastro para receber opções de curso" +
                                 "<p><a class= " + "\"" + "btn btn-primary btn-lg" + "\"" + " href= " + "\"" + "Cadastro_Perfil.aspx" + "\"" + " role= " + "\"" + "button" + "\"" + " >Concluir Cadastro »</a></p></div>";
@@ -69,14 +70,14 @@ public partial class View_Perfil : System.Web.UI.Page
                     {
 
                     }
+                try
+                {
+                    //Consultando o ID do Perfil
 
-
-
-                    try
+                    perfil = perfcont.ConsultarPerfilPorIdUsuario(UsuarioId);
+                    foreach (AreaBean area in this.areacont.ListarAreaPerfil(perfil.Id_perfil))
                     {
-                        //Consultando o ID do Perfil
-                        perfil = perfcont.ConsultarPerfilPorIdUsuario(UsuarioId);
-                        area = areacont.ConsultarAreaPerfil(perfil.Id_perfil);
+
                         try
                         {
                             foreach (CursoBean curso in this.cursocont.ListaCursoPorArea(area.Id))
@@ -109,10 +110,11 @@ public partial class View_Perfil : System.Web.UI.Page
                             throw new ErroTabelaCursoException("Erro ao preencher tabela");
                         }
                     }
-                    catch
-                    {
+                }
+                catch
+                {
 
-                    }
+                }
                 }
             }
             catch { }

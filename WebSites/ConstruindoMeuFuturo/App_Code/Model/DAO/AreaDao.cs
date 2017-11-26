@@ -109,7 +109,7 @@ public class AreaDao
 
     }
 
-    public AreaBean ConsultarIdAreaPerfil(int idperfil) {
+    public List<AreaBean> ListarAreaPerfil(int idperfil) {
         try
         {
             //Conectar com o banco
@@ -117,19 +117,23 @@ public class AreaDao
             var command = new SqlCommand();
             command.Connection = Conexao.connection;
             //Comando no banco
-            command.CommandText = "SELECT * FROM TB_PERFIL_has_TB_AREA WHERE Id_Perfil = @id_perfil";
+            command.CommandText = "SELECT * FROM TB_PERFIL_has_TB_AREA A INNER JOIN TB_AREA B ON "+ 
+            "B.Id_Area = A.Id_Area WHERE Id_Perfil = @id_perfil";
             //Entrada doa parâmetros
             command.Parameters.AddWithValue("@id_perfil", idperfil);
             //Executar o comando 
             var reader = command.ExecuteReader();
-            AreaBean area = null;
+            //Cria list
+            var areas = new List<AreaBean>();
             //Inserir os valores do resultado no bean
             while (reader.Read())
             {
-                area = new AreaBean();
+                var area = new AreaBean();
                 area.Id = Convert.ToInt32(reader["Id_Area"]);
+                area.Nome = Convert.ToString(reader["Nome_Area"]);
+                areas.Add(area);
             }
-            return area;
+            return areas;
         }
         catch (Exception)
         {
@@ -141,6 +145,7 @@ public class AreaDao
         {
             Conexao.Desconectar();
         }
+
 
     }
 

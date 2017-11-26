@@ -17,24 +17,41 @@ public partial class View_Alterar_Perfil : System.Web.UI.Page
     private UsuarioController usuCont;
     private AreaController areacont;
     private CidadeController cidadecont;
+    int cont;
     int idcidadeantiga;//? caso depois façamos o cadastro de mais de uma cidade precisara saber qual estava cadastrada antes para saber qual delas deve trocar
 
     protected void Page_Load(object sender, EventArgs e)
     {
         //Verifica se o usuario está logado, e se ele está ativo
-       
+
         if (Session["usuario"] == null || Session["UsuarioStatus"].ToString() != "A")
         {
             Response.Redirect("Home.aspx");
         }
         //Verifica se a lista de areas está vazia antes de executar o código
+       
+
+        areacont = new AreaController();
+        //Lista todas as areas
+        foreach (AreaBean area in this.areacont.ListarAreas())
+        {
+            ListItem itemarea = new ListItem();
+            itemarea.Text = area.Nome;
+            itemarea.Value = Convert.ToString(area.Id);
+            CheckBox asdas = new CheckBox();
+            CheckListArea.Items.Add(itemarea);
+            cont++;
+        }
+
         if (!Page.IsPostBack)
         {
             CarregarCamposAlterar();
         }
-        
+
+
     }
-    private void CarregarCamposAlterar() {
+    private void CarregarCamposAlterar()
+    {
         perfil = new PerfilBean();
         cidade = new CidadeBean();
         area = new AreaBean();
@@ -52,26 +69,38 @@ public partial class View_Alterar_Perfil : System.Web.UI.Page
             cidadecont = new CidadeController();
             cidade = cidadecont.ConsultaCidadePerfil(perfil.Id_perfil);
         }
-        catch {
+        catch
+        {
 
         }
 
         if (cidade.Id_estado != 0)
         {
             idcidadeantiga = cidade.Id_cidade;//Não funcional ainda(Servira para quando a tabela estiver N * N)
-           
             //Seleciona o estado que já estava cadastrado no BD
             DDLestado.SelectedValue = Convert.ToString(cidade.Id_estado);
         }
-        
-        
+
         //Consulta Area_Perfil
         try
         {
             areacont = new AreaController();
-            area = areacont.ConsultarAreaPerfil(perfil.Id_perfil);
+            foreach (AreaBean area1 in this.areacont.ListarAreaPerfil(perfil.Id_perfil))
+            {
+                for (int i = 0; i < cont; i++)
+                {
+                    
+                    bool selecionado = CheckListArea.Items[i].Selected;
+                    if (Convert.ToInt16(CheckListArea.Items[i].Value) == area1.Id)
+                    {
+                        CheckListArea.Items[i].Selected = true;
+                    }
+
+                }
+            }            
         }
-        catch {
+        catch
+        {
 
         }
 
@@ -86,7 +115,8 @@ public partial class View_Alterar_Perfil : System.Web.UI.Page
         {
             CarregarCidades();
         }
-        catch {
+        catch
+        {
 
         }
 
@@ -132,16 +162,28 @@ public partial class View_Alterar_Perfil : System.Web.UI.Page
         //Pegando o id no campo
         cidade = new CidadeBean();
         cidade.Id_cidade = Convert.ToInt32(DDLcidade.SelectedValue);
-            
+
         //Controller Usuario
         usuCont = new UsuarioController();
-        
+
         try
-        {       
+        {
             //Consulta o Usuario pelo ID para pegar as informações do usuario
             usuario = usuCont.ConsultarUsuarioPorID(usuario.Id);
 
-            perfcont.AlterarPerfil(usuario, perfil, cidade,idcidadeantiga);
+            perfcont.AlterarPerfil(usuario, perfil, cidade, idcidadeantiga);
+            perfcont.ExcluirPerfilArea(perfil);
+            for (int i = 0; i < cont; i++)
+            {
+                bool selecionado = CheckListArea.Items[i].Selected;
+                if (selecionado == true)
+                {
+                    area = new AreaBean();
+                    area.Id = Convert.ToInt16(CheckListArea.Items[i].Value);
+                    perfcont.InserirPerfilArea(perfil, area);
+                }
+
+            }
             Response.Redirect("Perfil.aspx");
         }
         catch (Exception)
@@ -162,3 +204,5 @@ public partial class View_Alterar_Perfil : System.Web.UI.Page
         CarregarCidades();
     }
 }
+
+    

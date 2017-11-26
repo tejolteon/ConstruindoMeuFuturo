@@ -13,8 +13,11 @@ public partial class View_Cadastro_Perfil : System.Web.UI.Page
     private PerfilBean perfil;
     private CidadeBean cidade;
     private UsuarioBean usuario;
+    private AreaBean area;
     private UsuarioController usuCont;
     private CidadeController cidadecont;
+    private AreaController areacont;
+    int cont;
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -24,6 +27,18 @@ public partial class View_Cadastro_Perfil : System.Web.UI.Page
             {
             Response.Redirect("Home.aspx");
         }
+
+        areacont = new AreaController();
+        //Lista todas as areas
+        foreach (AreaBean area in this.areacont.ListarAreas())
+        {
+            ListItem itemarea = new ListItem();
+            itemarea.Text = area.Nome;
+            itemarea.Value = Convert.ToString(area.Id);
+            CheckBox asdas = new CheckBox();
+            CheckListArea.Items.Add(itemarea);
+            cont++;
+        }
     }
 
     protected void Btcadastrar_Click(object sender, EventArgs e)
@@ -31,6 +46,9 @@ public partial class View_Cadastro_Perfil : System.Web.UI.Page
         perfil = new PerfilBean();
         perfil.Datanascimento = Txtdatanascimento.Text;
         perfil.Escolaridade = DDLescolaridade.SelectedValue;
+
+        
+       
 
         cidade = new CidadeBean();
         cidade.Id_cidade = Convert.ToInt32(DDLcidade.SelectedValue);
@@ -44,7 +62,20 @@ public partial class View_Cadastro_Perfil : System.Web.UI.Page
         try
         {
             usuario = usuCont.ConsultarUsuarioPorID(usuario.Id);
-            perfcont.InserirNovoPerfil(usuario, perfil, cidade);
+            int idperfil = perfcont.InserirNovoPerfil(usuario, perfil, cidade);
+            perfil.Id_perfil = idperfil;
+
+            for (int i = 0; i < cont; i++)
+            {
+                bool selecionado = CheckListArea.Items[i].Selected;
+                if(selecionado == true)
+                {
+                    area = new AreaBean();
+                    area.Id = Convert.ToInt16(CheckListArea.Items[i].Value);
+                    perfcont.InserirPerfilArea(perfil, area);
+                }
+
+            }
             Response.Redirect("Perfil.aspx");
         }
         catch (Exception)

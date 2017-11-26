@@ -12,6 +12,8 @@ public class CursoBean
     private string nome;
     private string tipo;
     private string descricao;
+    private char status_indicado;
+    private int pontos;
 
     //Get e Set id
 
@@ -70,6 +72,32 @@ public class CursoBean
         set
         {
             descricao = value;
+        }
+    }
+
+    public char Status_indicado
+    {
+        get
+        {
+            return status_indicado;
+        }
+
+        set
+        {
+            status_indicado = value;
+        }
+    }
+
+    public int Pontos
+    {
+        get
+        {
+            return pontos;
+        }
+
+        set
+        {
+            pontos = value;
         }
     }
 }

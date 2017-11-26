@@ -87,6 +87,14 @@ public partial class View_Lista_Questao : System.Web.UI.Page
             questaocont.InserirNovaQuestao(questao);
             pnCadastroQuestao.Visible = false;
             btnPainelCadastrar.Visible = true;
+
+            var listaQuestoes = questaocont.ListarQuestao();
+            if (listaQuestoes != null)
+            {
+                this.grdDados.DataSource = listaQuestoes;
+                this.grdDados.DataBind();
+
+            }
         }
         catch (QuestaoInvalidaException)
         {

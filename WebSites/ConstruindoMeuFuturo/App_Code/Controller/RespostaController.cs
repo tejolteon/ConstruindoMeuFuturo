@@ -18,22 +18,8 @@ public class RespostaController
         respostadao = new RespostaDao();
         respostadao.InserirResposta(resposta);
     }
+    
 
-  
-
-    public void ExcluirResposta(int idresposta, int idquestao)
-    {
-        //Verifica se as Variaveis obrigatórias estão null
-     
-        respostadao = new RespostaDao();
-        respostadao.ExcluirRespostaQuestao(idresposta,idquestao);
-    }
-
-    public void InserirRespostaQuestao(int idresposta, int idquestao)
-    {
-        respostadao = new RespostaDao();
-        respostadao.InserirRespostaQuestao(idresposta,idquestao);
-    }
 
     public void ValidarResposta(RespostaBean resposta)
     {
@@ -64,10 +50,10 @@ public class RespostaController
     public List<RespostaBean> ListarRespostaQuestao(int idquestao)
     {
         respostadao = new RespostaDao();
-        var questoes = new List<RespostaBean>();
-        questoes = respostadao.ListarRespostaQuestao(idquestao);
+        var respostas = new List<RespostaBean>();
+        respostas = respostadao.ListarRespostaQuestao(idquestao);
+        return respostas;
 
-        return questoes;
     }
 
     public RespostaBean ConsultarRespostaPorId(int idresposta)

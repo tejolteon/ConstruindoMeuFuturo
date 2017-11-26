@@ -68,7 +68,7 @@ public class CursoController
         try
         {
             cursodao = new CursoDao();
-            var cursos = cursodao.ListarCursoRespostaQuestao(idquestao, idresposta);
+            var cursos = cursodao.ListarCursoQuestionario(idquestao, idresposta);
             return cursos;
         }
         catch
@@ -155,7 +155,7 @@ public class CursoController
         //verifica se retornou nenhuma linha afetada
         if (linhasafetadas == 0)
         {
-            throw new UsuarioNaoCadastradoException();
+            throw new NaoCadastradoException();
         }
     }
 
@@ -169,4 +169,25 @@ public class CursoController
         }
     }
 
+
+    public void InserirCursoRecomendado(int idcurso, int idperfil, int ponto)
+    {
+
+        cursodao = new CursoDao();
+        var linhasafetadas = cursodao.InserirPontoCursoRecomendado(idcurso,idperfil,ponto);
+        //verifica se retornou nenhuma linha afetada
+        if (linhasafetadas == 0)
+        {
+            throw new NaoCadastradoException();
+        }
+    }
+
+    public void Calcular_Ponto_Curso_Recomendado(QuestionarioBean questionario, int idperfil)
+    {
+        foreach (CursoBean curso in cursodao.ListarCursoRecomendado(questionario.Id_curso, idperfil))
+        {
+
+        }
+
+    }
 }

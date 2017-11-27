@@ -150,6 +150,7 @@ public partial class View_Adicionar_Resposta_Questao : System.Web.UI.Page
     protected void Txtpesquisa_TextChanged(object sender, EventArgs e)
     {
         this.grdDados.DataSource = null;
+        respostacont = new RespostaController();
         var listaRespostas = respostacont.ListarRespostaTexto(Txtpesquisa.Text);
         if (listaRespostas != null)
         {

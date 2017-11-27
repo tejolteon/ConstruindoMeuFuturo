@@ -10,6 +10,9 @@ public class QuestionarioController
 {
     QuestionarioDao questionariodao;
     CursoDao cursodao;
+    Unidade_de_EnsinoDao unidadedao;
+    CursoController cursocont;
+
     public void ExcluirQuestionario(int idresposta, int idquestao)
     {
         //Verifica se as Variaveis obrigatórias estão null
@@ -37,7 +40,7 @@ public class QuestionarioController
     {
         questionariodao = new QuestionarioDao();
         int linhasafetadas = questionariodao.InserirQuestionarioPerfil(questionario);
-        if(linhasafetadas == 0)
+        if (linhasafetadas == 0)
         {
             throw new NaoCadastradoException();
         }
@@ -45,21 +48,32 @@ public class QuestionarioController
 
     }
 
-    public List<QuestionarioBean> ListarQuestionarioResposta(int idquestao)
+    public List<QuestionarioBean> ListarQuestionarioCurso(int idcurso)
     {
-        questionariodao = new QuestionarioDao();
-        var respostas= new List<QuestionarioBean>();
-        respostas = questionariodao.ListarQuestionarioResposta(idquestao);
-        return respostas;
-
+        try
+        {
+            questionariodao = new QuestionarioDao();
+            var questionarios = questionariodao.ListarQuestionarioCurso(idcurso);
+            return questionarios;
+        }
+        catch
+        {
+            return null;
+        }
     }
-
-    public List<QuestionarioBean>  ConsultarQuestionarioCurso(QuestionarioBean questionario)
+    public List<QuestionarioBean> ListarQuestionarioPerfil(int idperfil, int idquestao, int idresposta)
     {
-        questionariodao = new QuestionarioDao();
-        var questionarios = new List<QuestionarioBean>();
-        questionarios = questionariodao.ListarQuestionarioCurso(questionario);
-        return questionarios;
+        try
+        {
+            questionariodao = new QuestionarioDao();
+            var questionarios = questionariodao.ListarQuestionarioPerfil(idperfil,idquestao,idresposta);
+            return questionarios;
+        }
+        catch
+        {
+            return null;
+        }
     }
+}
     
   

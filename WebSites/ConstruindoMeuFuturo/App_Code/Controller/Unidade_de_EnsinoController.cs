@@ -102,4 +102,19 @@ public class UnidadeController
             throw new UnidadeInvalidaException();
         }
     }
+
+    public List<UnidadeEnsinoBean> ListarUnidadeCidade(int idcidade) {
+
+        try
+        {
+            unidadedao = new Unidade_de_EnsinoDao();
+            var unidades = unidadedao.ListarUnidadeCidade(idcidade);
+            return unidades;
+        }
+        catch
+        {
+            //Erro ao listar unidade curso
+            return null;
+        }
+    }
 }

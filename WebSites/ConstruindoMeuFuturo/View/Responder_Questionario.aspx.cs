@@ -12,15 +12,13 @@ public partial class View_Cadastro_Resposta : System.Web.UI.Page
     private QuestaoController questaocont;
     private QuestaoBean questao;
 
+    private CursoController cursocont;
+
     private QuestionarioBean questionario;
     private QuestionarioController questionariocont;
  
     int idperfil;
     int idquestao;
-    string teste;
-
-    ContentPlaceHolder mpContentPlaceHolder;
-    CheckBox checkboxconfirm;
 
     protected void Page_PreInit(object sender, EventArgs e)
     {
@@ -70,6 +68,8 @@ public partial class View_Cadastro_Resposta : System.Web.UI.Page
         else {
             btProximo.Visible = false;
             questaotexto.Text = "<h1>Questionario Finalizado</h1>";
+                cursocont = new CursoController();
+                cursocont.InserirCursoIndicadoQuestionarios(idperfil);
 ;        }
     }
 

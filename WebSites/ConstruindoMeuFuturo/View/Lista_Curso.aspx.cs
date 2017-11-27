@@ -55,6 +55,7 @@ public partial class View_Lista_Curso : System.Web.UI.Page
     protected void Txtpesquisa_TextChanged(object sender, EventArgs e)
     {
         this.grdDados.DataSource = null;
+        cursocont = new CursoController();
         var listaCursos = cursocont.ListaCursoPorNome(Txtpesquisa.Text);
         if (listaCursos != null)
         {

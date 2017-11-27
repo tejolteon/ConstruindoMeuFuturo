@@ -8,7 +8,11 @@ using System.Web;
 /// </summary>
 public class CursoController
 {
+    UnidadeController unidadecont;
+    QuestionarioController questionariocont;
     CursoDao cursodao;
+   
+
     public List<CursoBean> ListaCurso()
     {
         try
@@ -170,11 +174,11 @@ public class CursoController
     }
 
 
-    public void InserirCursoRecomendado(int idcurso, int idperfil, int ponto)
+    public void InserirCursoIndicado(int idcurso, int idperfil, int ponto)
     {
 
         cursodao = new CursoDao();
-        var linhasafetadas = cursodao.InserirPontoCursoRecomendado(idcurso,idperfil,ponto);
+        var linhasafetadas = cursodao.InserirCursoIndicado(idcurso,idperfil,ponto);
         //verifica se retornou nenhuma linha afetada
         if (linhasafetadas == 0)
         {
@@ -182,12 +186,112 @@ public class CursoController
         }
     }
 
-    public void Calcular_Ponto_Curso_Recomendado(QuestionarioBean questionario, int idperfil)
+    public void InserirPontoCursoIndicado(int idcurso, int idperfil, int ponto)
     {
-        foreach (CursoBean curso in cursodao.ListarCursoRecomendado(questionario.Id_curso, idperfil))
-        {
 
+        cursodao = new CursoDao();
+        var linhasafetadas = cursodao.InserirPontoCursoIndicado(idcurso, idperfil, ponto);
+        //verifica se retornou nenhuma linha afetada
+        if (linhasafetadas == 0)
+        {
+            throw new NaoCadastradoException();
+        }
+    }
+
+    public int ConsultarPontoCursoIndicado(int idcurso, int idperfil)
+    {
+        
+        int ponto = 0;
+        cursodao = new CursoDao();
+        try
+        {
+            ponto = cursodao.ConsultarPontoCursoIndicado(idcurso, idperfil);
+        }
+        catch {
+            //erro ao consultar
+        }
+        return ponto;
+    }
+
+    public List<CursoBean> ListarCursosIndicado(int idperfil)
+    {
+        try
+        {
+            cursodao = new CursoDao();
+            var cursos = cursodao.ListarCursoIndicadoPerfil(idperfil);
+            return cursos;
+        }
+        catch
+        {
+            return null;
         }
 
     }
+
+    public List<CursoBean> ListarCursoUnidade(int idunidade)
+    {
+
+        try
+        {
+            cursodao = new CursoDao();
+            var cursos = cursodao.ListarCursoUnidade(idunidade);
+            return cursos;
+        }
+        catch
+        {
+            return null;
+        }
+    }
+
+    public List<CursoBean> ListarCursoCidade(int idcidade)
+    {
+
+        try
+        {
+            cursodao = new CursoDao();
+            var cursos = cursodao.ListarCursoCidade(idcidade);
+            return cursos;
+        }
+        catch
+        {
+            return null;
+        }
+    }
+
+    public void InserirCursoIndicadoQuestionarios(int idperfil)
+    {
+        unidadecont = new UnidadeController();
+        questionariocont = new QuestionarioController();
+
+        //Pesquisa os cursos cadastrados na cidade
+        foreach (CursoBean curso in this.ListarCursoCidade(5270))
+        {
+            //Pesquisa os cursos que correspondem ao questionario
+            foreach (QuestionarioBean questionario in this.questionariocont.ListarQuestionarioCurso(curso.Id))
+            {
+                //Pesquisa o questionario do perfil
+                foreach (QuestionarioBean questionarioperfil in this.questionariocont.ListarQuestionarioPerfil(idperfil, questionario.Id_questao, questionario.Id_resposta))
+                {
+                    //consulta se esse curso já estava cadastrado na tabela curso indicado, retonando a pontuação
+                    int ponto = 0;
+                    ponto = this.ConsultarPontoCursoIndicado(curso.Id, idperfil);
+                    //Se a pontuação é igual 0, ele não está cadastrado ainda
+                    if (ponto == 0)
+                    {
+                        //Cadastra o curso na table Curso Indicado e da 1 ponto
+                        this.InserirCursoIndicado(curso.Id, idperfil, 1);
+                    }
+                    else
+                    {
+                        //Senão ele Acrescenta mais 1 ponto no curso indicado
+                        this.InserirPontoCursoIndicado(curso.Id, idperfil, ponto + 1);
+                    }
+
+                }
+            }
+        }
+
+
+    }
+    
 }

@@ -16,6 +16,8 @@ public partial class View_Perfil : System.Web.UI.Page
     private AreaController areacont;
     private UnidadeEnsinoBean unidade;
     private UnidadeController unidadecont;
+    private QuestaoController questaocont;
+    private QuestaoBean questao;
     
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -64,63 +66,108 @@ public partial class View_Perfil : System.Web.UI.Page
                             ltPainel.Text = "<div>Complete seu cadastro para receber opções de curso" +
                                 "<p><a class= " + "\"" + "btn btn-primary btn-lg" + "\"" + " href= " + "\"" + "Cadastro_Perfil.aspx" + "\"" + " role= " + "\"" + "button" + "\"" + " >Concluir Cadastro »</a></p></div>";
                             lbtAlterarPerfil.Visible = false;
-                        }
+                    }
+                    else
+                    {
+                        //carrega os cursos sugeridos
+                        Sugestoesdcurso(UsuarioId,perfil.Id_perfil);
+                    }
                     }
                     catch
                     {
 
                     }
-                try
-                {
-                    //Consultando o ID do Perfil
-
-                    perfil = perfcont.ConsultarPerfilPorIdUsuario(UsuarioId);
-                    foreach (AreaBean area in this.areacont.ListarAreaPerfil(perfil.Id_perfil))
-                    {
-
-                        try
-                        {
-                            foreach (CursoBean curso in this.cursocont.ListaCursoPorArea(area.Id))
-                            {
-                                try
-                                {
-                                    foreach (UnidadeEnsinoBean unidade in this.unidadecont.ListarUnidadeCurso(curso.Id))
-                                    {
-                                        //Insere os valores no literal com a formatação devida
-                                        ltPainel.Text += "" +
-                                            "<div class=" + "\"" + "col-lg-5" + "\"" + " style=" + "\"" + "border:1px solid gray; margin-right:20px; margin-bottom:20px; background-color: #D8D8D8; border-radius:5px;" + "\"" + " > " +
-                                            "<p><h2>" + curso.Nome + "</h2></p>" +
-                                            "<p>" + unidade.Nome_unidade + "</p>" +
-                                            //Button para ver detalhes
-                                            "<p><a class= " + "\"" + "btn btn-primary btn-lg" + "\"" + " href= " + "\"" + "Curso.aspx?CursoId=" + curso.Id + "&UnidadeId=" + unidade.Id_unidade + " " + "\"" + " role= " + "\"" + "button" + "\"" + " >Ver detalhes »</a></p>" +
-                                            "</div>";
-                                        //obs.: "\"" é igual a "
-                                    }
-
-                                }
-                                catch
-                                {
-
-                                }
-
-                            }
-                        }
-                        catch
-                        {
-                            throw new ErroTabelaCursoException("Erro ao preencher tabela");
-                        }
-                    }
-                }
-                catch
-                {
-
-                }
                 }
             }
             catch { }
        // }
     }
-   
+
+    protected void Sugestoesdcurso(int usuarioid, int idperfil) {
+
+        questaocont = new QuestaoController();
+        questao = new QuestaoBean();
+        questao = questaocont.ConsultarQuestaoNaorespondia(idperfil);
+
+        //se não ter respondido o questionario ele recomenda apenas pela area
+        if (questao != null)
+        {
+            try
+            {
+                //Consultando o ID do Perfil
+                perfil = perfcont.ConsultarPerfilPorIdUsuario(usuarioid);
+                foreach (AreaBean area in this.areacont.ListarAreaPerfil(perfil.Id_perfil))
+                {
+                    try
+                    {
+                        foreach (CursoBean curso in this.cursocont.ListaCursoPorArea(area.Id))
+                        {
+                            try
+                            {
+                                foreach (UnidadeEnsinoBean unidade in this.unidadecont.ListarUnidadeCurso(curso.Id))
+                                {
+                                    //Insere os valores no literal com a formatação devida
+                                    ltPainel.Text += "" +
+                                        "<div class=" + "\"" + "col-lg-5" + "\"" + " style=" + "\"" + "border:1px solid gray; margin-right:20px; margin-bottom:20px; background-color: #D8D8D8; border-radius:5px;" + "\"" + " > " +
+                                        "<p><h2>" + curso.Nome + "</h2></p>" +
+                                        "<p>" + unidade.Nome_unidade + "</p>" +
+                                        //Button para ver detalhes
+                                        "<p><a class= " + "\"" + "btn btn-primary btn-lg" + "\"" + " href= " + "\"" + "Curso.aspx?CursoId=" + curso.Id + "&UnidadeId=" + unidade.Id_unidade + " " + "\"" + " role= " + "\"" + "button" + "\"" + " >Ver detalhes »</a></p>" +
+                                        "</div>";
+                                    //obs.: "\"" é igual a "
+                                }
+
+                            }
+                            catch
+                            {
+
+                            }
+
+                        }
+                    }
+                    catch
+                    {
+                        throw new ErroTabelaCursoException("Erro ao preencher tabela");
+                    }
+                }
+            }
+            catch
+            {
+
+            }
+        }
+
+        //ele lista pelos cursos recomendados
+        else
+        {
+            cursocont = new CursoController();
+            foreach (CursoBean curso in this.cursocont.ListarCursosIndicado(idperfil))
+            {
+                try
+                {
+                    foreach (UnidadeEnsinoBean unidade in this.unidadecont.ListarUnidadeCurso(curso.Id))
+                    {
+                        //Insere os valores no literal com a formatação devida
+                        ltPainel.Text += "" +
+                            "<div class=" + "\"" + "col-lg-5" + "\"" + " style=" + "\"" + "border:1px solid gray; margin-right:20px; margin-bottom:20px; background-color: #D8D8D8; border-radius:5px;" + "\"" + " > " +
+                            "<p><h2>" + curso.Nome + "</h2></p>" +
+                            "<p>" + unidade.Nome_unidade + "</p>" +
+                            //Button para ver detalhes
+                            "<p><a class= " + "\"" + "btn btn-primary btn-lg" + "\"" + " href= " + "\"" + "Curso.aspx?CursoId=" + curso.Id + "&UnidadeId=" + unidade.Id_unidade + " " + "\"" + " role= " + "\"" + "button" + "\"" + " >Ver detalhes »</a></p>" +
+                            "</div>";
+                        //obs.: "\"" é igual a "
+                    }
+
+                }
+                catch
+                {
+
+                }
+
+            }
+
+        }
+    }
 
     protected void lbtAlterarPerfil_Click(object sender, EventArgs e)
     {

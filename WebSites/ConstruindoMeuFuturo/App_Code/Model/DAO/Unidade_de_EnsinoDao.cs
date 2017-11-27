@@ -264,4 +264,45 @@ public class Unidade_de_EnsinoDao
         }
     }
 
+    public List<UnidadeEnsinoBean> ListarUnidadeCidade(int idcidade)
+    {
+        try
+        {
+
+            //Conectar com o banco
+            Conexao.Conectar();
+            var command = new SqlCommand();
+            command.Connection = Conexao.connection;
+            //Comando no banco
+            command.CommandText = "SELECT Id_Unidade_de_Ensino FROM TB_UNIDADE_DE_ENSINO WHERE Id_Cidade = @idcidade";
+            //Entrada doa parâmetros
+            command.Parameters.AddWithValue("@idcidade", idcidade);
+            //Executar o comando 
+            var reader = command.ExecuteReader();
+
+            var unidades = new List<UnidadeEnsinoBean>();
+
+            //Inserir os valores do resultado no bean
+            while (reader.Read())
+            {
+                var unidade = new UnidadeEnsinoBean();
+                unidade.Id_unidade = Convert.ToInt32(reader["Id_Unidade_de_Ensino"]);
+                unidades.Add(unidade);
+            }
+
+            return unidades;
+
+        }
+        catch (Exception)
+        {
+
+            throw;
+        }
+        //encerrar conexão com o banco
+        finally
+        {
+            Conexao.Desconectar();
+        }
+    }
+
 }

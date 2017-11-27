@@ -301,6 +301,51 @@ public class CursoDao
 
     }
 
+    public List<CursoBean> ListarCursoCidade(int cidade)
+    {
+        try
+        {
+            //Conectar com o banco
+            Conexao.Conectar();
+            var command = new SqlCommand();
+            command.Connection = Conexao.connection;
+            //Comando no banco
+            command.CommandText = "SELECT DISTINCT C.Nome_Curso, C.Tipo_Curso, B.Id_Curso " +
+                "FROM TB_UNIDADE_DE_ENSINO A INNER JOIN TB_UNIDADE_DE_ENSINO_has_TB_CURSO B " +
+                "ON A.Id_Unidade_de_Ensino = B.Id_Unidade_de_Ensino " +
+                "INNER JOIN TB_CURSO C " +
+                "ON B.Id_Curso = C.Id_Curso " +
+                "WHERE A.Id_Cidade = @idcidade";
+            //Entrada doa parâmetros
+            command.Parameters.AddWithValue("@idcidade", cidade);
+            //Executar o comando 
+            var reader = command.ExecuteReader();
+            //Cria List
+            var cursosareas = new List<CursoBean>();
+            //Inserir os valores do resultado no bean
+            while (reader.Read())
+            {
+                var curso = new CursoBean();
+                curso.Id = Convert.ToInt32(reader["Id_Curso"]);
+                curso.Nome = Convert.ToString(reader["Nome_Curso"]);
+                curso.Tipo = Convert.ToString(reader["Tipo_Curso"]);
+                cursosareas.Add(curso);
+            }
+            return cursosareas;
+        }
+        catch (Exception)
+        {
+
+            throw;
+        }
+        //encerrar conexão com o banco
+        finally
+        {
+            Conexao.Desconectar();
+        }
+
+    }
+
     public List<CursoBean> ListarCursoNome(string nomecurso)
     {
         try
@@ -310,7 +355,7 @@ public class CursoDao
             var command = new SqlCommand();
             command.Connection = Conexao.connection;
             //Comando no banco
-            command.CommandText = "SELECT * FROM TB_CURSO WHERE  Nome_Curso like @nomecurso ORDERBY Nome_Curso";
+            command.CommandText = "SELECT * FROM TB_CURSO WHERE  Nome_Curso like @nomecurso ORDER BY Nome_Curso";
             //Entrada doa parâmetros
             command.Parameters.AddWithValue("@nomecurso", "%"+nomecurso+"%");
             //Executar o comando 
@@ -419,6 +464,7 @@ public class CursoDao
 
     }
 
+    //mudar para questionario DAO
     public int InserirCursoRespostaQuestao(int idresposta, int idquestao, int idcurso)
     {
         try
@@ -451,7 +497,7 @@ public class CursoDao
 
     }
 
-    public int InserirPontoCursoRecomendado(int idcurso, int idperfil, int ponto)
+    public int InserirCursoIndicado(int idcurso, int idperfil, int ponto)
     {
         try
         {
@@ -460,12 +506,12 @@ public class CursoDao
             var command = new SqlCommand();
             command.Connection = Conexao.connection;
             //Comando no banco
-            command.CommandText = "INSERT INTO TB_CURSO_INDICADO (Id_Curso,Id_Perfil, Curso_Indicado_Status, Pontuacao_Teste_Curso)" +
+            command.CommandText = "INSERT INTO TB_CURSO_INDICADO (Id_Curso,Id_Perfil, Curso_Indicado_Status, Pontuacao_Teste_Curso_Indicado)" +
                 " VALUES(@idcurso,@idperfil,'A',@ponto)";
             //Entrada doa parâmetros
             command.Parameters.AddWithValue("@idcurso", idcurso);
             command.Parameters.AddWithValue("@idperfil", idperfil);
-            command.Parameters.AddWithValue("@ponto", idcurso);
+            command.Parameters.AddWithValue("@ponto", ponto);
 
             //Executa e retorna o tanto de linhas que foram afetadas
             return command.ExecuteNonQuery();
@@ -483,7 +529,8 @@ public class CursoDao
 
     }
 
-    public List<CursoBean> ListarCursoRecomendado(int idcurso, int idperfil)
+
+    public int InserirPontoCursoIndicado(int idcurso, int idperfil, int ponto)
     {
         try
         {
@@ -492,16 +539,84 @@ public class CursoDao
             var command = new SqlCommand();
             command.Connection = Conexao.connection;
             //Comando no banco
-            command.CommandText = "SELECT B.Pontuacao_Teste_Curso_Indicado, B.Curso_Indicado_Status,B.Id_Curso FROM TB_PERFIL A "+
-                                   "INNER JOIN TB_CURSO_INDICADO B "+
-                                   "ON A.Id_Perfil = B.Id_Perfil "+
-                                   "INNER JOIN TB_CURSO C "+
-                                   "ON B.Id_Curso = C.Id_Curso" +
-                                   "WHERE B.Id_Perfil = @idperfil AND B.Id_Curso = @idcurso;";
+            command.CommandText = "UPDATE TB_CURSO_INDICADO SET " +
+                "Pontuacao_Teste_Curso_Indicado = @ponto " +
+                "WHERE Id_Perfil = @idperfil AND Id_Curso = @idcurso";
             //Entrada doa parâmetros
-            command.Parameters.AddWithValue("@idperfil",idperfil);
             command.Parameters.AddWithValue("@idcurso", idcurso);
-          
+            command.Parameters.AddWithValue("@idperfil", idperfil);
+            command.Parameters.AddWithValue("@ponto", ponto);
+
+            //Executa e retorna o tanto de linhas que foram afetadas
+            return command.ExecuteNonQuery();
+        }
+        catch (Exception)
+        {
+
+            throw;
+        }
+        //encerrar conexão com o banco
+        finally
+        {
+            Conexao.Desconectar();
+        }
+
+    }
+
+    public int ConsultarPontoCursoIndicado(int idcurso, int idperfil) {
+        try
+        {
+            //Conectar com o banco
+            Conexao.Conectar();
+            var command = new SqlCommand();
+            command.Connection = Conexao.connection;
+            //Comando no banco
+            command.CommandText = "SELECT * FROM  TB_CURSO_INDICADO WHERE Id_Perfil = @idperfil AND Id_Curso = @idcurso;";
+            //Entrada doa parâmetros
+            command.Parameters.AddWithValue("@idcurso", idcurso);
+            command.Parameters.AddWithValue("@idperfil", idperfil);
+            //Executar o comando 
+            var reader = command.ExecuteReader();
+            //Cria List
+            int ponto = 0;
+            //Inserir os valores do resultado no bean
+            while (reader.Read())
+            {
+                ponto = Convert.ToInt32(reader["Pontuacao_Teste_Curso_Indicado"]);
+            }
+            return ponto;
+        }
+        catch (Exception)
+        {
+
+            throw;
+        }
+        //encerrar conexão com o banco
+        finally
+        {
+            Conexao.Desconectar();
+        }
+    }
+
+    public List<CursoBean> ListarCursoIndicadoPerfil(int idperfil)
+    {
+        try
+        {
+            //Conectar com o banco
+            Conexao.Conectar();
+            var command = new SqlCommand();
+            command.Connection = Conexao.connection;
+            //Comando no banco
+            command.CommandText = "SELECT B.Pontuacao_Teste_Curso_Indicado, B.Curso_Indicado_Status,B.Id_Curso FROM TB_PERFIL A " +
+                                   "INNER JOIN TB_CURSO_INDICADO B " +
+                                   "ON A.Id_Perfil = B.Id_Perfil " +
+                                   "INNER JOIN TB_CURSO C " +
+                                   "ON B.Id_Curso = C.Id_Curso" +
+                                   "WHERE B.Id_Perfil = @idperfil";
+            //Entrada doa parâmetros
+            command.Parameters.AddWithValue("@idperfil", idperfil);
+      
+
             //Executar o comando 
             var reader = command.ExecuteReader();
             //Cria list

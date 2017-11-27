@@ -17,6 +17,7 @@ public partial class View_Alterar_Perfil : System.Web.UI.Page
     private UsuarioController usuCont;
     private AreaController areacont;
     private CidadeController cidadecont;
+    private CursoController cursocont;
     int cont;
     int idcidadeantiga;//? caso depois façamos o cadastro de mais de uma cidade precisara saber qual estava cadastrada antes para saber qual delas deve trocar
 
@@ -30,21 +31,24 @@ public partial class View_Alterar_Perfil : System.Web.UI.Page
         }
         //Verifica se a lista de areas está vazia antes de executar o código
        
+       
+        //Limpa contador
+        cont = 0;
 
         areacont = new AreaController();
-        //Lista todas as areas
-        if (!Page.IsPostBack)
+        //adiciona as areas cadastradas no Bd ao CheckListBox
+        foreach (AreaBean area in this.areacont.ListarAreas())
         {
-            //adiciona as areas cadastradas no Bd ao CheckListBox
-                foreach (AreaBean area in this.areacont.ListarAreas())
-            {
-                ListItem itemarea = new ListItem();
-                itemarea.Text = area.Nome;
-                itemarea.Value = Convert.ToString(area.Id);
-                CheckBox asdas = new CheckBox();
-                CheckListArea.Items.Add(itemarea);
-                cont++;
-            }
+            ListItem itemarea = new ListItem();
+            itemarea.Text = area.Nome;
+            itemarea.Value = Convert.ToString(area.Id);
+            CheckBox asdas = new CheckBox();
+            CheckListArea.Items.Add(itemarea);
+            cont++;
+        }
+
+        if (!Page.IsPostBack) // Função preenche os campos só quando a pagina é renderizada pela primeira vez
+        {
             CarregarCamposAlterar();
         }
     }
@@ -166,10 +170,14 @@ public partial class View_Alterar_Perfil : System.Web.UI.Page
 
         try
         {
+            cursocont = new CursoController();
             //Consulta o Usuario pelo ID para pegar as informações do usuario
             usuario = usuCont.ConsultarUsuarioPorID(usuario.Id);
 
             perfcont.AlterarPerfil(usuario, perfil, cidade, idcidadeantiga);
+            //Retira os pontos adicionados pela area do curso
+            cursocont.RetirarCursoIndicadoArea(perfil.Id_perfil);
+            //Exclui todas as areas associadas ao perfil
             perfcont.ExcluirPerfilArea(perfil);
             for (int i = 0; i < cont; i++)
             {
@@ -178,7 +186,14 @@ public partial class View_Alterar_Perfil : System.Web.UI.Page
                 {
                     area = new AreaBean();
                     area.Id = Convert.ToInt16(CheckListArea.Items[i].Value);
-                    perfcont.InserirPerfilArea(perfil, area);
+                    try
+                    {
+                        perfcont.InserirPerfilArea(perfil, area);
+                        cursocont.InserirCursoIndicadoArea(perfil.Id_perfil);
+                    }
+                    catch {
+
+                    }
                 }
 
             }

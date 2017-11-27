@@ -9,6 +9,8 @@ using System.Web;
 /// </summary>
 public class CursoDao
 {
+    CursoBean curso;
+
     public int InserirCurso(CursoBean curso)
     {
         try
@@ -346,6 +348,52 @@ public class CursoDao
 
     }
 
+    public CursoBean ConsultarCursoCidade(int idcidade, int idcurso)
+    {
+        try
+        {
+            //Conectar com o banco
+            Conexao.Conectar();
+            var command = new SqlCommand();
+            command.Connection = Conexao.connection;
+            //Comando no banco
+            command.CommandText = "SELECT TOP 1 C.Nome_Curso, C.Tipo_Curso, B.Id_Curso " +
+                "FROM TB_UNIDADE_DE_ENSINO A INNER JOIN TB_UNIDADE_DE_ENSINO_has_TB_CURSO B " +
+                "ON A.Id_Unidade_de_Ensino = B.Id_Unidade_de_Ensino " +
+                "INNER JOIN TB_CURSO C " +
+                "ON B.Id_Curso = C.Id_Curso " +
+                "WHERE A.Id_Cidade = @idcidade " +
+                "AND C.Id_Curso = @idcurso";
+            //Entrada doa parâmetros
+            command.Parameters.AddWithValue("@idcidade", idcidade);
+            command.Parameters.AddWithValue("@idcurso", idcurso);
+            //Executar o comando 
+            var reader = command.ExecuteReader();
+            //Limpa Bean
+            curso = null;
+            //Inserir os valores do resultado no bean
+            while (reader.Read())
+            {
+                curso = new CursoBean();
+                curso.Id = Convert.ToInt32(reader["Id_Curso"]);
+                curso.Nome = Convert.ToString(reader["Nome_Curso"]);
+                curso.Tipo = Convert.ToString(reader["Tipo_Curso"]);
+            }
+            return curso;
+        }
+        catch (Exception)
+        {
+
+            throw;
+        }
+        //encerrar conexão com o banco
+        finally
+        {
+            Conexao.Desconectar();
+        }
+
+    }
+
     public List<CursoBean> ListarCursoNome(string nomecurso)
     {
         try
@@ -529,6 +577,37 @@ public class CursoDao
 
     }
 
+    public int ExcluirCursoIndicado(int idcurso, int idperfil)
+    {
+        try
+        {
+            //Conectar com o banco
+            Conexao.Conectar();
+            var command = new SqlCommand();
+            command.Connection = Conexao.connection;
+            //Comando no banco
+            command.CommandText = "DELETE FROM TB_CURSO_INDICADO WHERE " +
+                "Id_Curso = @idcurso " +
+                "Id_Perfil = @idperfil ";
+            //Entrada doa parâmetros
+            command.Parameters.AddWithValue("@idcurso", idcurso);
+            command.Parameters.AddWithValue("@idperfil", idperfil);
+            //Executa e retorna o tanto de linhas que foram afetadas
+            return command.ExecuteNonQuery();
+        }
+        catch (Exception)
+        {
+
+            throw;
+        }
+        //encerrar conexão com o banco
+        finally
+        {
+            Conexao.Desconectar();
+        }
+
+    }
+
 
     public int InserirPontoCursoIndicado(int idcurso, int idperfil, int ponto)
     {
@@ -612,7 +691,8 @@ public class CursoDao
                                    "ON A.Id_Perfil = B.Id_Perfil " +
                                    "INNER JOIN TB_CURSO C " +
                                    "ON B.Id_Curso = C.Id_Curso " +
-                                   "WHERE B.Id_Perfil = @idperfil";
+                                   "WHERE B.Id_Perfil = @idperfil " +
+                                   "ORDER BY B.Pontuacao_Teste_Curso_Indicado";
             //Entrada doa parâmetros
             command.Parameters.AddWithValue("@idperfil", idperfil);
 

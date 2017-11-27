@@ -11,7 +11,10 @@ public class CursoController
     UnidadeController unidadecont;
     QuestionarioController questionariocont;
     CursoDao cursodao;
-   
+    AreaController areacont;
+
+
+
 
     public List<CursoBean> ListaCurso()
     {
@@ -89,7 +92,8 @@ public class CursoController
             var curso = cursodao.ConsultarCursoID(idcurso);
             return curso;
         }
-        catch {
+        catch
+        {
             return null;
         }
     }
@@ -116,9 +120,9 @@ public class CursoController
             throw new CursoNaoExcluidoException();
         }
     }
-    public void ExcluirCurso(int idunidade,int idcurso)
+    public void ExcluirCurso(int idunidade, int idcurso)
     {
-       
+
         cursodao = new CursoDao();
         var linhasafetadas = cursodao.ExcluirCursoUnidade(idunidade, idcurso);
         //verifica se retornou nenhuma linha afetada
@@ -139,9 +143,9 @@ public class CursoController
     }
     public void InserirCursoUnidade(int idcurso, int idunidade)
     {
-       
+
         cursodao = new CursoDao();
-        var linhasafetadas = cursodao.InserirCursoUnidade(idcurso,idunidade);
+        var linhasafetadas = cursodao.InserirCursoUnidade(idcurso, idunidade);
         //verifica se retornou nenhuma linha afetada
         if (linhasafetadas == 0)
         {
@@ -155,7 +159,7 @@ public class CursoController
         ValidarCurso(curso);
 
         cursodao = new CursoDao();
-        var linhasafetadas =cursodao.AlterarCurso(curso);
+        var linhasafetadas = cursodao.AlterarCurso(curso);
         //verifica se retornou nenhuma linha afetada
         if (linhasafetadas == 0)
         {
@@ -167,18 +171,17 @@ public class CursoController
     public void ValidarCurso(CursoBean curso)
     {
         //Verifica se as variaveis estão nulas
-        if (string.IsNullOrWhiteSpace(curso.Nome)|| string.IsNullOrWhiteSpace(curso.Tipo))
+        if (string.IsNullOrWhiteSpace(curso.Nome) || string.IsNullOrWhiteSpace(curso.Tipo))
         {
             throw new UnidadeInvalidaException();
         }
     }
 
-
     public void InserirCursoIndicado(int idcurso, int idperfil, int ponto)
     {
 
         cursodao = new CursoDao();
-        var linhasafetadas = cursodao.InserirCursoIndicado(idcurso,idperfil,ponto);
+        var linhasafetadas = cursodao.InserirCursoIndicado(idcurso, idperfil, ponto);
         //verifica se retornou nenhuma linha afetada
         if (linhasafetadas == 0)
         {
@@ -186,6 +189,16 @@ public class CursoController
         }
     }
 
+    public void ExcluirCursoIndicado(int idcurso, int idperfil)
+    {
+        cursodao = new CursoDao();
+        var linhasafetadas = cursodao.ExcluirCursoIndicado(idcurso, idperfil);
+        //verifica se retornou nenhuma linha afetada
+        if (linhasafetadas == 0)
+        {
+            throw new NaoCadastradoException();
+        }
+    }
     public void InserirPontoCursoIndicado(int idcurso, int idperfil, int ponto)
     {
 
@@ -200,14 +213,15 @@ public class CursoController
 
     public int ConsultarPontoCursoIndicado(int idcurso, int idperfil)
     {
-        
+
         int ponto = 0;
         cursodao = new CursoDao();
         try
         {
             ponto = cursodao.ConsultarPontoCursoIndicado(idcurso, idperfil);
         }
-        catch {
+        catch
+        {
             //erro ao consultar
         }
         return ponto;
@@ -258,10 +272,25 @@ public class CursoController
         }
     }
 
+    public CursoBean ConsultarCursoCidade(int idcidade, int idcurso)
+    {
+
+        try
+        {
+            var curso = cursodao.ConsultarCursoCidade(idcidade, idcurso);
+            return curso;
+        }
+        catch
+        {
+            return null;
+        }
+    }
+
     public void InserirCursoIndicadoQuestionarios(int idperfil)
     {
         unidadecont = new UnidadeController();
         questionariocont = new QuestionarioController();
+
 
         //Pesquisa os cursos cadastrados na cidade
         foreach (CursoBean curso in this.ListarCursoCidade(5270))
@@ -293,5 +322,69 @@ public class CursoController
 
 
     }
-    
+
+
+    public void InserirCursoIndicadoArea(int idperfil)
+    {
+
+        areacont = new AreaController();
+        //Pesquisa a area que o perfil está cadastrado
+        foreach (AreaBean area in this.areacont.ListarAreaPerfil(idperfil))
+        {
+            //Lista os cursos que estão cadastrados na area
+            foreach (CursoBean curso in this.ListaCursoPorArea(area.Id))
+            {
+                //Ve se o curso é cadastrado em são Paulo
+                if (this.ConsultarCursoCidade(5270, curso.Id) != null)
+                {
+                    //consulta se esse curso já estava cadastrado na tabela curso indicado, retonando a pontuação
+                    int ponto = 0;
+                    ponto = this.ConsultarPontoCursoIndicado(curso.Id, idperfil);
+                    //Se a pontuação é igual 0, ele não está cadastrado ainda
+                    if (ponto == 0)
+                    {
+                        //Cadastra o curso na table Curso Indicado e da 1 ponto
+                        this.InserirCursoIndicado(curso.Id, idperfil, 1);
+                    }
+                    else
+                    {
+                        //Senão ele Acrescenta mais 1 ponto no curso indicado
+                        this.InserirPontoCursoIndicado(curso.Id, idperfil, ponto + 1);
+                    }
+                }
+            }
+        }
+
+
+    }
+
+    //Tira os pontos do perfil que foram ganhos pela area
+    public void RetirarCursoIndicadoArea(int idperfil)
+    {
+        areacont = new AreaController();
+        
+        foreach (AreaBean area in this.areacont.ListarAreaPerfil(idperfil))
+        {
+            foreach (CursoBean curso in this.ListaCursoPorArea(area.Id))
+            {
+                if (this.ConsultarCursoCidade(5270, curso.Id) != null)
+                {
+                    //consulta se esse curso já estava cadastrado na tabela curso indicado, retonando a pontuação
+                    int ponto = 0;
+                    ponto = this.ConsultarPontoCursoIndicado(curso.Id, idperfil);
+                    //Se a pontuação é igual 0, ele não está cadastrado ainda
+                    if (ponto == 1)
+                    {
+                        //Cadastra o curso na table Curso Indicado e da 1 ponto
+                        this.ExcluirCursoIndicado(curso.Id, idperfil);
+                    }
+                    if(ponto > 1)
+                    {
+                        //Senão ele Tira 1 ponto no curso indicado
+                        this.InserirPontoCursoIndicado(curso.Id, idperfil, ponto - 1);
+                    }
+                }
+            }
+        }
+    }
 }

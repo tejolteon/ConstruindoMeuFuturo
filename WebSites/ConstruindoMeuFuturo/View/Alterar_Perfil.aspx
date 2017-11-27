@@ -58,15 +58,16 @@
                     <div class="text-right col-lg-6">
                         <asp:Button ID="Btalterar" CssClass="btn btn-primary" Text="Salvar" runat="server" width="100px" OnClick="Btalterar_Click" />
                     </div>
-                    <div class="text-right col-lg-6">
-                        <button ID="BtQuestionario" CssClass="btn btn-primary" runat="server" width="100px" onclick="BtQuestionario_Click()"> Responder Questionario</button>
+                    
+                     <!-- <div class="text-right col-lg-6">
+                       <button ID="BtQuestionario" CssClass="btn btn-primary" runat="server" width="100px" onclick="BtQuestionario_Click()"> Responder Questionario</button>
                         <script>
                             function BtQuestionario_Click() {
                                 window.open("Responder_Questionario.aspx", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top=200,left=500,width=400,height=400");
                             }
                         </script>
                     </div>
-                </div>
+                </div> -->
                 <br/>
                 <asp:Label id="Labelerro" runat="server"></asp:Label>
             </asp:Panel>

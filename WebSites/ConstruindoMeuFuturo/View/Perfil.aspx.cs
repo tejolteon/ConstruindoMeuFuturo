@@ -141,33 +141,42 @@ public partial class View_Perfil : System.Web.UI.Page
         //ele lista pelos cursos recomendados
         else
         {
-            cursocont = new CursoController();
-            foreach (CursoBean curso in this.cursocont.ListarCursosIndicado(idperfil))
+            foreach (AreaBean area in this.areacont.ListarAreaPerfil(idperfil))
             {
-
-                try
+                cursocont = new CursoController();
+                foreach (CursoBean curso in this.cursocont.ListaCursoPorArea(area.Id))
                 {
-                    foreach (UnidadeEnsinoBean unidade in this.unidadecont.ListarUnidadeCurso(curso.Id))
+                    
+                    foreach (CursoBean curso2 in this.cursocont.ListarCursosIndicado(idperfil))
                     {
-                        //Insere os valores no literal com a formatação devida
-                        ltPainel.Text += "" +
-                            "<div class=" + "\"" + "col-lg-5" + "\"" + " style=" + "\"" + "border:1px solid gray; margin-right:20px; margin-bottom:20px; background-color: #D8D8D8; border-radius:5px;" + "\"" + " > " +
-                            "<p><h2>" + curso.Nome + "</h2></p>" +
-                            "<p>" + unidade.Nome_unidade + "</p>" +
-                            //Button para ver detalhes
-                            "<p><a class= " + "\"" + "btn btn-primary btn-lg" + "\"" + " href= " + "\"" + "Curso.aspx?CursoId=" + curso.Id + "&UnidadeId=" + unidade.Id_unidade + " " + "\"" + " role= " + "\"" + "button" + "\"" + " >Ver detalhes »</a></p>" +
-                            "</div>";
-                        //obs.: "\"" é igual a "
+                        if (curso2.Id == curso.Id)
+                        {
+
+                            try
+                            {
+                                foreach (UnidadeEnsinoBean unidade in this.unidadecont.ListarUnidadeCurso(curso2.Id))
+                                {
+                                    //Insere os valores no literal com a formatação devida
+                                    ltPainel.Text += "" +
+                                        "<div class=" + "\"" + "col-lg-5" + "\"" + " style=" + "\"" + "border:1px solid gray; margin-right:20px; margin-bottom:20px; background-color: #D8D8D8; border-radius:5px;" + "\"" + " > " +
+                                        "<p><h2>" + curso2.Nome + "</h2></p>" +
+                                        "<p>" + unidade.Nome_unidade + "</p>" +
+                                        //Button para ver detalhes
+                                        "<p><a class= " + "\"" + "btn btn-primary btn-lg" + "\"" + " href= " + "\"" + "Curso.aspx?CursoId=" + curso2.Id + "&UnidadeId=" + unidade.Id_unidade + " " + "\"" + " role= " + "\"" + "button" + "\"" + " >Ver detalhes »</a></p>" +
+                                        "</div>";
+                                    //obs.: "\"" é igual a "
+                                }
+
+                            }
+                            catch
+                            {
+
+                            }
+                        }
+
                     }
-
                 }
-                catch
-                {
-
-                }
-
             }
-
         }
     }
 

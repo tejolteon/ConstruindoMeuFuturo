@@ -17,6 +17,7 @@ public partial class View_Cadastro_Perfil : System.Web.UI.Page
     private UsuarioController usuCont;
     private CidadeController cidadecont;
     private AreaController areacont;
+    private CursoController cursocont;
     int cont;
 
     protected void Page_Load(object sender, EventArgs e)
@@ -47,40 +48,51 @@ public partial class View_Cadastro_Perfil : System.Web.UI.Page
         perfil.Datanascimento = Txtdatanascimento.Text;
         perfil.Escolaridade = DDLescolaridade.SelectedValue;
 
-        
-       
 
-        cidade = new CidadeBean();
-        cidade.Id_cidade = Convert.ToInt32(DDLcidade.SelectedValue);
-
-        usuario = new UsuarioBean();
-        usuario.Id = int.Parse(Session["usuarioId"].ToString());
-
-        //Mandando para o controler
-        perfcont = new PerfilController();
-        usuCont = new UsuarioController();
-        try
+        if (Convert.ToInt32(DDLcidade.SelectedValue) == 0)
         {
-            usuario = usuCont.ConsultarUsuarioPorID(usuario.Id);
-            int idperfil = perfcont.InserirNovoPerfil(usuario, perfil, cidade);
-            perfil.Id_perfil = idperfil;
-
-            for (int i = 0; i < cont; i++)
-            {
-                bool selecionado = CheckListArea.Items[i].Selected;
-                if(selecionado == true)
-                {
-                    area = new AreaBean();
-                    area.Id = Convert.ToInt16(CheckListArea.Items[i].Value);
-                    perfcont.InserirPerfilArea(perfil, area);
-                }
-
-            }
-            Response.Redirect("Perfil.aspx");
+            Labelerro.Text = "Campo estado e cidade obrigatórios";
         }
-        catch (Exception)
+        else
         {
-            throw;
+
+
+            cidade = new CidadeBean();
+            cidade.Id_cidade = Convert.ToInt32(DDLcidade.SelectedValue);
+
+            usuario = new UsuarioBean();
+            usuario.Id = int.Parse(Session["usuarioId"].ToString());
+
+
+            //Mandando para o controler
+            perfcont = new PerfilController();
+            usuCont = new UsuarioController();
+            try
+            {
+                cursocont = new CursoController();
+                usuario = usuCont.ConsultarUsuarioPorID(usuario.Id);
+                int idperfil = perfcont.InserirNovoPerfil(usuario, perfil, cidade);
+                perfil.Id_perfil = idperfil;
+
+                for (int i = 0; i < cont; i++)
+                {
+                    bool selecionado = CheckListArea.Items[i].Selected;
+                    if (selecionado == true)
+                    {
+                        area = new AreaBean();
+                        area.Id = Convert.ToInt16(CheckListArea.Items[i].Value);
+                        perfcont.InserirPerfilArea(perfil, area);
+                        //Insere mais 1 ponto no curso indicado se o curso pertencer a area
+                        cursocont.InserirCursoIndicadoArea(perfil.Id_perfil);
+                    }
+
+                }
+                Response.Redirect("Perfil.aspx");
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
     }
 

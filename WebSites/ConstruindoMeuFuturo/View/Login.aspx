@@ -1,13 +1,6 @@
 ﻿<%@ Page Title="Login" Language="C#" MasterPageFile="~/General/Site.master" AutoEventWireup="true" CodeFile="Login.aspx.cs" Inherits="View_Usuario_Login" %>
-<asp:Content ID="Content2" ContentPlaceHolderID="Content" Runat="Server">
-    <!DOCTYPE html>
-    <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-            <title></title>
-        </head>
-    <body>
-        <link href="../General/Design.css" rel="stylesheet" />
+<asp:Content ID="Content2" ContentPlaceHolderID="Content" Runat="Server">    
+       <br/>
         <div class="container" style="margin-top:2%; max-width:30%">
             <asp:Panel ID="Panel1" runat="server">
                 <asp:Label ID="Label1" CssClass="text-center" runat="server" Text=""><h1>Login</h1></asp:Label>
@@ -26,13 +19,11 @@
                     <asp:LinkButton ID="btEsqueci" runat="server" Text="Esqueci minha senha"/>
                 </div>
                 <div class="form-group">
-                    <asp:Button ID="Btlogin" CssClass="btn btn-primary" Text="Entrar" runat="server" width="100%" Height="40px" OnClick="Btlogin_Click" />
+                    <asp:Button ID="Btlogin" CssClass="btn btn-primary" Text="Entrar" runat="server" width="100%" Height="40px" OnClick="Btlogin_Click"/>
                 </div>
                 <br/>
                 <asp:Label id="Labelerro" CssClass="text-danger" runat="server"></asp:Label>
             </asp:Panel>
         </div>
-    </body>
-    </html>
 </asp:Content>
 

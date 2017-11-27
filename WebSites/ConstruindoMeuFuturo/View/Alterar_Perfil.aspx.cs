@@ -33,22 +33,20 @@ public partial class View_Alterar_Perfil : System.Web.UI.Page
 
         areacont = new AreaController();
         //Lista todas as areas
-        foreach (AreaBean area in this.areacont.ListarAreas())
-        {
-            ListItem itemarea = new ListItem();
-            itemarea.Text = area.Nome;
-            itemarea.Value = Convert.ToString(area.Id);
-            CheckBox asdas = new CheckBox();
-            CheckListArea.Items.Add(itemarea);
-            cont++;
-        }
-
         if (!Page.IsPostBack)
         {
+            //adiciona as areas cadastradas no Bd ao CheckListBox
+                foreach (AreaBean area in this.areacont.ListarAreas())
+            {
+                ListItem itemarea = new ListItem();
+                itemarea.Text = area.Nome;
+                itemarea.Value = Convert.ToString(area.Id);
+                CheckBox asdas = new CheckBox();
+                CheckListArea.Items.Add(itemarea);
+                cont++;
+            }
             CarregarCamposAlterar();
         }
-
-
     }
     private void CarregarCamposAlterar()
     {

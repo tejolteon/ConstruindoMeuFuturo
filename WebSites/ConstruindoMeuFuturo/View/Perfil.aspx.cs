@@ -92,11 +92,12 @@ public partial class View_Perfil : System.Web.UI.Page
         //se não ter respondido o questionario ele recomenda apenas pela area
         if (questao != null)
         {
+            BtQuestionario.Visible = true;
             try
             {
                 //Consultando o ID do Perfil
-                perfil = perfcont.ConsultarPerfilPorIdUsuario(usuarioid);
-                foreach (AreaBean area in this.areacont.ListarAreaPerfil(perfil.Id_perfil))
+                
+                foreach (AreaBean area in this.areacont.ListarAreaPerfil(idperfil))
                 {
                     try
                     {
@@ -143,6 +144,7 @@ public partial class View_Perfil : System.Web.UI.Page
             cursocont = new CursoController();
             foreach (CursoBean curso in this.cursocont.ListarCursosIndicado(idperfil))
             {
+
                 try
                 {
                     foreach (UnidadeEnsinoBean unidade in this.unidadecont.ListarUnidadeCurso(curso.Id))

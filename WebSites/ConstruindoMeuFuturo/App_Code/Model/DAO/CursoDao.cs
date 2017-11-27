@@ -607,15 +607,14 @@ public class CursoDao
             var command = new SqlCommand();
             command.Connection = Conexao.connection;
             //Comando no banco
-            command.CommandText = "SELECT B.Pontuacao_Teste_Curso_Indicado, B.Curso_Indicado_Status,B.Id_Curso FROM TB_PERFIL A " +
+            command.CommandText = "SELECT B.Pontuacao_Teste_Curso_Indicado, B.Curso_Indicado_Status,B.Id_Curso, C.Nome_Curso FROM TB_PERFIL A " +
                                    "INNER JOIN TB_CURSO_INDICADO B " +
                                    "ON A.Id_Perfil = B.Id_Perfil " +
                                    "INNER JOIN TB_CURSO C " +
-                                   "ON B.Id_Curso = C.Id_Curso" +
+                                   "ON B.Id_Curso = C.Id_Curso " +
                                    "WHERE B.Id_Perfil = @idperfil";
             //Entrada doa parâmetros
             command.Parameters.AddWithValue("@idperfil", idperfil);
-      
 
             //Executar o comando 
             var reader = command.ExecuteReader();
@@ -628,6 +627,7 @@ public class CursoDao
                 curso.Id = Convert.ToInt32(reader["Id_Curso"]);
                 curso.Pontos = Convert.ToInt32(reader["Pontuacao_Teste_Curso_Indicado"]);
                 curso.Status_indicado = Convert.ToChar(reader["Curso_Indicado_Status"]);
+                curso.Nome = Convert.ToString(reader["Nome_Curso"]);
                 cursos.Add(curso);
             }
             return cursos;

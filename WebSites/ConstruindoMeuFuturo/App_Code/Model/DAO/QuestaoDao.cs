@@ -152,13 +152,9 @@ public class QuestaoDao
             var command = new SqlCommand();
             command.Connection = Conexao.connection;
             //Comando no banco
-            command.CommandText = "SELECT TOP 1 A.Id_Questao,A.Texto_Questao FROM TB_QUESTAO A "+
-            "LEFT JOIN TB_PERFIL_has_TB_QUESTIONARIO B " +
-            "ON A.Id_Questao = B.Id_Questao " +
-            "LEFT JOIN TB_PERFIL C " +
-            "ON B.Id_Perfil = C.Id_Perfil " +
-            "WHERE C.Id_Perfil <> @idperfil OR C.Id_Perfil IS NULL " +
-            "AND B.Id_Questao<>(SELECT Id_Questao FROM TB_PERFIL_has_TB_QUESTIONARIO WHERE Id_Perfil <> @idperfil)";
+            command.CommandText = "SELECT TOP 1 Id_Questao, Texto_Questao FROM TB_QUESTAO WHERE Id_Questao NOT IN " +
+                                  "(SELECT Id_Questao FROM TB_PERFIL_has_TB_QUESTIONARIO  WHERE Id_Perfil = @idPerfil)";
+;
             //Entrada doa parâmetros
             command.Parameters.AddWithValue("@idperfil", idperfil);
             //Executar o comando 

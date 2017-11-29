@@ -75,19 +75,6 @@ public class CursoBean
         }
     }
 
-    public char Status_indicado
-    {
-        get
-        {
-            return status_indicado;
-        }
-
-        set
-        {
-            status_indicado = value;
-        }
-    }
-
     public int Pontos
     {
         get
@@ -98,6 +85,19 @@ public class CursoBean
         set
         {
             pontos = value;
+        }
+    }
+
+    public char Status_indicado
+    {
+        get
+        {
+            return status_indicado;
+        }
+
+        set
+        {
+            status_indicado = value;
         }
     }
 }

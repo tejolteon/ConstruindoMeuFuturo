@@ -21,7 +21,7 @@ public partial class View_Cadastro : System.Web.UI.Page
         usuario.Email = Txtemail.Text;
         usuario.Senha = TxtSenha.Text;
         usuario.Confirmarsenha = TxtConfirmarSenha.Text;
-        usuario.Tipo = "P"; //P = Pendente verificação de e-mail(**Pendente para fazer módulo)
+        usuario.Status = "A"; //P = Pendente verificação de e-mail(**Pendente para fazer módulo)
 
         //Mandando para o controler
         usucont = new UsuarioController();

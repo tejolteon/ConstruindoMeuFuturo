@@ -554,7 +554,7 @@ public class CursoDao
             var command = new SqlCommand();
             command.Connection = Conexao.connection;
             //Comando no banco
-            command.CommandText = "INSERT INTO TB_CURSO_INDICADO (Id_Curso,Id_Perfil, Curso_Indicado_Status, Pontuacao_Teste_Curso_Indicado)" +
+            command.CommandText = "INSERT INTO TB_CURSO_INDICADO (Id_Curso,Id_Perfil, Status_Curso_Indicado, Pontuacao_Teste_Curso_Indicado)" +
                 " VALUES(@idcurso,@idperfil,'A',@ponto)";
             //Entrada doa parâmetros
             command.Parameters.AddWithValue("@idcurso", idcurso);
@@ -587,7 +587,7 @@ public class CursoDao
             command.Connection = Conexao.connection;
             //Comando no banco
             command.CommandText = "DELETE FROM TB_CURSO_INDICADO WHERE " +
-                "Id_Curso = @idcurso " +
+                "Id_Curso = @idcurso AND " +
                 "Id_Perfil = @idperfil ";
             //Entrada doa parâmetros
             command.Parameters.AddWithValue("@idcurso", idcurso);
@@ -686,13 +686,13 @@ public class CursoDao
             var command = new SqlCommand();
             command.Connection = Conexao.connection;
             //Comando no banco
-            command.CommandText = "SELECT B.Pontuacao_Teste_Curso_Indicado, B.Curso_Indicado_Status,B.Id_Curso, C.Nome_Curso FROM TB_PERFIL A " +
+            command.CommandText = "SELECT B.Pontuacao_Teste_Curso_Indicado, B.Status_Curso_Indicado,B.Id_Curso, C.Nome_Curso FROM TB_PERFIL A " +
                                    "INNER JOIN TB_CURSO_INDICADO B " +
                                    "ON A.Id_Perfil = B.Id_Perfil " +
                                    "INNER JOIN TB_CURSO C " +
                                    "ON B.Id_Curso = C.Id_Curso " +
                                    "WHERE B.Id_Perfil = @idperfil " +
-                                   "ORDER BY B.Pontuacao_Teste_Curso_Indicado";
+                                   "ORDER BY B.Pontuacao_Teste_Curso_Indicado DESC";
             //Entrada doa parâmetros
             command.Parameters.AddWithValue("@idperfil", idperfil);
 
@@ -706,7 +706,7 @@ public class CursoDao
                 var curso = new CursoBean();
                 curso.Id = Convert.ToInt32(reader["Id_Curso"]);
                 curso.Pontos = Convert.ToInt32(reader["Pontuacao_Teste_Curso_Indicado"]);
-                curso.Status_indicado = Convert.ToChar(reader["Curso_Indicado_Status"]);
+                curso.Status_indicado = Convert.ToChar(reader["Status_Curso_Indicado"]);
                 curso.Nome = Convert.ToString(reader["Nome_Curso"]);
                 cursos.Add(curso);
             }

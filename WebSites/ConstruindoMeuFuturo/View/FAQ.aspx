@@ -20,12 +20,6 @@
             <h3>A plataforma só exibe instituições públicas ou particulares?</h3>
             <p>Não, o sistema faz uma busca de acordo com as informações preenchidas, mostrando instituições que possuem o curso de acordo com o seu perfil e localização.</p>
         </div>
-        <%-- Rodapé --%>
-        <div> </div>
-        <div class ="navbar-inverse" style="position:absolute; width:100%; min-height:50px; bottom:0; color:floralwhite; font-size:16px;">
-            <div style="font-size:10px;"> </div>
-	        <div style="margin-left:2%;">Copyright 2017 Construindo meu Futuro</div>
-        </div>
     </body>
     </html>
 </asp:Content>

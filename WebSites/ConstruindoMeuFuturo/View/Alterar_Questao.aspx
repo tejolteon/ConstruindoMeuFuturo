@@ -20,11 +20,5 @@
                 <asp:Label id="Labelerro" runat="server"></asp:Label>
             </asp:Panel>
         </div>      
-     <%-- Rodapé --%>
-        <div> </div>
-        <div class ="navbar-inverse" style="position:absolute; width:100%; min-height:50px; color:floralwhite; bottom:0; font-size:16px;">
-            <div style="font-size:10px;"> </div>
-	        <div style="margin-left:2%;">Copyright 2017 Construindo meu Futuro</div>
-        </div>
 
 </asp:Content>

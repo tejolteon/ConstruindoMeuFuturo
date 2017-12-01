@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Login" Language="C#" MasterPageFile="~/General/Site.master" AutoEventWireup="true" CodeFile="Login.aspx.cs" Inherits="View_Usuario_Login" %>
+﻿<%@ Page Title="Login" Language="C#" MasterPageFile="~/General/Site.master" AutoEventWireup="true" CodeFile="Login_adm.aspx.cs" Inherits="View_Usuario_Login" %>
 <asp:Content ID="Content2" ContentPlaceHolderID="Content" Runat="Server">    
        <br/>
         <link href="../General/Design.css" rel="stylesheet" />

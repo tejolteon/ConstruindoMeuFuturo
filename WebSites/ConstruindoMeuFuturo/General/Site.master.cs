@@ -21,6 +21,14 @@ public partial class MasterPage : System.Web.UI.MasterPage
             pnOff.Visible = true;
             pnOn.Visible = false;
         }
+
+        //  Panel1.Style[HtmlTextWriterStyle.Position]= "bottom:0";
+        //if(Page.si)
+        //Panel1.Style.Remove(HtmlTextWriterStyle.Position);
+        //Panel1.Style.Add("bottom","0");
+        //Panel1.Style.Add("position", "absolute");
+        
+        
     }
 
     protected void Sair_Click(object sender, EventArgs e)

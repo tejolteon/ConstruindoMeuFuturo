@@ -10,18 +10,17 @@
         </head>
     <body>
         <link href="../General/Design.css" rel="stylesheet" />
-        <div class="well container" style="margin-top:2%; max-width:60%;">
+        <div class="well container" style="margin-top:2%; max-width:60%; background-color:white;">
             <asp:Panel ID="Panel1" runat="server">
                 <asp:Label ID="Label1" runat="server" Text=""><h1>Alterar Senha</h1></asp:Label>
                 <div class="form-group">
                     <label for="SenhaAtual">Senha Atual:</label>
                     <asp:TextBox ID="TxtSenha" CssClass="form-control" runat="server" TextMode="Password"></asp:TextBox>
                 </div>
-                <br/>
+                
                 <div class="form-group">
-                    <label for="NovaSenha">Nova Senha:</label></div>
-                <asp:TextBox ID="TxtSenhaNova" runat="server" CssClass="form-control" TextMode="Password"></asp:TextBox>
-                <br/>
+                    <label for="NovaSenha">Nova Senha:</label>
+                <asp:TextBox ID="TxtSenhaNova" runat="server" CssClass="form-control" TextMode="Password"></asp:TextBox></div>
                  <label for="NovaSenha"> Confirmar Nova Senha:</label>
                     <asp:TextBox ID="TxtConfirmarSenhaNova" runat="server" CssClass="form-control" TextMode="Password"></asp:TextBox>
                 <br/>
@@ -37,6 +36,12 @@
                 <br/>
                 <asp:Label id="Labelerro" runat="server"></asp:Label>
             </asp:Panel>
+        </div>
+        <%-- Rodapé --%>
+        <div> </div>
+        <div class ="navbar-inverse" style="position:absolute; width:100%; min-height:50px; bottom:0; color:floralwhite; font-size:16px;">
+            <div style="font-size:10px;"> </div>
+	        <div style="margin-left:2%;">Copyright 2017 Construindo meu Futuro</div>
         </div>
     </body>
     </html>

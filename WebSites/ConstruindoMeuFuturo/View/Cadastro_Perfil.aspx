@@ -10,7 +10,7 @@
         </head>
     <body>
         <link href="../General/Design.css" rel="stylesheet" />
-        <div class="well container" style="margin-top:2%; max-width:60%;">
+        <div class="well container" style="margin-top:2%; max-width:60%; background-color:white;">
             <asp:Panel ID="Panel1" runat="server">
                 <asp:Label ID="Label1" runat="server" Text=""><h1>Seu Perfil</h1></asp:Label>
                 <h4>Para conseguirmos te ajudar a escolher a melhor maneira de se aprimorar preencha os dados abaixo</h4>
@@ -67,7 +67,12 @@
                 </div>
                 <br/>
                 <asp:Label id="Labelerro" runat="server"></asp:Label>
-            
+            </div>
+            <%-- Rodapé --%>
+        <div> </div>
+        <div class ="navbar-inverse" style="position:absolute; width:100%; min-height:50px; color:floralwhite; font-size:16px;">
+            <div style="font-size:10px;"> </div>
+	        <div style="margin-left:2%;">Copyright 2017 Construindo meu Futuro</div>
         </div>
     </body>
     </html>

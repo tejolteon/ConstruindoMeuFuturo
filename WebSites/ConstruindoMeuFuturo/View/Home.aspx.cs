@@ -9,16 +9,7 @@ public partial class View_Home : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Session["usuario"] != null)
-        {
-            pnCursos.Visible = true;
-            pnPassos.Visible = false;
-        }
-        else
-        {
-            pnPassos.Visible = true;
-            pnCursos.Visible = false;
-        }
+
     }
 
     protected void btnQCadastro_Click(object sender, EventArgs e)

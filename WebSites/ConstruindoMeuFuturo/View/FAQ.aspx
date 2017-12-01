@@ -9,7 +9,7 @@
     </head>
     <body>
         <link href="../General/Design.css" rel="stylesheet" />
-        <div class="container well" style="margin-top:2%;">
+        <div class="container well" style="margin-top:2%; background-color:white;">
             <h1>PERGUNTAS FREQUENTES (F.A.Q)</h1>
             <h3>Quem pode realizar o cadastro no site Construindo meu Futuro?</h3>
             <p>Construindo o meu futuro é uma plataforma livre para qualquer pessoa, sendo necessário, apenas o cadastro para participar.</p>
@@ -19,6 +19,12 @@
             <p>Não, somos uma organização sem fins lucrativos, apenas fazemos divulgações para auxiliar qualquer pessoa que queira ingressar no ensino superior.</p>
             <h3>A plataforma só exibe instituições públicas ou particulares?</h3>
             <p>Não, o sistema faz uma busca de acordo com as informações preenchidas, mostrando instituições que possuem o curso de acordo com o seu perfil e localização.</p>
+        </div>
+        <%-- Rodapé --%>
+        <div> </div>
+        <div class ="navbar-inverse" style="position:absolute; width:100%; min-height:50px; bottom:0; color:floralwhite; font-size:16px;">
+            <div style="font-size:10px;"> </div>
+	        <div style="margin-left:2%;">Copyright 2017 Construindo meu Futuro</div>
         </div>
     </body>
     </html>

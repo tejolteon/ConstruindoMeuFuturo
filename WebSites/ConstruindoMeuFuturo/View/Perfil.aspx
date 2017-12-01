@@ -2,6 +2,7 @@
 
 <asp:Content ContentPlaceHolderID="Content" runat="server">
     <br/>
+    <link href="../General/Design.css" rel="stylesheet" />
     <div class="col-lg-12">
         <div class="container-fluid well-sm col-lg-2 col-sm-5 col-xs-12" style="margin-top:2%; background-color: white;"> 
             <asp:Panel ID="pnInfo" runat="server">
@@ -43,6 +44,12 @@
                 <asp:Literal ID="ltPainel" runat="server"></asp:Literal>      
              </asp:Panel>
         </div>
+        </div>
+    <%-- Rodapé --%>
+        <div> </div>
+        <div class ="navbar-inverse" style="position:absolute; width:100%; min-height:50px; bottom:0; color:floralwhite; font-size:16px;">
+            <div style="font-size:10px;"> </div>
+	        <div style="margin-left:2%;">Copyright 2017 Construindo meu Futuro</div>
         </div>
         
 </asp:Content>

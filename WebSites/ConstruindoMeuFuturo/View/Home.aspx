@@ -56,24 +56,24 @@
             </a>
         </div>
 
-        <asp:Panel ID="pnPassos" runat="server" Visible="False">
+        <asp:Panel ID="pnPassos" runat="server">
             <div class="box">
                 <div class ="container-fluid col-lg-4 col-sm-4 col-xs-12 box">
-                    <div class="col-lg-12 table-bordered well t">
+                    <div class="col-lg-12 table-bordered well t" style="min-height:172px;">
                         <img class="img-passo1" src="../Images/Passo1.png" />
                         <h3>1. Faça a sua inscrição.</h3>
                         <p>Cadastre-se com o seu e-mail e responda algumas perguntas relacionadas ao seu perfil para exibirmos opções de cursos para você.</p>
                     </div>
                 </div>
                 <div class ="container-fluid col-lg-4 col-sm-4 col-xs-12 box">
-                    <div class="col-lg-12 table-bordered well t">
+                    <div class="col-lg-12 table-bordered well t" style="min-height:172px;">
                         <img class="img-passo2" src="../Images/Passo2.png" />
                         <h3>2. Cursos ideais para você!</h3>
                         <p>Após efetuar o seu cadastro você receberá informações exclusivas de cursos superiores de acordo com o seu perfil.</p>
                     </div>
                 </div>
                 <div class ="container-fluid col-lg-4 col-sm-4 col-xs-12 box">
-                    <div class="col-lg-12 table-bordered well t">
+                    <div class="col-lg-12 table-bordered well t" style="min-height:172px;">
                         <img class="img-passo3" src="../Images/Passo3.png" />
                         <h3>3. Como chegar lá!</h3>
                         <p>Após cumprir as duas primeiras etapaso nosso sistema lhe dará todas as informações necessárias para você conseguir iniciar seu curso superior!</p>
@@ -83,34 +83,6 @@
             <div class="text-center">
                 <asp:Button id="btnQCadastro" runat="server" Text="Quero Me Cadastrar" CssClass="btn btn-default button-cad" OnClick="btnQCadastro_Click"/>
             </div>
-        </asp:Panel>
-            
-        <asp:Panel ID="pnCursos" runat="server" Visible="false">
-        
-            <div class="box">
-                <div class ="container-fluid col-lg-4 col-sm-4 col-xs-12 box">
-                    <a href="Curso.aspx"><div class="col-lg-12 table-bordered well">
-                            <h3>Curso I</h3>
-                            <p>ANÁLISE E DESENVOLVIMENTO DE SISTEMAS</p>
-                            <p>FATEC ZONA SUL – DOM EVARISTO ARNS</p>
-                    </div></a>
-                </div>
-                <div class ="container-fluid col-lg-4 col-sm-4 col-xs-12 box">
-                    <a href="#"><div class="col-lg-12 table-bordered well">
-                        <h3>Curso II</h3>
-                        <p>ANÁLISE E DESENVOLVIMENTO DE SISTEMAS</p>
-                        <p>FATEC IPIRANGA – PASTOR ENÉAS TOGNINI</p>
-                    </div></a>
-                </div>
-                <a href="#"><div class ="container-fluid col-lg-4 col-sm-4 col-xs-12 box">
-                    <div class="col-lg-12 table-bordered well">
-                        <h3>Curso III</h3>
-                        <p>ANÁLISE E DESENVOLVIMENTO DE SISTEMAS</p>
-                        <p>ESTÁCIO – CAMPUS SANTO AMARO</p>
-                    </div>
-                </div></a>
-            </div>
-
         </asp:Panel>
         <div class="box">
             <div class ="container-fluid col-lg-4 col-sm-4 col-xs-12 box">    
@@ -132,7 +104,12 @@
                 </a>
             </div>
         </div>
-        <div class="well-lg">.</div>
+        <%-- Rodapé --%>
+        <div> </div>
+        <div class ="navbar-inverse" style="position:static; width:100%; min-height:50px; color:floralwhite; font-size:16px;">
+            <div style="font-size:10px;"> </div>
+	        <div style="margin-left:2%;">Copyright 2017 Construindo meu Futuro</div>
+        </div>
     </body>
     </html>
 </asp:Content>

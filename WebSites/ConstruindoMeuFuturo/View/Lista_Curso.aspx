@@ -10,7 +10,7 @@
         </head>
     <body>
         <link href="../General/Design.css" rel="stylesheet" />
-        <div class="well container" style="margin-top:2%; max-width:60%;">
+        <div class="well container" style="margin-top:2%; max-width:60%; background-color:white; min-height:100%;">
              <asp:Panel ID="PanelCadastro" runat="server" Visible="False">
                 <asp:Label ID="Label2" runat="server" Text=""><h1>Cadastro de um novo Curso</h1></asp:Label>
                 <br/>
@@ -70,6 +70,12 @@
             </asp:Panel>
 
            
+        </div>
+         <%-- Rodapé --%>
+        <div> </div>
+        <div class ="navbar-inverse" style="position:absolute; width:100%; min-height:50px; color:floralwhite; font-size:16px;">
+            <div style="font-size:10px;"> </div>
+	        <div style="margin-left:2%;">Copyright 2017 Construindo meu Futuro</div>
         </div>
     </body>
     </html>

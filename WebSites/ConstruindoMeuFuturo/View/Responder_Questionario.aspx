@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" Title ="Cadastro" AutoEventWireup="true" CodeFile="Responder_Questionario.aspx.cs" Inherits="View_Cadastro_Resposta"%>
+﻿<%@ Page Language="C#" Title ="Questionário" AutoEventWireup="true" CodeFile="Responder_Questionario.aspx.cs" Inherits="View_Cadastro_Resposta"%>
 
 
 <!DOCTYPE html>
@@ -15,7 +15,7 @@
         <script src="../bootstrap/js/bootstrap.min.js"></script> --%>
 
         <link href="../bootstrap/css/bootstrap.css" rel="stylesheet" />
-        <link href="Design.css" rel="stylesheet" />
+        <link href="../General/Design.css" rel="stylesheet" />
         <link rel="icon" href="../Images/Logo.png" />
         <script src="../bootstrap/js/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -25,7 +25,7 @@
 <body>
     <form id="form1" runat="server">
 
-        <div class="well container" style="margin-top:2%; max-width:80%;">
+        <div class="well container" style="margin-top:2%; max-width:80%; background-color:white;">
             <asp:Panel ID="pnQuestionario" runat="server" name="pnQuestionario">
                
 

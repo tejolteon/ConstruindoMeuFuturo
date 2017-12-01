@@ -1,7 +1,8 @@
 ﻿<%@ Page Title="Login" Language="C#" MasterPageFile="~/General/Site.master" AutoEventWireup="true" CodeFile="Login.aspx.cs" Inherits="View_Usuario_Login" %>
 <asp:Content ID="Content2" ContentPlaceHolderID="Content" Runat="Server">    
        <br/>
-        <div class="container" style="margin-top:2%; max-width:30%">
+        <link href="../General/Design.css" rel="stylesheet" />
+        <div class="container" style="margin-top:2%; max-width:380px;">
             <asp:Panel ID="Panel1" runat="server">
                 <asp:Label ID="Label1" CssClass="text-center" runat="server" Text=""><h1>Login</h1></asp:Label>
                 <br/>
@@ -24,6 +25,12 @@
                 <br/>
                 <asp:Label id="Labelerro" CssClass="text-danger" runat="server"></asp:Label>
             </asp:Panel>
+        </div>
+    <%-- Rodapé --%>
+        <div> </div>
+        <div class ="navbar-inverse" style="position:absolute; width:100%; min-height:50px; bottom:0; color:floralwhite; font-size:16px;">
+            <div style="font-size:10px;"> </div>
+	        <div style="margin-left:2%;">Copyright 2017 Construindo meu Futuro</div>
         </div>
 </asp:Content>
 

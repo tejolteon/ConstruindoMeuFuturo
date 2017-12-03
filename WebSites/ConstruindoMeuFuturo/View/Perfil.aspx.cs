@@ -43,16 +43,7 @@ public partial class View_Perfil : System.Web.UI.Page
                 //Verifica se ele é um administrador
                 if (Session["UsuarioTipo"].ToString() == "A")
                 {
-                    LabelTop.Text = "<h1> Gerenciador </h1>";
-                    ltPainel.Text += "<div class=" + "\"" + "col-lg-5" + "\"" + " style=" + "\"" + "border:1px solid gray; margin-right:2px; margin-bottom:2px; background-color: #D8D8D8; border-radius:1px;" + "\"" + " > " +
-                                     "<p><a class= " + "\"" + "btn btn-primary btn-lg" + "\"" + " href= " + "\"" + "Lista_Curso.aspx" + "\"" + " role= " + "\"" + "button" + "\"" + " >Cursos</a></p>" +
-                                     "</div>" +
-                                     "<div class=" + "\"" + "col-lg-5" + "\"" + " style=" + "\"" + "border:1px solid gray; margin-right:2px; margin-bottom:2px; background-color: #D8D8D8; border-radius:1px;" + "\"" + " > " +
-                                     "<p><a class= " + "\"" + "btn btn-primary btn-lg" + "\"" + " href= " + "\"" + "Lista_Questao.aspx" + "\"" + " role= " + "\"" + "button" + "\"" + " >Questionario</a></p>" +
-                                     "</div>" +
-                                     "<div class=" + "\"" + "col-lg-5" + "\"" + " style=" + "\"" + "border:1px solid gray; margin-right:2px; margin-bottom:2px; background-color: #D8D8D8; border-radius:1px;" + "\"" + " > " +
-                                     "<p><a class= " + "\"" + "btn btn-primary btn-lg" + "\"" + " href= " + "\"" + "Lista_Unidade_de_Ensino.aspx" + "\"" + " role= " + "\"" + "button" + "\"" + " >Unidade de ensino</a></p>" +
-                                     "</div>";
+                  
                 }
                 else
                 {
@@ -62,10 +53,16 @@ public partial class View_Perfil : System.Web.UI.Page
                         perfil = perfcont.ConsultarPerfilPorIdUsuario(UsuarioId);
                         Session["PerfilId"] = perfil.Id_perfil;
                     if (perfil == null)
-                        {
-                            ltPainel.Text = "<div>Complete seu cadastro para receber opções de curso" +
-                                "<p><a class= " + "\"" + "btn btn-primary btn-lg" + "\"" + " href= " + "\"" + "Cadastro_Perfil.aspx" + "\"" + " role= " + "\"" + "button" + "\"" + " >Concluir Cadastro »</a></p></div>";
+                    {
+                        Panel conteudo = new Panel();
+
+                       
                             lbtAlterarPerfil.Visible = false;
+                        Label lbcursounidade = new Label();
+                        lbcursounidade.Text = "< div > Complete seu cadastro para receber opções de curso" +
+                                "<p><a class= " + "\"" + "btn btn-primary btn-lg" + "\"" + " href= " + "\"" + "Cadastro_Perfil.aspx" + "\"" + " role= " + "\"" + "button" + "\"" + " >Concluir Cadastro »</a></p></div>";
+                        conteudo.Controls.Add(lbcursounidade);
+                        pnPerfil.Controls.Add(conteudo);
                     }
                     else
                     {
@@ -93,23 +90,64 @@ public partial class View_Perfil : System.Web.UI.Page
         {
             BtQuestionario.Visible = true;
         }
-
+      
         foreach (CursoBean curso in this.cursocont.ListarCursosIndicado(idperfil))
         {
             try
             {
+
+                Panel cursospanel = new Panel();
+                cursospanel.CssClass = "col-lg-12";
+                int cont = 0;
                 foreach (UnidadeEnsinoBean unidade in this.unidadecont.ListarUnidadeCurso(curso.Id))
                 {
-                    //Insere os valores no literal com a formatação devida
-                    ltPainel.Text += "" +
-                        "<div class=" + "\"" + "col-lg-5" + "\"" + " style=" + "\"" + "border:1px solid gray; margin-right:20px; margin-bottom:20px; background-color: #D8D8D8; border-radius:5px;" + "\"" + " > " +
-                        "<p><h2>" + curso.Nome + "</h2></p>" +
-                        "<p>" + unidade.Nome_unidade + "</p>" +
-                        //Button para ver detalhes
-                        "<p><a class= " + "\"" + "btn btn-primary btn-lg" + "\"" + " href= " + "\"" + "Curso.aspx?CursoId=" + curso.Id + "&UnidadeId=" + unidade.Id_unidade + " " + "\"" + " role= " + "\"" + "button" + "\"" + " >Ver detalhes »</a></p>" +
-                        "</div>";
-                    //obs.: "\"" é igual a "
+                    
+                  
+                    //declarando painel
+                    Panel conteudo = new Panel();
+                    //formantando a div
+                    conteudo.CssClass = "col-lg-6 col-xs-12";
+                    conteudo.Style.Add("border", "1px solid gray");
+                    conteudo.Style.Add("background-color", "#D8D8D8");
+                    conteudo.Style.Add("border-radius", "5px");
+                 
+                    //Criando o button
+                    LinkButton btunidadecurso = new LinkButton();
+                    btunidadecurso.Text = "Ver detalhes »";
+                    btunidadecurso.CssClass = "btn btn-primary btn-lg";
+                    btunidadecurso.PostBackUrl = "Curso.aspx?CursoId=" + curso.Id + "&UnidadeId=" + unidade.Id_unidade;
+                    Label lbcursounidade = new Label();
+                    lbcursounidade.Text = "<p><h2>" + curso.Nome + "</h2></p>" +
+                    "<p>" + unidade.Nome_unidade + "</p>";
+                    conteudo.Controls.Add(lbcursounidade);
+                    conteudo.Controls.Add(btunidadecurso);
+                   
+                    cursospanel.Controls.Add(conteudo);
+                    cont++;
                 }
+                if (cont > 2)
+                {
+                    cursospanel.Style.Add("overflow", "hidden");
+                    cursospanel.Height = 150;
+                }
+
+                    pnPerfil.Controls.Add(cursospanel);
+                if (cont > 2)
+                {
+                    Panel painelbutton = new Panel();
+                    painelbutton.CssClass = "col-lg-12";
+                    Button btvermais = new Button();
+                    btvermais.Text = "Ver mais unidades";
+                    btvermais.CssClass = "btn btn-warning center-block";
+                    btvermais.Style.Add("width","75%");
+                    painelbutton.Style.Add("position", "center");
+                    painelbutton.Controls.Add(btvermais);
+                   
+                    pnPerfil.Controls.Add(painelbutton);
+                }
+               
+                
+       
 
             }
             catch

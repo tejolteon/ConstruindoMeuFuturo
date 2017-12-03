@@ -2,14 +2,12 @@
 
 
 <asp:Content ID="Content2" ContentPlaceHolderID="Content" Runat="Server">
-    <!DOCTYPE html>
-    <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-            <title></title>
-        </head>
-    <body>
-        <link href="../General/Design.css" rel="stylesheet" />
+   
+        <link href="../../bootstrap/css/bootstrap.css" rel="stylesheet" />
+        <link href="../../General/Design.css" rel="stylesheet" />
+        <link rel="icon" href="../../Images/Logo.png" />
+        <script src="../../bootstrap/js/jquery.min.js"></script>
+
         <div class="well container" style="margin-top:2%; max-width:80%; background-color:white;">
             <asp:Panel ID="PanelCadastroUnidade" runat="server" Visible ="false">
                 <asp:Label ID="Label2" runat="server" Text=""><h1>Cadastro Unidade de Ensino</h1></asp:Label>
@@ -93,8 +91,6 @@
 
             
         </div>
-    </body>
-    </html>
 </asp:Content>
 
 

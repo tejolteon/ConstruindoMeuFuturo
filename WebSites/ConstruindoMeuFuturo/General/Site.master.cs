@@ -35,6 +35,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
     {
         Session.Remove("usuario");
         Session.Remove("usuarioId");
+        Session.RemoveAll();
         Response.Redirect("../View/Home.aspx");
     }
 

@@ -233,4 +233,41 @@ public class UsuarioDao
             Conexao.Desconectar();
         }
     }
+    public int UsuariosCadastradosMes(int mes, int ano)
+    {
+        try
+        {
+            //Conectar com o banco
+            Conexao.Conectar();
+            var command = new SqlCommand();
+            command.Connection = Conexao.connection;
+            //Comando no banco
+            command.CommandText = "SELECT count(Id_Usuario) usuariocont FROM TB_USUARIO " +
+                "WHERE MONTH(Data_Cadastro_Usuario) = @mes AND YEAR(Data_Cadastro_Usuario)=@ano";
+            //Entrada doa parâmetros
+            command.Parameters.AddWithValue("@mes", mes);
+            command.Parameters.AddWithValue("@ano", ano);
+            //Executar o comando 
+            var reader = command.ExecuteReader();
+            int cont = 0;
+            //Inserir os valores do resultado no bean
+            while (reader.Read())
+            {
+                cont = Convert.ToInt32(reader["usuariocont"]);
+           
+            }
+            return cont;
+        }
+        catch (Exception)
+        {
+
+            throw;
+        }
+        //encerrar conexão com o banco
+        finally
+        {
+            Conexao.Desconectar();
+        }
+    }
 }
+

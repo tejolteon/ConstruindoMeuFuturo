@@ -13,11 +13,11 @@ public class UsuarioController
     public UsuarioBean ConsultarUsuario(string email, string senha)
     {
         usuariodao = new UsuarioDao();
-        var usuario = usuariodao.ConsultarUsuario(email,senha);
+        var usuario = usuariodao.ConsultarUsuario(email, senha);
 
         if (usuario == null)
         {
-            
+
             throw new UsuarioNaoCadastradoException();
         }
         else
@@ -27,7 +27,8 @@ public class UsuarioController
         }
     }
 
-    public UsuarioBean ConfirmarSenha(UsuarioBean usuario) {
+    public UsuarioBean ConfirmarSenha(UsuarioBean usuario)
+    {
         //String para armazenar o confirmar senha, pois ela será apagada depois da consulta
         String confirmarsenha;
         confirmarsenha = usuario.Confirmarsenha;
@@ -40,7 +41,7 @@ public class UsuarioController
         return usuario;
     }
 
-   
+
 
     public UsuarioBean ConsultarUsuarioPorID(int id)
     {
@@ -90,7 +91,8 @@ public class UsuarioController
         }
     }
 
-    public void ValidarEmailUsuario(UsuarioBean usuario) {
+    public void ValidarEmailUsuario(UsuarioBean usuario)
+    {
         usuariodao = new UsuarioDao();
         usuario = usuariodao.ConsultarUsuarioEmail(usuario.Email);
         if (usuario != null)
@@ -107,11 +109,18 @@ public class UsuarioController
         usuariodao = new UsuarioDao();
         var linhasafetadas = usuariodao.AlterarSenha(usuario);
 
-        if(linhasafetadas == 0)
+        if (linhasafetadas == 0)
         {
             throw new UsuarioNaoCadastradoException();
         }
-        
 
+
+    }
+
+    public int UsuarioCadastradoMes(int mes, int ano)
+    {
+        usuariodao = new UsuarioDao();
+        var usuarios = usuariodao.UsuariosCadastradosMes(mes, ano);
+        return usuarios;
     }
 }

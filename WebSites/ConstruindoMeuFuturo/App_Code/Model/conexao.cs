@@ -11,7 +11,7 @@ using System.Configuration;
 public class Conexao
 {
     /* Minha conexão não apaguem. Ass: Tiago*/
-    public static string connectionString = "Integrated Security=SSPI;Persist Security Info=False;Initial Catalog=construindomeufuturo;Data Source=TIAGO";
+    public static string connectionString = "Integrated Security=SSPI;Persist Security Info=False;Initial Catalog=construindomeufuturo;Data Source=GAMER-PC";
     //public static string connectionString = ConfigurationManager.ConnectionStrings["ConexaoConstruindo"].ConnectionString;
     public static SqlConnection connection = new SqlConnection(connectionString);
 

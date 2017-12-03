@@ -24,7 +24,7 @@
             </asp:Panel>
         </div>
             <div class="col-lg-1 col-sm-1"></div>
-        <div class="container well-lg col-lg-9 col-sm-6 col-xs-12" style="">
+        <div class="container well-lg col-lg-10 col-xs-12" align="center">
             <asp:Panel ID="pnPerfil" runat="server" class="row">
                 <asp:Label ID="LabelTop" runat="server" Text="<h1>Sugestões de Cursos</h1>"></asp:Label>
                  <br/>
@@ -36,7 +36,6 @@
                                 window.open("Responder_Questionario.aspx", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top=200,left=500,width=854,height=480");
                             }
                         </script>
-                   <!-- Literal que recebe cursos ou tela administrativa -->
                  <br/>
                  </div>
                

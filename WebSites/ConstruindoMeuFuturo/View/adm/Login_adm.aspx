@@ -1,7 +1,10 @@
 ﻿<%@ Page Title="Login" Language="C#" MasterPageFile="~/General/Site.master" AutoEventWireup="true" CodeFile="Login_adm.aspx.cs" Inherits="View_Usuario_Login" %>
 <asp:Content ID="Content2" ContentPlaceHolderID="Content" Runat="Server">    
        <br/>
-        <link href="../General/Design.css" rel="stylesheet" />
+        <link href="../../bootstrap/css/bootstrap.css" rel="stylesheet" />
+        <link href="../../General/Design.css" rel="stylesheet" />
+        <link rel="icon" href="../../Images/Logo.png" />
+        <script src="../../bootstrap/js/jquery.min.js"></script>
         <div class="container" style="margin-top:2%; max-width:380px;">
             <asp:Panel ID="Panel1" runat="server">
                 <asp:Label ID="Label1" CssClass="text-center" runat="server" Text=""><h1>Login</h1></asp:Label>

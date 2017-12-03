@@ -34,6 +34,7 @@ public partial class View_Cadastro : System.Web.UI.Page
             Session["usuario"] = usuario.Nome;
             Session["usuarioId"] = usuario.Id;
             Session["UsuarioStatus"] = usuario.Status;
+            Session["UsuarioTipo"] = usuario.Tipo;
             Response.Redirect("Cadastro_Perfil.aspx");
         }
         catch (SenhaUsuarioInvalidaException)

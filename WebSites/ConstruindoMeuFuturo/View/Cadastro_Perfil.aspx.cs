@@ -82,11 +82,13 @@ public partial class View_Cadastro_Perfil : System.Web.UI.Page
                         area = new AreaBean();
                         area.Id = Convert.ToInt16(CheckListArea.Items[i].Value);
                         perfcont.InserirPerfilArea(perfil, area);
-                        //Insere mais 1 ponto no curso indicado se o curso pertencer a area
-                        cursocont.InserirCursoIndicadoArea(perfil.Id_perfil);
+                       
+                       
                     }
 
                 }
+                //Insere mais 1 ponto no curso indicado se o curso pertencer a area
+                cursocont.InserirCursoIndicadoArea(perfil.Id_perfil);
                 Response.Redirect("Perfil.aspx");
             }
             catch (Exception)

@@ -12,7 +12,7 @@
         <link href="../General/Design.css" rel="stylesheet" />
         <div class="well container" style="margin-top:2%; max-width:60%; background-color:white;">
             <asp:Panel ID="Panel1" runat="server">
-                <asp:Label ID="Label1" runat="server" Text=""><h1>Cadastro Unidade de Ensino</h1></asp:Label>
+                <asp:Label ID="Label1" runat="server" Text=""><h1>Alterar dados da Unidade de Ensino</h1></asp:Label>
                 <br/>
                 <div class="form-group">
 
@@ -48,15 +48,18 @@
                 <div class="form-group">
                     <label for="descricao">Descrição</label>
                 </div>
-                <textarea id="Txtdescricao" cols="20" name="S1" rows="2" runat="server" style="width:100%;"></textarea><div class="form-group">
-                    <div class="text-right col-lg-6">
-                        <asp:Button ID="Btalterar" CssClass="btn btn-primary" Text="Salvar" runat="server" width="100px" OnClick="Btalterar_Click" />
-                    </div>
-                <br/>
-                <asp:Label id="Labelerro" runat="server"></asp:Label>
-            </asp:Panel>
-        </div>
-        </div>
+                <textarea id="Txtdescricao" cols="20" name="S1" rows="2" runat="server" style="width:100%;"></textarea>
+                <div class="form-group">
+                        <div class="text-right col-lg-6">
+                            <asp:Button ID="Btalterar" CssClass="btn btn-primary" Text="Salvar" runat="server" width="100px" OnClick="Btalterar_Click" />
+                        </div>
+                    <br/>
+                    <asp:Label id="Labelerro" runat="server"></asp:Label>
+                </div>
+                </asp:Panel>
+            </div>
+      
+        
     </body>
     </html>
 </asp:Content>

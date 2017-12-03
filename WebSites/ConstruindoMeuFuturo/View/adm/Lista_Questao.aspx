@@ -9,8 +9,8 @@
         <script src="../../bootstrap/js/jquery.min.js"></script>
 
         <div class="well container" style="margin-top:2%; max-width:60%; background-color:white;">
+            <asp:Label ID="Label2" runat="server" Text="" style="text-align:center"><h1>Gerenciador de Questionario</h1></asp:Label>
             <asp:Panel ID="pnCadastroQuestao" runat="server" Visible ="False">
-                <asp:Label ID="Label2" runat="server" Text=""><h1>Cadastro de questões</h1></asp:Label>
                 <br/>
                 <div class="form-group">
                     <label for="textoquestao">Texto:</label>
@@ -18,17 +18,16 @@
                     <textarea id="txtTextoquestao" name="S1" rows="3" runat="server" style="width:100%;"></textarea>
                 </div>
                 <div class="form-group text-right">
-                    <asp:Button ID="Btcadastrar" CssClass="btn btn-primary" Text="Cadastrar" runat="server" Width="100px" OnClick="Btcadastras_Click"/>
+                    <asp:Button ID="Btcadastrar" CssClass="btn btn-primary" Text="Adicionar" runat="server" Width="100px" OnClick="Btcadastras_Click"/>
                 </div>
                 <br/>
                 <asp:Label id="Label3" runat="server"></asp:Label>
             </asp:Panel>
             <asp:Panel ID="PanelLista" runat="server">
-                <asp:Label ID="Label1" runat="server" Text=""><h1>Questões</h1></asp:Label>
-                <br/>
-                <asp:Button ID="btnPainelCadastrar" runat="server" Text="Cadastrar uma questão nova" CssClass="btn btn-primary"  OnClick="btnCadastrar_Click"  />
-                <br />
-                 <div class="form-group">
+                <div class="text-center col-lg-12" style="margin-bottom:30px;margin-top:30px">
+                     <asp:Button ID="btnPainelCadastrar" runat="server" Text="Cadastrar uma nova questão" CssClass="btn btn-primary"  OnClick="btnCadastrar_Click"/>
+                </div>
+                <div class="form-group">
                     <asp:TextBox ID="Txtpesquisa"  CssClass="form-control"  width="100%"  Height="40px" runat="server" AutoPostBack="True" OnTextChanged="Txtpesquisa_TextChanged" placeholder="Pesquisar por nome"></asp:TextBox>
                 </div>
                 <asp:GridView ID="grdDados" runat="server" AutoGenerateColumns="false" OnRowCommand="grdDados_RowCommand"  width="100%">

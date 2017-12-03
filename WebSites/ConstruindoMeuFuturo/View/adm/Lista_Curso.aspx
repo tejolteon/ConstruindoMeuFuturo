@@ -9,8 +9,9 @@
         <script src="../../bootstrap/js/jquery.min.js"></script>
 
         <div class="well container" style="margin-top:2%; max-width:60%; background-color:white; min-height:100%;">
-             <asp:Panel ID="PanelCadastro" runat="server" Visible="False">
-                <asp:Label ID="Label2" runat="server" Text=""><h1>Cadastro de um novo Curso</h1></asp:Label>
+               <asp:Label ID="Label2" runat="server" Text="" style="text-align:center"><h1>Gerenciador de Cursos</h1></asp:Label>
+            <asp:Panel ID="PanelCadastro" runat="server" Visible="False">
+               
                 <br/>
                 <div class="form-group">
 
@@ -36,7 +37,7 @@
                 </div>
                 <br/>
                 <textarea id="Txtdescricao" cols="20" name="S1" rows="2" runat="server" style="width:100%;"></textarea><div class="form-group">
-                    <div class="text-right col-lg-6">
+                    <div class="text-right col-lg-12">
                         <asp:Button ID="BtCadastrar" CssClass="btn btn-primary" Text="Salvar" runat="server" width="100px" OnClick="Btcadastrar_Click" />
                     </div>
                 </div>
@@ -44,10 +45,9 @@
                 <asp:Label id="Label3" runat="server"></asp:Label>
             </asp:Panel>
             <asp:Panel ID="Panel1" runat="server">
-                <asp:Label ID="Label1" runat="server" Text=""><h1>Cursos</h1></asp:Label>
-                <br/>
-                <asp:Button ID="btnPainelCadastrar" runat="server" Text="Cadastrar um curso novo" CssClass="btn btn-primary"  OnClick="btnCadastrar_Click"  />
-                <br/>
+                <div class="text-center col-lg-12" style="margin-bottom:30px;margin-top:30px">
+                    <asp:Button ID="btnPainelCadastrar" runat="server" Text="Cadastrar um novo curso" CssClass="btn btn-primary"  OnClick="btnCadastrar_Click"  />
+                </div>
                 <div class="form-group">
                     <asp:TextBox ID="Txtpesquisa"  CssClass="form-control"  width="100%"  Height="40px" runat="server" AutoPostBack="True" OnTextChanged="Txtpesquisa_TextChanged" placeholder="Pesquisar por nome"></asp:TextBox>
                 </div>

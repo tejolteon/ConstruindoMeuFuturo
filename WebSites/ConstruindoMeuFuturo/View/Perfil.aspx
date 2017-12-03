@@ -28,8 +28,8 @@
             <asp:Panel ID="pnPerfil" runat="server" class="row">
                 <asp:Label ID="LabelTop" runat="server" Text="<h1>Sugestões de Cursos</h1>"></asp:Label>
                  <br/>
-                <div class="col-lg-10"\>
-                 <button ID="BtQuestionario" Class="btn btn-primary" Text="Responder Questionario Para melhorar a precisão" runat="server" style="height:40px;width:100%;" onclick="BtQuestionario_Click()" visible="false">
+                <div class="col-lg-12">
+                 <button ID="BtQuestionario" Class="btn btn-primary" Text="Responder Questionario Para melhorar a precisão" runat="server" style="height:40px;width:80%;text-align:center;" onclick="BtQuestionario_Click()" visible="false">
                  Responder Questionario Para melhorar a precisão</button>
                         <script>
                             function BtQuestionario_Click() {

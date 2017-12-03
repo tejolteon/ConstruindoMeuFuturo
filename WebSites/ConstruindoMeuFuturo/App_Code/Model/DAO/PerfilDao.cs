@@ -190,7 +190,7 @@ public class PerfilDao
             var command = new SqlCommand();
             command.Connection = Conexao.connection;
             //Comando no banco
-            command.CommandText = "SELECT * FROM TB_PERFIL WHERE Id_Usuario = @id_usuario";
+            command.CommandText = "SELECT Id_Perfil, Id_Usuario, CONVERT(CHAR(10),Data_Nascimento_Perfil,101)Data_Nascimento_Perfil, Escolaridade_Perfil FROM TB_PERFIL WHERE Id_Usuario = @id_usuario";
             //Entrada doa parâmetros
             command.Parameters.AddWithValue("@id_usuario", idusuario);
             //Executar o comando 

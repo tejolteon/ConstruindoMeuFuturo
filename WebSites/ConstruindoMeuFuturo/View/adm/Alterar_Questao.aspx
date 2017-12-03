@@ -13,7 +13,7 @@
                     <br/>
                     <textarea id="txtTextoquestao" CssClass="form-control"  style="width:100%;" name="S1" rows="3" runat="server" ></textarea>
                 </div>
-                <div class="form-group text-right">
+                 <div class="text-right col-lg-6">
                     <asp:Button ID="Btalterar" CssClass="btn btn-primary" Text="Cadastrar" runat="server" Width="100px" OnClick="Btalterar_Click"/>
                 </div>
                 <br/>

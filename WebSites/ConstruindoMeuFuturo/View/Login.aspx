@@ -9,6 +9,7 @@
                 <div class="form-group">
                     <%--<label for="email">E-mail:</label>--%>
                     <asp:TextBox ID="Txtemail" CssClass="form-control"  width="100%"  Height="40px" runat="server" placeholder="E-mail"></asp:TextBox>
+                    <asp:RegularExpressionValidator ID="regexEmailValid" runat="server" ValidationExpression="\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" ControlToValidate="Txtemail" ErrorMessage="Formato de e-mail invalido"></asp:RegularExpressionValidator>
                 <%--</div>
                 <br/>
                 <div class="form-group">--%> 

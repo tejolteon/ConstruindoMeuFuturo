@@ -59,9 +59,9 @@
             </asp:Panel>
             <asp:Panel ID="Panel1" runat="server">
                 <asp:Label ID="Label1" runat="server" Text=""><h1>Unidade de ensino</h1></asp:Label>
-
-                <asp:Button ID="btnCadastrar" runat="server" Text="Cadastrar uma unidade nova" CssClass="btn btn-primary"  OnClick="btnCadastrar_Click"  />
-                <br/>
+                <div class="text-center col-lg-12" style="margin-bottom:30px;margin-top:30px">
+                    <asp:Button ID="btnCadastrar" runat="server" Text="Cadastrar uma unidade nova" CssClass="btn btn-primary"  OnClick="btnCadastrar_Click"  />
+                </div>
 
                 <asp:Label id="Labelerro" runat="server"></asp:Label>
                 <div class="form-group">

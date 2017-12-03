@@ -9,7 +9,7 @@
     </head>
     <body>
         <link href="../General/Design.css" rel="stylesheet" />
-        <div class="well container" style="margin-top:2%; max-width:80%; background-color:white;">
+        <div class="well container" align="center" style="margin-top:2%; max-width:80%; background-color:white;">
             <asp:Panel ID="pnCadstro" runat="server">
                 <asp:Label ID="Label1" runat="server" Text=""><h1>Cadastro de Usuario</h1></asp:Label>
                 <br/>
@@ -21,6 +21,7 @@
                 <div class="form-group" style="max-width:400px;">
                     <label for="email">E-mail:</label>
                     <asp:TextBox ID="Txtemail" CssClass="form-control" Width="100%" runat="server"></asp:TextBox>
+                    <asp:RegularExpressionValidator ID="regexEmailValid" runat="server" ValidationExpression="\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" ControlToValidate="Txtemail" ErrorMessage="Formato de e-mail invalido"></asp:RegularExpressionValidator>
                 </div>
                 <br/>
                 <div class="form-group" style="max-width:400px;">

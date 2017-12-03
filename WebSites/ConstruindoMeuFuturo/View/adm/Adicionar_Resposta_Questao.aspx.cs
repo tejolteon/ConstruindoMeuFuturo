@@ -185,4 +185,10 @@ public partial class View_Adicionar_Resposta_Questao : System.Web.UI.Page
             throw;
         }
     }
+
+    protected void btnCadastrar_Click(object sender, EventArgs e)
+    {
+        pnCadastro.Visible = true;
+        btnPainelCadastrar.Visible = false;
+    }
 }

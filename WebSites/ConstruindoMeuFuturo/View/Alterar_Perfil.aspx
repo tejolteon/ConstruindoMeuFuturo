@@ -4,16 +4,16 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="Content" Runat="Server">
     <br/>
     <link href="../General/Design.css" rel="stylesheet" />    
-    <div class="well container" style="margin-top:2%; max-width:60%; background-color:white;">
+    <div class="well container" style="margin-top:2%; max-width:60%; background-color:white;max-width:800px;">
             <asp:Panel ID="Panel1" runat="server">
-                <asp:Label ID="Label1" runat="server" Text=""><h1>Seu Perfil</h1></asp:Label>
+                <asp:Label ID="Label1" runat="server" Text="" style="text-align:center"><h1>Seu Perfil</h1></asp:Label>
                 <h4>Para conseguirmos te ajudar a escolher a melhor maneira de se aprimorar preencha os dados abaixo</h4>
                 <br/>
                 <div class="form-group">
 
                     <label for="datanascimento">Data de Nascimento:</label>
-                    <asp:TextBox ID="Txtdatanascimento" CssClass="form-control" runat="server"></asp:TextBox>
-
+                    <asp:TextBox ID="Txtdatanascimento" CssClass="form-control" runat="server" maxlength="10"></asp:TextBox>
+                    <asp:CompareValidator Operator="DataTypeCheck" Type="Date" ID="CompareValidator1" runat="server"  ErrorMessage="Data inválida (dias/mês/ano)" ControlToValidate="Txtdatanascimento"></asp:CompareValidator>
                 </div>
                 <br/>
                 <div class="form-group">

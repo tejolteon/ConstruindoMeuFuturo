@@ -1,13 +1,6 @@
 ﻿<%@ Page Language="C#" Title ="Home" MasterPageFile="~/General/Site.master" AutoEventWireup="true" CodeFile="Home.aspx.cs" Inherits="View_Home"%>
 
 <asp:Content ContentPlaceHolderID="Content" runat="server">
-    <!DOCTYPE html>
-    <html>
-    <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-        <title></title>
-    </head>
-    <body>
         <link href="../General/Design.css" rel="stylesheet" />
         <div id="myCarousel" class="carousel slide box-nav" data-ride="carousel">
             <!-- Indicators -->
@@ -104,6 +97,4 @@
                 </a>
             </div>
         </div>
-    </body>
-    </html>
 </asp:Content>

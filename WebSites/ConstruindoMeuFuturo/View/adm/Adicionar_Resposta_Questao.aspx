@@ -11,11 +11,26 @@
     <body>
         <link href="../General/Design.css" rel="stylesheet" />
         <div class="well container" style="margin-top:2%; max-width:80%; background-color:white;">
-
-            <asp:Panel ID="Panel1" runat="server">
-                <br/>
+            <br/>
                 <asp:Label id="LabelQuestao" runat="server"></asp:Label>
                 <br/>
+            <asp:Panel ID="pnCadastro" runat="server" Visible ="false">
+                <asp:Label ID="Label2" runat="server" Text=""><h3>Cadastro de resposta</h3></asp:Label>
+                <br/>
+                <div class="form-group">
+                    <label for="textoresposta">Texto:</label>
+                    <br/>
+                    <textarea id="txtTextoresposta" CssClass="form-control"  style="width:100%;" maxlength="255" name="S1" rows="3" runat="server"  ></textarea>
+                </div>
+                <div class="form-group text-right">
+                    <asp:Button ID="Btcadastrar" CssClass="btn btn-primary" Text="Adicionar" runat="server" OnClick="Btcadastras_Click"/>
+                </div>
+            </asp:Panel>
+
+            <asp:Panel ID="Panel1" runat="server">
+                 <div class="text-center col-lg-12" style="margin-bottom:30px;margin-top:30px">
+                     <asp:Button ID="btnPainelCadastrar" runat="server" Text="Cadastrar uma nova resposta" CssClass="btn btn-primary"  OnClick="btnCadastrar_Click"/>
+                </div>
                 <asp:Label runat="server" Text=""><h3>Respostas já adicionadas na questao:</h3></asp:Label>
                  <br/>
                 <asp:GridView ID="grdRespostaQuestao" runat="server" AutoGenerateColumns="false" OnRowCommand="grdRespostaQuestao_RowCommand"  width="100%">
@@ -54,18 +69,7 @@
                 <asp:Label id="Labelerro" runat="server"></asp:Label>
             </asp:Panel>
 
-            <asp:Panel ID="pnCadstro" runat="server">
-                <asp:Label ID="Label2" runat="server" Text=""><h1>Cadastro de respostas</h1></asp:Label>
-                <br/>
-                <div class="form-group">
-                    <label for="textoresposta">Texto:</label>
-                    <br/>
-                    <textarea id="txtTextoresposta" CssClass="form-control"  style="width:100%;" maxlength="255" name="S1" rows="3" runat="server"  ></textarea>
-                </div>
-                <div class="form-group text-left">
-                    <asp:Button ID="Btcadastrar" CssClass="btn btn-primary" Text="Cadastrar uma nova resposta na tabela" runat="server" OnClick="Btcadastras_Click"/>
-                </div>
-            </asp:Panel>
+            
 
         </div>
     </body>

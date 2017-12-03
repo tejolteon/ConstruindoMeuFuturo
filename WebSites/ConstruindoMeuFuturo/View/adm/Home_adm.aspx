@@ -43,7 +43,7 @@
                 <div class="col-lg-6">
                     <asp:Chart ID="Chart1" runat="server" Width="467px" Height="359px" AntiAliasing="None" BackColor="Transparent">
                         <Series>
-                            <asp:Series Name="Series1"></asp:Series>
+                            <asp:Series Name="Series1" ChartType="Spline"></asp:Series>
                         </Series>
                         <ChartAreas>
                             <asp:ChartArea Name="ChartUsuarios"></asp:ChartArea>

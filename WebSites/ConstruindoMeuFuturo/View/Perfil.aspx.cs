@@ -125,21 +125,43 @@ public partial class View_Perfil : System.Web.UI.Page
                     cursospanel.Controls.Add(conteudo);
                     cont++;
                 }
+                cursospanel.Style.Add("border", "1px solid gray");
+                cursospanel.Style.Add("border-radius", "5px");
+                cursospanel.Style.Add("margin-bottom", "5px");
+                cursospanel.Style.Add("margin-top", "25px");
+                //se tiver mais de duas unidades no mesmo curso ele diminui a div
                 if (cont > 2)
                 {
                     cursospanel.Style.Add("overflow", "hidden");
+              
                     cursospanel.Height = 150;
+                
                 }
 
                     pnPerfil.Controls.Add(cursospanel);
                 if (cont > 2)
                 {
+                    //paine do buuton
                     Panel painelbutton = new Panel();
                     painelbutton.CssClass = "col-lg-12";
+                    //intancia do button para ver mais unidades
                     Button btvermais = new Button();
                     btvermais.Text = "Ver mais unidades";
                     btvermais.CssClass = "btn btn-warning center-block";
                     btvermais.Style.Add("width","75%");
+                    //evento para aumentar div ao clicar
+                    btvermais.Click += (sd, ev) =>
+                    {
+
+                        cursospanel.Height = Unit.Percentage(100);
+                        
+                        if(btvermais.Text == "Diminuir")
+                        {
+                            cursospanel.Height = 150;
+                            btvermais.Text = "Ver mais unidades";
+                        }else
+                        btvermais.Text = "Diminuir";
+                    };
                     painelbutton.Style.Add("position", "center");
                     painelbutton.Controls.Add(btvermais);
                    

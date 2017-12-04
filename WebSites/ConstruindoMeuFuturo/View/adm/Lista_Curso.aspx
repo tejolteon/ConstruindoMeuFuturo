@@ -23,12 +23,13 @@
                 <div class="form-group">
                     <label for="tipo">Tipo de Curso</label>
                     <asp:DropDownList ID="DDLcidade" runat="server" CssClass="form-control">
-                        <asp:ListItem Text="Profissionalizante" Value="profissionalizante"/>
-                        <asp:ListItem Text="Técnico" Value="téncino"/>
+                       
                         <asp:ListItem Text="Graduação" Value="graduação"/>
-                        <asp:ListItem Text="Pós-Graduação" Value="Pós-graduação"/>
                     </asp:DropDownList>
                 </div>
+                 <!--<asp:ListItem Text="Profissionalizante" Value="profissionalizante"/>
+                        <asp:ListItem Text="Técnico" Value="téncino"/>
+                        <asp:ListItem Text="Pós-Graduação" Value="Pós-graduação"/>-->
                 <br/>
                  
                 <!-- Lista da area de interesse -->

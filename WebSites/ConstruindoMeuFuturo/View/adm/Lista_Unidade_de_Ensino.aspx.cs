@@ -25,12 +25,12 @@ public partial class View_Lista_Unidade_de_Ensino : System.Web.UI.Page
         {
             if (Session["usuario"] == null || Session["UsuarioTipo"].ToString() != "A" || Session["UsuarioStatus"].ToString() != "A")
             {
-                Response.Redirect("../Home.aspx");
+                Response.Redirect("~/View/Home.aspx");
             }
         }
         catch
         {
-            Response.Redirect("../Home.aspx");
+            Response.Redirect("~/View/Home.aspx");
         }
 
 

@@ -18,7 +18,7 @@ public partial class View_Cadastro_Perfil : System.Web.UI.Page
     private CidadeController cidadecont;
     private AreaController areacont;
     private CursoController cursocont;
-    int cont;
+    int cont = 7;//Corrigir depois para ele não zerar ao recarregar a pagina
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -30,15 +30,18 @@ public partial class View_Cadastro_Perfil : System.Web.UI.Page
         }
 
         areacont = new AreaController();
-        //Lista todas as areas
-        foreach (AreaBean area in this.areacont.ListarAreas())
+        if (!IsPostBack)
         {
-            ListItem itemarea = new ListItem();
-            itemarea.Text = area.Nome;
-            itemarea.Value = Convert.ToString(area.Id);
-            CheckBox asdas = new CheckBox();
-            CheckListArea.Items.Add(itemarea);
-            cont++;
+            //Lista todas as areas
+            foreach (AreaBean area in this.areacont.ListarAreas())
+            {
+                ListItem itemarea = new ListItem();
+                itemarea.Text = area.Nome;
+                itemarea.Value = Convert.ToString(area.Id);
+                CheckBox asdas = new CheckBox();
+                CheckListArea.Items.Add(itemarea);
+                cont++;
+            }
         }
     }
 

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" Title ="Cadastro" MasterPageFile="~/General/Site.master" AutoEventWireup="true" CodeFile="Cadastro_Resposta .aspx.cs" Inherits="View_Cadastro_Resposta"%>
+﻿<%@ Page Language="C#" Title ="Cadastro de resposta" MasterPageFile="~/General/Site.master" AutoEventWireup="true" CodeFile="Cadastro_Resposta .aspx.cs" Inherits="View_Cadastro_Resposta"%>
 
 <asp:Content ContentPlaceHolderID="Content" runat="server">
     <!DOCTYPE html>

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Perfil" Language="C#" MasterPageFile="~/General/Site.master" AutoEventWireup="true" CodeFile="Adicionar_Resposta_Questao.aspx.cs" Inherits="View_Adicionar_Resposta_Questao" %>
+﻿<%@ Page Title="Adicionar resposta a questão" Language="C#" MasterPageFile="~/General/Site.master" AutoEventWireup="true" CodeFile="Adicionar_Resposta_Questao.aspx.cs" Inherits="View_Adicionar_Resposta_Questao" %>
 
 
 <asp:Content ID="Content2" ContentPlaceHolderID="Content" Runat="Server">

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Perfil" Language="C#" MasterPageFile="~/General/Site.master" AutoEventWireup="true" CodeFile="Curso_Unidade.aspx.cs" Inherits="View_Curso_Unidade" %>
+﻿<%@ Page Title="Unidade e Cursos" Language="C#" MasterPageFile="~/General/Site.master" AutoEventWireup="true" CodeFile="Curso_Unidade.aspx.cs" Inherits="View_Curso_Unidade" %>
 
 
 <asp:Content ID="Content2" ContentPlaceHolderID="Content" Runat="Server">

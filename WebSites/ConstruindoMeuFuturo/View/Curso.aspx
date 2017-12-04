@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" Title="Análise de Sistemas" MasterPageFile="~/General/Site.master" AutoEventWireup="true" CodeFile="Curso.aspx.cs" Inherits="View_Cursos_Curso" %>
+﻿<%@ Page Language="C#" Title="Curso e unidade" MasterPageFile="~/General/Site.master" AutoEventWireup="true" CodeFile="Curso.aspx.cs" Inherits="View_Cursos_Curso" %>
 
 <asp:Content ContentPlaceHolderID="Content" runat="server">
     <!DOCTYPE html>

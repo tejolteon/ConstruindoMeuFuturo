@@ -300,8 +300,8 @@ INSERT INTO tb_curso(Id_Curso,Tipo_Curso,Nome_Curso,Descricao_Curso) VALUES
 
 (246,'Graduação','Editoração',''),
 
-(247,'Graduação','Economia',''),
-(248,'Graduação','Ciências Sociais','');
+(247,'Graduação','Economia','');
+
 GO
 
 SET IDENTITY_INSERT TB_CURSO OFF;

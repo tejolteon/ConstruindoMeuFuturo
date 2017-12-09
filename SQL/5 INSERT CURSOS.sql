@@ -143,7 +143,7 @@ INSERT INTO tb_curso(Id_Curso,Tipo_Curso,Nome_Curso,Descricao_Curso) VALUES
 (119,'Graduação','Produção Multimídia',''),
 (120,'Graduação','Produção Publicitária',''),
 (121,'Graduação','Publicidade e Propaganda',''),
-(122,'Graduação','Rádio e TV',''),
+(122,'Graduação','Rádio, TV e Internet',''),
 (123,'Graduação','Relações Públicas',''),
 (124,'Graduação','Secretariado',''),
 (125,'Graduação','Secretariado Executivo',''),

@@ -24,7 +24,7 @@ public partial class View_Perfil : System.Web.UI.Page
         // Se não tiver usuario logado ele volta pra Home
         if(Session["usuario"] == null)
         {
-            Response.Redirect("Home.aspx");
+            Response.Redirect("../Home.aspx");
         }
 
        

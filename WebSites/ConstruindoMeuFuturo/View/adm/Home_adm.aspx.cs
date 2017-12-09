@@ -11,30 +11,44 @@ public partial class View_adm_Home_adm : System.Web.UI.Page
     private UsuarioController usucont;
     protected void Page_Load(object sender, EventArgs e)
     {
-        usucont = new UsuarioController();
-        ChartUsuarios.Titles.Add("Usuarios Cadastrado no ano de 2017");
-        for (int cont = 1; cont <= 12; cont++)
+        try
         {
-            int valor = usucont.UsuarioCadastradoMes(cont, 2017);
-            string nomemes = ConverterMesNome(cont);
-       
-
-            ChartUsuarios.Series["Series1"].Points.AddXY(nomemes, valor);
-            ChartUsuarios.Series["Series1"].Color = System.Drawing.Color.RoyalBlue;
-          
-              
+            if (Session["usuario"] == null || Session["UsuarioTipo"].ToString() != "A" || Session["UsuarioStatus"].ToString() != "A")
+            {
+                Response.Redirect("~/View/Home.aspx");
+            }
         }
-        usucont = new UsuarioController();
-        Chart1.Titles.Add("Usuarios Cadastrado no ano de 2017");
-        for (int cont = 1; cont <= 12; cont++)
+        catch
         {
-            int valor = usucont.UsuarioCadastradoMes(cont, 2017);
-            string nomemes = ConverterMesNome(cont);
-          
-            Chart1.Series["Series1"].Points.AddXY(nomemes, valor);
-            Chart1.Series["Series1"].Color = System.Drawing.Color.RoyalBlue;
+            Response.Redirect("~/View/Home.aspx");
+        }
+        if (!IsPostBack)
+        {
+            usucont = new UsuarioController();
+            ChartUsuarios.Titles.Add("Usuarios Cadastrado no ano de 2017");
+            for (int cont = 1; cont <= 12; cont++)
+            {
+                int valor = usucont.UsuarioCadastradoMes(cont, 2017);
+                string nomemes = ConverterMesNome(cont);
 
 
+                ChartUsuarios.Series["Series1"].Points.AddXY(nomemes, valor);
+                ChartUsuarios.Series["Series1"].Color = System.Drawing.Color.RoyalBlue;
+
+
+            }
+            usucont = new UsuarioController();
+            Chart1.Titles.Add("Usuarios Cadastrado no ano de 2017");
+            for (int cont = 1; cont <= 12; cont++)
+            {
+                int valor = usucont.UsuarioCadastradoMes(cont, 2017);
+                string nomemes = ConverterMesNome(cont);
+
+                Chart1.Series["Series1"].Points.AddXY(nomemes, valor);
+                Chart1.Series["Series1"].Color = System.Drawing.Color.RoyalBlue;
+
+
+            }
         }
     }
 
@@ -92,5 +106,33 @@ public partial class View_adm_Home_adm : System.Web.UI.Page
         return "A";
     }
 
+
+    protected void TextBox1_TextChanged(object sender, EventArgs e)
+    {
+        usucont = new UsuarioController();
+        ChartUsuarios.Titles.Add("Usuarios Cadastrados no ano de " + TextBox1.Text);
+        for (int cont = 1; cont <= 12; cont++)
+        {
+            int valor = usucont.UsuarioCadastradoMes(cont, Convert.ToInt32(TextBox1.Text));
+            string nomemes = ConverterMesNome(cont);
+
+
+            ChartUsuarios.Series["Series1"].Points.AddXY(nomemes, valor);
+            ChartUsuarios.Series["Series1"].Color = System.Drawing.Color.RoyalBlue;
+
+
+        }
+        usucont = new UsuarioController();
+        Chart1.Titles.Add("Usuarios Cadastrados no ano de " + TextBox1.Text);
+        for (int cont = 1; cont <= 12; cont++)
+        {
+            int valor = usucont.UsuarioCadastradoMes(cont, Convert.ToInt32(TextBox1.Text));
+            string nomemes = ConverterMesNome(cont);
+
+            Chart1.Series["Series1"].Points.AddXY(nomemes, valor);
+            Chart1.Series["Series1"].Color = System.Drawing.Color.RoyalBlue;
+
+        }
+    }
 }
 

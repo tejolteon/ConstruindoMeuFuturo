@@ -63,4 +63,9 @@ public partial class View_Cadastro_Questao : System.Web.UI.Page
             throw;
         }
     }
+
+    protected void BtVoltar_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("Lista_Questao.aspx");
+    }
 }

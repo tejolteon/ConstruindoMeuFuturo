@@ -17,7 +17,7 @@
                     <label for="nome">Nome:</label>
                     <asp:TextBox Width="100%" CssClass="form-control" ID="txtNome" runat="server"></asp:TextBox>
                 </div>
-                <br />
+                <br/>
                 <div class="form-group" style="max-width:400px;">
                     <label for="email">E-mail:</label>
                     <asp:TextBox ID="Txtemail" CssClass="form-control" Width="100%" runat="server"></asp:TextBox>

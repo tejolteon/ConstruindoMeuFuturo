@@ -112,4 +112,9 @@ public partial class View_Lista_Questao : System.Web.UI.Page
         pnCadastroQuestao.Visible = true;
         btnPainelCadastrar.Visible = false;
     }
+
+    protected void BtVoltar_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("Home_adm.aspx");
+    }
 }

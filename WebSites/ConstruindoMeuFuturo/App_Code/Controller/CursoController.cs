@@ -12,6 +12,7 @@ public class CursoController
     QuestionarioController questionariocont;
     CursoDao cursodao;
     AreaController areacont;
+    PerfilController perfilcont;
 
 
 
@@ -199,6 +200,13 @@ public class CursoController
             throw new NaoCadastradoException();
         }
     }
+
+    public void ExcluirCursosIndicado(int idperfil)
+    {
+        cursodao = new CursoDao();
+        var linhasafetadas = cursodao.ExcluirCursosIndicado(idperfil);
+        //verifica se retornou nenhuma linha afetada
+    }
     public void InserirPontoCursoIndicado(int idcurso, int idperfil, int ponto)
     {
 
@@ -286,14 +294,14 @@ public class CursoController
         }
     }
 
-    public void InserirCursoIndicadoQuestionarios(int idperfil)
+    public void InserirCursoIndicadoQuestionarios(int idperfil, int idcidade)
     {
         unidadecont = new UnidadeController();
         questionariocont = new QuestionarioController();
 
 
         //Pesquisa os cursos cadastrados na cidade
-        foreach (CursoBean curso in this.ListarCursoCidade(5270))
+        foreach (CursoBean curso in this.ListarCursoCidade(idcidade))
         {
             //Pesquisa os cursos que correspondem ao questionario
             foreach (QuestionarioBean questionario in this.questionariocont.ListarQuestionarioCurso(curso.Id))
@@ -324,7 +332,7 @@ public class CursoController
     }
 
 
-    public void InserirCursoIndicadoArea(int idperfil)
+    public void InserirCursoIndicadoArea(int idperfil, int idcidade)
     {
 
         areacont = new AreaController();
@@ -335,7 +343,7 @@ public class CursoController
             foreach (CursoBean curso in this.ListaCursoPorArea(area.Id))
             {
                 //Ve se o curso é cadastrado em são Paulo
-                if (this.ConsultarCursoCidade(5270, curso.Id) != null)
+                if (this.ConsultarCursoCidade(idcidade, curso.Id) != null)
                 {
                     //consulta se esse curso já estava cadastrado na tabela curso indicado, retonando a pontuação
                     int ponto = 0;
@@ -362,6 +370,7 @@ public class CursoController
     public void RetirarCursoIndicadoArea(int idperfil)
     {
         areacont = new AreaController();
+
         
         foreach (AreaBean area in this.areacont.ListarAreaPerfil(idperfil))
         {

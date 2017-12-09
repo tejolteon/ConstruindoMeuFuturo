@@ -65,6 +65,9 @@
 
                 <asp:Label id="Labelerro" runat="server"></asp:Label>
                 <div class="form-group">
+                     <div class="text-right col-lg-12">
+                        <asp:Button ID="BtVoltar" runat="server" CssClass="btn btn-primary" Text="Voltar" width="100px" OnClick="BtVoltar_Click"/>
+                    </div>
                     <asp:TextBox ID="Txtpesquisa"  CssClass="form-control"  width="100%"  Height="40px" runat="server" AutoPostBack="True" OnTextChanged="Txtpesquisa_TextChanged" placeholder="Pesquisar por nome"></asp:TextBox>
                 </div>
                 <br/>

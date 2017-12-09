@@ -15,11 +15,13 @@ public partial class MasterPage : System.Web.UI.MasterPage
             pnOn.Visible = true;
             pnOff.Visible = false;
             lbNome.Text = Session["usuario"].ToString();
+            LinkButton2.Visible = false;
         }    
         else
         {
             pnOff.Visible = true;
             pnOn.Visible = false;
+             LinkButton2.Visible = true;
         }
 
         //  Panel1.Style[HtmlTextWriterStyle.Position]= "bottom:0";
@@ -36,11 +38,16 @@ public partial class MasterPage : System.Web.UI.MasterPage
         Session.Remove("usuario");
         Session.Remove("usuarioId");
         Session.RemoveAll();
-        Response.Redirect("../View/Home.aspx");
+        Response.Redirect("~/View/Home.aspx");
     }
 
     protected void lbNome_Click(object sender, EventArgs e)
     {
-        Response.Redirect("../View/Perfil.aspx");
+        Response.Redirect("Perfil.aspx");
+    }
+
+    protected void LinkButton2_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("~/View/Login_adm.aspx");
     }
 }

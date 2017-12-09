@@ -49,6 +49,9 @@
                 <div class="text-center col-lg-12" style="margin-bottom:30px;margin-top:30px">
                     <asp:Button ID="btnPainelCadastrar" runat="server" Text="Cadastrar um novo curso" CssClass="btn btn-primary"  OnClick="btnCadastrar_Click"  />
                 </div>
+                 <div class="text-right col-lg-12">
+                    <asp:Button ID="BtCadastrar0" runat="server" CssClass="btn btn-primary" Text="Voltar" width="100px" OnClick="BtCadastrar0_Click" />
+                 </div>
                 <div class="form-group">
                     <asp:TextBox ID="Txtpesquisa"  CssClass="form-control"  width="100%"  Height="40px" runat="server" AutoPostBack="True" OnTextChanged="Txtpesquisa_TextChanged" placeholder="Pesquisar por nome"></asp:TextBox>
                 </div>
@@ -66,6 +69,7 @@
                 </asp:GridView>
                 <br/>
                 <asp:Label id="Labelerro" runat="server"></asp:Label>
+                
             </asp:Panel>
 
            

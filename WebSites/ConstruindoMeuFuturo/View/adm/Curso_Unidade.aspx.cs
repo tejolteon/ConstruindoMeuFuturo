@@ -126,4 +126,9 @@ public partial class View_Curso_Unidade : System.Web.UI.Page
 
         }
     }
+
+    protected void BtVoltar_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("Lista_Unidade_de_Ensino.aspx");
+    }
 }

@@ -15,6 +15,10 @@
                 <asp:Label ID="Label1" runat="server" Text=""><h1>Cursos</h1></asp:Label>
                 <br/>
                 <br/> 
+                 <div class="text-right col-lg-12">
+                        <asp:Button ID="BtVoltar" runat="server" CssClass="btn btn-primary" Text="Voltar" width="100px" OnClick="BtVoltar_Click"/>
+                 </div>
+                 <asp:Label ID="Label2" runat="server" Text=""><h2>Cursos Já associados:</h2></asp:Label>
                 <asp:GridView ID="grdQuestaoRespostaCurso" runat="server" AutoGenerateColumns="false" OnRowCommand="grdQuestaoRespostaCurso_RowCommand"  width="100%">
                     <Columns>        
                         <asp:BoundField DataField="Nome" HeaderText="Nome" />

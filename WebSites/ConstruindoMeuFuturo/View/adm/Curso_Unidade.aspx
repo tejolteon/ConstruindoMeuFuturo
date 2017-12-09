@@ -15,6 +15,9 @@
             <asp:Panel ID="Panel1" runat="server">
                 <asp:Label ID="Label1" runat="server" Text=""><h1>Cursos</h1></asp:Label>
                 <br/>
+                <div class="text-right col-lg-12">
+                        <asp:Button ID="BtVoltar" runat="server" CssClass="btn btn-primary" Text="Voltar" width="100px" OnClick="BtVoltar_Click"/>
+                </div>
                 <asp:Label ID="LblJaCadastrados" runat="server" Text=""><h3>Cursos já cadastrados:</h3></asp:Label>
                 <asp:GridView ID="grdCusoUnidade" runat="server" AutoGenerateColumns="false" OnRowCommand="grdCusoUnidade_RowCommand" width="100%">
                     <Columns>        

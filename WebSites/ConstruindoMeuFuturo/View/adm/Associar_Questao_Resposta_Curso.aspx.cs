@@ -119,4 +119,9 @@ public partial class View_Associar_Questao_Resposta_Curso : System.Web.UI.Page
 
         }
     }
+
+    protected void BtVoltar_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("Adicionar_Resposta_Questao.aspx");
+    }
 }

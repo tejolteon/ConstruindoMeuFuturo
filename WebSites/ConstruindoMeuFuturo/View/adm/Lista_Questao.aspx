@@ -27,6 +27,9 @@
                 <div class="text-center col-lg-12" style="margin-bottom:30px;margin-top:30px">
                      <asp:Button ID="btnPainelCadastrar" runat="server" Text="Cadastrar uma nova questão" CssClass="btn btn-primary"  OnClick="btnCadastrar_Click"/>
                 </div>
+                   <div class="text-right col-lg-12">
+                        <asp:Button ID="BtVoltar" runat="server" CssClass="btn btn-primary" Text="Voltar" width="100px" OnClick="BtVoltar_Click"/>
+                 </div>
                 <div class="form-group">
                     <asp:TextBox ID="Txtpesquisa"  CssClass="form-control"  width="100%"  Height="40px" runat="server" AutoPostBack="True" OnTextChanged="Txtpesquisa_TextChanged" placeholder="Pesquisar por nome"></asp:TextBox>
                 </div>

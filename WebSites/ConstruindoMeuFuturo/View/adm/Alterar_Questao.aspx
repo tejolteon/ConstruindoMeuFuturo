@@ -13,6 +13,9 @@
                     <br/>
                     <textarea id="txtTextoquestao" CssClass="form-control"  style="width:100%;" name="S1" rows="3" runat="server" ></textarea>
                 </div>
+                 <div class="text-left col-lg-6">
+                        <asp:Button ID="BtVoltar" runat="server" CssClass="btn btn-primary" Text="Voltar" width="100px" OnClick="BtVoltar_Click"/>
+                 </div>
                  <div class="text-right col-lg-6">
                     <asp:Button ID="Btalterar" CssClass="btn btn-primary" Text="Cadastrar" runat="server" Width="100px" OnClick="Btalterar_Click"/>
                 </div>

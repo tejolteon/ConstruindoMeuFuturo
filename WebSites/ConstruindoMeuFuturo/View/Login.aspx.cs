@@ -32,7 +32,7 @@ public partial class View_Usuario_Login : System.Web.UI.Page
             Session["usuarioId"] = usuario.Id;
             Session["UsuarioTipo"] = usuario.Tipo;
             Session["UsuarioStatus"] = usuario.Status;
-            Response.Redirect("Perfil.aspx");
+            Response.Redirect("Usuario/Perfil.aspx");
         }
         catch (UsuarioNaoCadastradoException)
 

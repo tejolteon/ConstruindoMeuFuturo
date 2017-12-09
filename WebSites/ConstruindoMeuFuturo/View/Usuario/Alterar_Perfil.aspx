@@ -2,9 +2,20 @@
 
 
 <asp:Content ID="Content2" ContentPlaceHolderID="Content" Runat="Server">
-    <br/>
-    <link href="../General/Design.css" rel="stylesheet" />    
+
+    <link href="../General/Design.css" rel="stylesheet" />  
+        
+                     <asp:UpdateProgress ID="UpdateProgress1" runat="server">
+                     <ProgressTemplate>
+                         <div style="width:100%;height:100%;position:absolute;text-align:center;">   
+                        <img src="../../Images/LOADING.gif" width="150px" height="150px" alt="Carregando" id="imgpos" style="position:relative; top:45%;" title="Carregando..."/>
+                        </div>
+                    </ProgressTemplate>
+                    </asp:UpdateProgress>
+                   
     <div class="well container" style="margin-top:2%; max-width:60%; background-color:white;max-width:800px;">
+    
+                     
             <asp:Panel ID="Panel1" runat="server">
                 <asp:Label ID="Label1" runat="server" Text="" style="text-align:center"><h1>Seu Perfil</h1></asp:Label>
                 <h4>Para conseguirmos te ajudar a escolher a melhor maneira de se aprimorar preencha os dados abaixo</h4>
@@ -46,19 +57,27 @@
                     </asp:DropDownList>
                 </div>
                 <br/>
-                <div class="form-group">
-                 <label for="Area">Selecione as matérias que você mais gostava</label>
-                    <asp:CheckBoxList ID="CheckListArea" runat="server">
-                    </asp:CheckBoxList>
+                <div class="form-group col-lg-12">
+                    <div class="text-left col-lg-6">
+                         <label for="Area">Selecione as matérias que você mais gostava</label>
+                            <asp:CheckBoxList ID="CheckListArea" runat="server">
+                            </asp:CheckBoxList>
+                        </div>
                 </div>
                 <br/>
                 <div class="form-group">
                     <div class="text-left col-lg-6">
                         <asp:LinkButton ID="lbtMTarde" runat="server" CssClass="text-left" OnClick="lbtMTarde_Click">Mais Tarde</asp:LinkButton>
                     </div>
-                    <div class="text-right col-lg-6">
-                        <asp:Button ID="Btalterar" CssClass="btn btn-primary" Text="Salvar" runat="server" width="100px" OnClick="Btalterar_Click" />
-                    </div>
+                    
+                      <asp:UpdatePanel runat="server" id="Panel">
+                        <ContentTemplate>
+                            <div class="text-right col-lg-6">
+                                <asp:Button ID="Btalterar" CssClass="btn btn-primary" Text="Salvar" runat="server" width="100px" OnClick="Btalterar_Click" />        
+                            </div>
+                        </ContentTemplate>
+
+                    </asp:UpdatePanel>
                     </div>
                      <!-- <div class="text-right col-lg-6">
                        <button ID="BtQuestionario" CssClass="btn btn-primary" runat="server" width="100px" onclick="BtQuestionario_Click()"> Responder Questionario</button>

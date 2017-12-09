@@ -50,6 +50,9 @@
                 </div>
                 <textarea id="Txtdescricao" cols="20" name="S1" rows="2" runat="server" style="width:100%;"></textarea>
                 <div class="form-group">
+                        <div class="text-left col-lg-6">
+                            <asp:Button ID="BtVoltar" runat="server" CssClass="btn btn-primary" Text="Voltar" width="100px" OnClick="BtVoltar_Click"/>
+                        </div>
                         <div class="text-right col-lg-6">
                             <asp:Button ID="Btalterar" CssClass="btn btn-primary" Text="Salvar" runat="server" width="100px" OnClick="Btalterar_Click" />
                         </div>

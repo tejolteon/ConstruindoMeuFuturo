@@ -126,4 +126,9 @@ public partial class View_Lista_Unidade_de_Ensino : System.Web.UI.Page
         PanelCadastroUnidade.Visible = true;
         btnCadastrar.Visible = false;
     }
+
+    protected void BtVoltar_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("Home_adm.aspx");
+    }
 }

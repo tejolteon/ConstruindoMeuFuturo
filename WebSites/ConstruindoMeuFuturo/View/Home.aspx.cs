@@ -14,6 +14,6 @@ public partial class View_Home : System.Web.UI.Page
 
     protected void btnQCadastro_Click(object sender, EventArgs e)
     {
-        Response.Redirect("Cadastro.aspx");
+        Response.Redirect("usuario/Cadastro.aspx");
     }
 }

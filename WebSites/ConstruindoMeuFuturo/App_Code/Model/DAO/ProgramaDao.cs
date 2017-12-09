@@ -5,11 +5,11 @@ using System.Linq;
 using System.Web;
 
 /// <summary>
-/// Descrição resumida de AreaDao
+/// Descrição resumida de ProgramaDao
 /// </summary>
-public class AreaDao
+public class ProgramaDao
 {
-    public int InserirArea(AreaBean area)
+    public int InserirPrograma(ProgramaBean programa)
     {
         try
         {
@@ -18,9 +18,10 @@ public class AreaDao
             var command = new SqlCommand();
             command.Connection = Conexao.connection;
             //Comando no banco
-            command.CommandText = "INSERT INTO TB_AREA(Nome_Area) VALUES(@nome),";
+            command.CommandText = "INSERT INTO TB_PROGRAMA(Nome_Programa,Descricao_Programa) VALUES(@nome,@descricao)";
             //Entrada doa parâmetros
-            command.Parameters.AddWithValue("@nome", area.Nome);
+            command.Parameters.AddWithValue("@nome", programa.Nome);
+            command.Parameters.AddWithValue("@descricao", programa.Descricao);
             //Executa e retorna o tanto de linhas que foram afetadas
             return command.ExecuteNonQuery();
         }
@@ -36,7 +37,8 @@ public class AreaDao
         }
 
     }
-    public List<AreaBean> ListarArea()
+
+    public List<ProgramaBean> ListarProgramas()
     {
         try
         {
@@ -45,20 +47,21 @@ public class AreaDao
             var command = new SqlCommand();
             command.Connection = Conexao.connection;
             //Comando no banco
-            command.CommandText = "SELECT * FROM TB_AREA";
+            command.CommandText = "SELECT * FROM TB_PROGRAMA";
             //Executar o comando 
             var reader = command.ExecuteReader();
             //Cria list
-            var areas = new List<AreaBean>();
+            var programas = new List<ProgramaBean>();
             //Inserir os valores do resultado no bean
             while (reader.Read())
             {
-                var area = new AreaBean();
-                area.Id = Convert.ToInt32(reader["Id_Area"]);
-                area.Nome = Convert.ToString(reader["Nome_Area"]);
-                areas.Add(area);
+                var programa = new ProgramaBean();
+                programa.Id = Convert.ToInt32(reader["Id_Programa"]);
+                programa.Nome = Convert.ToString(reader["Nome_Programa"]);
+                programa.Descricao = Convert.ToString(reader["Descricao_Programa"]);
+                programas.Add(programa);
             }
-            return areas;
+            return programas;
         }
         catch (Exception)
         {
@@ -72,7 +75,8 @@ public class AreaDao
         }
 
     }
-    public AreaBean ConsultarAreaPorId(int id)
+
+    public List<ProgramaBean> ListarProgramasUnidade(int idunidade)
     {
         try
         {
@@ -81,20 +85,23 @@ public class AreaDao
             var command = new SqlCommand();
             command.Connection = Conexao.connection;
             //Comando no banco
-            command.CommandText = "SELECT * FROM TB_AREA WHERE Id_Area = @id_area";
+            command.CommandText = "SELECT * FROM TB_PROGRAMA_has_TB_UNIDADE_DE_ENSINO A INNER JOIN TB_PROGRAMA B ON A.Id_Programa = B.Id_Programa  WHERE Id_Unidade_de_Ensino = @idunidade";
             //Entrada doa parâmetros
-            command.Parameters.AddWithValue("@id_area", id);
+            command.Parameters.AddWithValue("@idunidade", idunidade);
             //Executar o comando 
             var reader = command.ExecuteReader();
-            AreaBean area = null;
+            //Cria list
+            var programas = new List<ProgramaBean>();
             //Inserir os valores do resultado no bean
             while (reader.Read())
             {
-                area = new AreaBean();
-                area.Id = Convert.ToInt32(reader["Id_Area"]);
-                area.Nome = Convert.ToString(reader["Nome_Area"]);
+                var programa = new ProgramaBean();
+                programa.Id = Convert.ToInt32(reader["Id_Programa"]);
+                programa.Nome = Convert.ToString(reader["Nome_Programa"]);
+                programa.Descricao = Convert.ToString(reader["Descricao_Programa"]);
+                programas.Add(programa);
             }
-            return area;
+            return programas;
         }
         catch (Exception)
         {
@@ -109,7 +116,8 @@ public class AreaDao
 
     }
 
-    public List<AreaBean> ListarAreaPerfil(int idperfil) {
+    public int InserirProgramaUnidade(ProgramaBean programa, int idunidade)
+    {
         try
         {
             //Conectar com o banco
@@ -117,23 +125,12 @@ public class AreaDao
             var command = new SqlCommand();
             command.Connection = Conexao.connection;
             //Comando no banco
-            command.CommandText = "SELECT * FROM TB_PERFIL_has_TB_AREA A INNER JOIN TB_AREA B ON "+ 
-            "B.Id_Area = A.Id_Area WHERE Id_Perfil = @id_perfil";
+            command.CommandText = "INSERT INTO TB_PROGRAMA_has_TB_UNIDADE_DE_ENSINO(Id_Programa,Id_Unidade_de_Ensino) VALUES(@idprograma,@idunidade);";
             //Entrada doa parâmetros
-            command.Parameters.AddWithValue("@id_perfil", idperfil);
-            //Executar o comando 
-            var reader = command.ExecuteReader();
-            //Cria list
-            var areas = new List<AreaBean>();
-            //Inserir os valores do resultado no bean
-            while (reader.Read())
-            {
-                var area = new AreaBean();
-                area.Id = Convert.ToInt32(reader["Id_Area"]);
-                area.Nome = Convert.ToString(reader["Nome_Area"]);
-                areas.Add(area);
-            }
-            return areas;
+            command.Parameters.AddWithValue("@idprograma", programa.Id);
+            command.Parameters.AddWithValue("@idunidade", idunidade);
+            //Executa e retorna o tanto de linhas que foram afetadas
+            return command.ExecuteNonQuery();
         }
         catch (Exception)
         {
@@ -146,7 +143,6 @@ public class AreaDao
             Conexao.Desconectar();
         }
 
-
     }
+
 }
-

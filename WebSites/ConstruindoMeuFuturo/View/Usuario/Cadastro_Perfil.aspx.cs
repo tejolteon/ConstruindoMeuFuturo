@@ -26,7 +26,7 @@ public partial class View_Cadastro_Perfil : System.Web.UI.Page
         
         if (Session["usuario"] == null || Session["UsuarioStatus"].ToString() != "A")
             {
-            Response.Redirect("Home.aspx");
+            Response.Redirect("../Home.aspx");
         }
 
         areacont = new AreaController();
@@ -91,7 +91,7 @@ public partial class View_Cadastro_Perfil : System.Web.UI.Page
 
                 }
                 //Insere mais 1 ponto no curso indicado se o curso pertencer a area
-                cursocont.InserirCursoIndicadoArea(perfil.Id_perfil);
+                cursocont.InserirCursoIndicadoArea(perfil.Id_perfil, cidade.Id_cidade );
                 Response.Redirect("Perfil.aspx");
             }
             catch (Exception)

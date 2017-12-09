@@ -16,6 +16,9 @@ public partial class View_Cadastro_Resposta : System.Web.UI.Page
 
     private QuestionarioBean questionario;
     private QuestionarioController questionariocont;
+
+    private CidadeController cidadecont;
+    private CidadeBean cidade;
  
     int idperfil;
     int idquestao;
@@ -33,12 +36,12 @@ public partial class View_Cadastro_Resposta : System.Web.UI.Page
         {
             if (Session["usuario"] == null || Session["UsuarioStatus"].ToString() != "A")
             {
-                Response.Redirect("Home.aspx");
+                Response.Redirect("../Home.aspx");
             }
         }
         catch
         {
-            Response.Redirect("Home.aspx");
+            Response.Redirect("../Home.aspx");
         }
 
         questaocont = new QuestaoController();
@@ -68,8 +71,11 @@ public partial class View_Cadastro_Resposta : System.Web.UI.Page
         else {
             btProximo.Visible = false;
             questaotexto.Text = "<h1>Questionario Finalizado</h1>";
+            cidade = new CidadeBean();
+            cidadecont = new CidadeController();
+            cidade = cidadecont.ConsultaCidadePerfil(idperfil);
                 cursocont = new CursoController();
-                cursocont.InserirCursoIndicadoQuestionarios(idperfil);
+                cursocont.InserirCursoIndicadoQuestionarios(idperfil,cidade.Id_cidade);
 ;        }
     }
 

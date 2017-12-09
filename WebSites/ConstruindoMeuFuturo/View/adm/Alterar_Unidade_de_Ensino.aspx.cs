@@ -142,4 +142,9 @@ public partial class View_Alterar_Unidade_de_Ensino : System.Web.UI.Page
     {
 
     }
+
+    protected void BtVoltar_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("Lista_Unidade_de_Ensino.aspx");
+    }
 }

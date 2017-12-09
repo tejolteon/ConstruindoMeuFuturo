@@ -33,7 +33,7 @@ public partial class View_Usuario_Login : System.Web.UI.Page
             Session["UsuarioTipo"] = usuario.Tipo;
             Session["UsuarioStatus"] = usuario.Status;
             if (Session["UsuarioTipo"].ToString() == "A")
-                Response.Redirect("Home_adm.aspx");
+                Response.Redirect("adm/Home_adm.aspx");
             else
                 throw new UsuarioNaoCadastradoException();
         }

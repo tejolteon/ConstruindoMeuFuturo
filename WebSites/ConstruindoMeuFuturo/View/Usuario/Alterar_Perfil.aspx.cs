@@ -27,7 +27,7 @@ public partial class View_Alterar_Perfil : System.Web.UI.Page
 
         if (Session["usuario"] == null || Session["UsuarioStatus"].ToString() != "A")
         {
-            Response.Redirect("Home.aspx");
+            Response.Redirect("../Home.aspx");
         }
         //Verifica se a lista de areas está vazia antes de executar o código
        
@@ -179,6 +179,7 @@ public partial class View_Alterar_Perfil : System.Web.UI.Page
             cursocont.RetirarCursoIndicadoArea(perfil.Id_perfil);
             //Exclui todas as areas associadas ao perfil
             perfcont.ExcluirPerfilArea(perfil);
+            cursocont.ExcluirCursosIndicado(perfil.Id_perfil);
             for (int i = 0; i < cont; i++)
             {
                 bool selecionado = CheckListArea.Items[i].Selected;
@@ -189,12 +190,15 @@ public partial class View_Alterar_Perfil : System.Web.UI.Page
                     try
                     {
                         perfcont.InserirPerfilArea(perfil, area);
-                        cursocont.InserirCursoIndicadoArea(perfil.Id_perfil);
+                        //inserir por area
+                        cursocont.InserirCursoIndicadoArea(perfil.Id_perfil,cidade.Id_cidade);
                     }
                     catch {
 
                     }
                 }
+                //insere por questionario novamente
+                cursocont.InserirCursoIndicadoQuestionarios(perfil.Id_perfil, cidade.Id_cidade);
 
             }
             Response.Redirect("Perfil.aspx");
@@ -203,6 +207,7 @@ public partial class View_Alterar_Perfil : System.Web.UI.Page
         {
             throw;
         }
+        
     }
 
     protected void lbtMTarde_Click(object sender, EventArgs e)

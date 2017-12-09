@@ -608,6 +608,35 @@ public class CursoDao
 
     }
 
+    public int ExcluirCursosIndicado(int idperfil)
+    {
+        try
+        {
+            //Conectar com o banco
+            Conexao.Conectar();
+            var command = new SqlCommand();
+            command.Connection = Conexao.connection;
+            //Comando no banco
+            command.CommandText = "DELETE FROM TB_CURSO_INDICADO WHERE " +
+                "Id_Perfil = @idperfil ";
+            //Entrada doa parâmetros
+            command.Parameters.AddWithValue("@idperfil", idperfil);
+            //Executa e retorna o tanto de linhas que foram afetadas
+            return command.ExecuteNonQuery();
+        }
+        catch (Exception)
+        {
+
+            throw;
+        }
+        //encerrar conexão com o banco
+        finally
+        {
+            Conexao.Desconectar();
+        }
+
+    }
+
 
     public int InserirPontoCursoIndicado(int idcurso, int idperfil, int ponto)
     {

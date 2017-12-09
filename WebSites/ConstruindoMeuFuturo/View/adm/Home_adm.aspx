@@ -12,9 +12,6 @@
       
             <nav class="container well-sm col-lg-2 col-sm-5 col-xs-12">
               <ul class="nav nav-pills flex-column">
-                <li class="nav-item">
-                   <a class="nav-link active" href="#">Overview <span class="sr-only">(current)</span></a>
-                </li>
                 <li class="nav-item ">
                   <a class="nav-link" href="Lista_Unidade_de_Ensino.aspx"><h4>Gerenciar as unidades de Ensino</h4></a>
                 </li>
@@ -28,8 +25,12 @@
             </nav>
              <div class="container well-lg col-lg-10 col-xs-12" align="center">
                 <main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3" >
-                  <h1>Dashboard</h1>
+                  <h1>Dashboard
+                 </h1>
                 </main>
+                 <div class="col-lg-12">
+                 Ano:<asp:TextBox ID="TextBox1" runat="server" AutoPostBack="True" OnTextChanged="TextBox1_TextChanged" maxlength="4"></asp:TextBox>
+                 </div>
                 <div class="col-lg-6">
                     <asp:Chart ID="ChartUsuarios" runat="server" Width="472px" Height="359px" AntiAliasing="None" BackColor="Transparent">
                         <Series>

@@ -66,4 +66,9 @@ public partial class View_Alterar_Curso : System.Web.UI.Page
         }
     }
     //Após selecionar estado ele adiciona as cidades do estado
+
+    protected void BtVoltar_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("Lista_Curso.aspx");
+    }
 }

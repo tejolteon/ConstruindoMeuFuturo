@@ -99,4 +99,9 @@ public partial class View_Lista_Curso : System.Web.UI.Page
         PanelCadastro.Visible = true;
         btnPainelCadastrar.Visible = false;
     }
+
+    protected void BtCadastrar0_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("Home_adm.aspx");
+    }
 }

@@ -10,9 +10,9 @@
     <body>
         <link href="../General/Design.css" rel="stylesheet" />
         <div class="well container" style="margin-top:2%;">
-    
-            <asp:Literal ID="ltConteudo" runat="server"></asp:Literal>
-    
+            <asp:Panel ID="Panel2" runat="server">
+                <asp:Literal ID="ltConteudo" runat="server"></asp:Literal>
+            </asp:Panel>
         </div>
     </body>
     </html>

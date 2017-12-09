@@ -29,7 +29,7 @@
          </asp:ScriptManager>
          <asp:UpdateProgress ID="UpdateProgress1" runat="server">
                      <ProgressTemplate>
-                         <div style="width:100%;height:100%;position:absolute;text-align:center;">   
+                         <div style="width:100%;height:100%;position:absolute;text-align:center;background-color:white">   
                              
                         <img src="../../Images/LOADING.gif" width="150px" height="150px" alt="Carregando" id="imgpos" style="position:relative; top:45%;" title="Carregando..."/>
                         </div>
